@@ -12,5 +12,6 @@ class User < ActiveRecord::Base
             uniqueness: true
 
   validates :password,
-            :length => { :in => 8..40 }
+            :length => { :in => 8..40 },
+            allow_nil: true
 end
