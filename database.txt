@@ -37,7 +37,8 @@ Example:
 * Performance Measures:
 
   - ID -> PK, integer, unique, not null
-  - Objective ID -> FK, integer, not null
+  - Measureable ID -> FK (Objective ID or Key Focus Area ID), integer, not null
+  - Measurable Type -> FK (Objective or Key Focus Area), string, not null
   - Description -> string, not null
   - Target -> string
   - Unit of Measure -> string, not null
@@ -69,11 +70,8 @@ Example:
 
   - ID -> PK, integer, unique, not null
   - Performance Measure ID -> FK, integer, not null
-  - Date -> Datetime, not null
-    Possibly split into:
-    - Day
-    - Month
-    - Year
+  - Date Start -> Date, not null
+  - Date End -> Date, not null
   - Measure -> String, not null
   - Comments -> String
   - Created By (User ID) -> FK, integer, not null
