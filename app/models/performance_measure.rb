@@ -3,6 +3,6 @@ class PerformanceMeasure < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :measurable_id, :measurable_type, :description, :unit_of_measure, :user_id
+  validates :measurable_id, :measurable_type, :description, :unit_of_measure, :user_id,
             presence: true
 end

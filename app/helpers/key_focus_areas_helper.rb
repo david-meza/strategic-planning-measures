@@ -1,0 +1,2 @@
+module KeyFocusAreasHelper
+end

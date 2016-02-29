@@ -1,6 +1,5 @@
 class KeyFocusArea < ActiveRecord::Base
 
-
   validates :name, :goal,
             presence: true
 
