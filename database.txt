@@ -1,0 +1,99 @@
+Database entities:
+
+
+
+* Key Focus Area:
+
+  - ID -> PK, integer, unique, not null
+  - Name -> String, not null
+  - Goal -> String, not null
+
+Example: 
+
+  - ID: 1
+  - Name: Arts and Cultural Resources
+  - Goal: Embrace Raleigh’s diverse offerings of arts and cultural resources as iconic celebrations of our community that provide entertainment, community and economic benefit.
+
+
+
+
+* Objectives:
+
+  - ID -> PK, integer, unique, not null
+  - Key Focus Area ID -> FK, integer, not null
+  - Name -> string, unique in focus area scope, not null
+  - Description -> string, not null
+
+Example:
+
+  - ID: 1
+  - Key Focus Area ID: 1 (Arts and Cultural Resources)
+  - Name -> Objective 1
+  - Description: Position Raleigh as a nationally recognized entertainment, cultural and tourism destination
+
+
+
+
+* Performance Measures:
+
+  - ID -> PK, integer, unique, not null
+  - Objective ID -> FK, integer, not null
+  - Description -> string, not null
+  - Target -> string
+  - Unit of Measure -> string, not null
+  - Measurement Formula -> string
+  - Data Source -> string
+  - Rationale For Target -> string
+  - Data Contact Person -> string
+  - Person Reporting Data to BMS -> string
+  - Notes -> string
+
+Example:
+
+  - ID: 1
+  - Objective ID: 1 (Objective 1 for Arts and Cultural Resources)
+  - Description: Percent change in number of visitors to Raleigh
+  - Target: 150%
+  - Unit of Measure: Percentage
+  - Measurement Formula: (Number of visitors this year / Number of visitors last year) * 100
+  - Data Source: Tourism department
+  - Rationale For Target: ??
+  - Data Contact Person: John Smith, Arts and Cultural Resources
+  - Person Reporting Data to BMS: John Smith
+  - Notes: We have to reach the target by 2020
+
+
+
+
+* Measure Report:
+
+  - ID -> PK, integer, unique, not null
+  - Performance Measure ID -> FK, integer, not null
+  - Date -> Datetime, not null
+    Possibly split into:
+    - Day
+    - Month
+    - Year
+  - Measure -> String, not null
+  - Comments -> String
+  - Created By (User ID) -> FK, integer, not null
+
+Example:
+
+  - ID: 1
+  - Performance Measure ID: 1
+  - Date: Jan 1, 2016
+  - Measure: 180%
+  - Comments: Number of visitors almost doubled from last year
+
+
+
+
+* User:
+
+- ID -> PK, integer, unique, not null
+- email -> string, unique, not null, validate for domain @raleighnc.gov
+- password_digest -> string, not null, MD5 salted hash of real password
+- Admin Role -> boolean, not null, default: false
+- Other user attributes such as last logged in, email verified, etc.
+
