@@ -1,0 +1,29 @@
+<h3>Listing Measure Reports</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @measure_reports.each do |measure_report| %>
+      <tr>
+        <td><%= measure_report.id %></td>
+        <td><%= measure_report.performance %></td>
+        <td><%= measure_report.status %></td>
+        <td><%= measure_report.date_start %></td>
+        <td><%= measure_report.date_end %></td>
+        <td><%= measure_report.author.email %></td>
+        <td><%= link_to 'Show', measure_report %></td>
+        <td><%= link_to 'Edit', edit_measure_report_path(measure_report) %></td>
+        <td><%= link_to 'Destroy', measure_report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Measure report', new_measure_report_path %>

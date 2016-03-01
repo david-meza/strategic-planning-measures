@@ -1,0 +1,9 @@
+Period from <%= @measure_report.date_start %> to <%= @measure_report.date_end %>
+
+<p><strong>Posted by:</strong> <%= @measure_report.author.email %></p>
+<p><strong>Performance:</strong> <%= @measure_report.performance %></p>
+<p><strong>Status:</strong> <%= @measure_report.status %></p>
+<p><strong>Comments:</strong> <%= @measure_report.comments %></p>
+
+<%= link_to 'Edit', edit_measure_report_path(@measure_report) %> |
+<%= link_to 'Back', measure_reports_path %>

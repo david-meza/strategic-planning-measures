@@ -287,7 +287,6 @@ DEPENDENCIES
   binding_of_caller
   byebug
   capybara
-  coffee-rails (~> 4.1.0)
   devise
   factory_girl_rails (~> 4.0)
   faker (= 1.4.3)
