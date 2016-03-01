@@ -17,33 +17,39 @@ ActiveRecord::Schema.define(version: 20160229212201) do
   enable_extension "plpgsql"
 
   create_table "key_focus_areas", force: :cascade do |t|
-    t.string   "name",                    null: false
-    t.string   "goal",       default: "", null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",                                 null: false
+    t.string   "goal",                    default: "", null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "created_by_user_id",                   null: false
+    t.integer  "last_updated_by_user_id"
   end
 
   add_index "key_focus_areas", ["name"], name: "index_key_focus_areas_on_name", unique: true, using: :btree
 
   create_table "measure_reports", force: :cascade do |t|
-    t.integer  "performance_measure_id", null: false
-    t.date     "date_start",             null: false
-    t.date     "date_end",               null: false
-    t.string   "performance",            null: false
+    t.integer  "performance_measure_id",  null: false
+    t.date     "date_start",              null: false
+    t.date     "date_end",                null: false
+    t.string   "performance",             null: false
     t.string   "status"
     t.string   "comments"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "created_by_user_id",      null: false
+    t.integer  "last_updated_by_user_id"
   end
 
   add_index "measure_reports", ["performance_measure_id"], name: "index_measure_reports_on_performance_measure_id", using: :btree
 
   create_table "objectives", force: :cascade do |t|
-    t.integer  "key_focus_area_id",              null: false
-    t.string   "name",                           null: false
-    t.string   "description",       default: "", null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "key_focus_area_id",                    null: false
+    t.string   "name",                                 null: false
+    t.string   "description",             default: "", null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "created_by_user_id",                   null: false
+    t.integer  "last_updated_by_user_id"
   end
 
   add_index "objectives", ["key_focus_area_id"], name: "index_objectives_on_key_focus_area_id", using: :btree
@@ -63,7 +69,8 @@ ActiveRecord::Schema.define(version: 20160229212201) do
     t.string   "notes"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
-    t.integer  "user_id",                                   null: false
+    t.integer  "created_by_user_id",                        null: false
+    t.integer  "last_updated_by_user_id"
   end
 
   add_index "performance_measures", ["measurable_type", "measurable_id"], name: "index_performance_measures_on_measurable_type_and_measurable_id", using: :btree

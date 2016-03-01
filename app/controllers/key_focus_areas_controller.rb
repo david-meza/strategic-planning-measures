@@ -1,6 +1,6 @@
 class KeyFocusAreasController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: :index
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @focus_areas = KeyFocusArea.all
