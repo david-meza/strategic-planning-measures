@@ -1,0 +1,65 @@
+<%= form_for(@performance_measure) do |f| %>
+  <% if @performance_measure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@performance_measure.errors.count, "error") %> prohibited this performance_measure from being saved:</h2>
+
+      <ul>
+      <% @performance_measure.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :measurable_id %><br>
+    <%= f.text_field :measurable_id %>
+  </div>
+  <div class="field">
+    <%= f.label :measurable_type %><br>
+    <%= f.text_field :measurable_type %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :target %><br>
+    <%= f.text_field :target %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_of_measure %><br>
+    <%= f.text_field :unit_of_measure %>
+  </div>
+  <div class="field">
+    <%= f.label :measurement_formula %><br>
+    <%= f.text_field :measurement_formula %>
+  </div>
+  <div class="field">
+    <%= f.label :data_source %><br>
+    <%= f.text_field :data_source %>
+  </div>
+  <div class="field">
+    <%= f.label :rationale_for_target %><br>
+    <%= f.text_field :rationale_for_target %>
+  </div>
+  <div class="field">
+    <%= f.label :data_contact_person %><br>
+    <%= f.text_field :data_contact_person %>
+  </div>
+  <div class="field">
+    <%= f.label :person_reporting_data_to_bms %><br>
+    <%= f.text_field :person_reporting_data_to_bms %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br>
+    <%= f.text_field :notes %>
+  </div>
+  <div class="field">
+    <%= f.label :created_by_user_id %><br>
+    <%= f.text_field :created_by_user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

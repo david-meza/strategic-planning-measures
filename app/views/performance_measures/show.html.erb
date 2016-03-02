@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Measurable:</strong>
+  <%= @performance_measure.measurable_id %>
+</p>
+
+<p>
+  <strong>Measurable type:</strong>
+  <%= @performance_measure.measurable_type %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @performance_measure.description %>
+</p>
+
+<p>
+  <strong>Target:</strong>
+  <%= @performance_measure.target %>
+</p>
+
+<p>
+  <strong>Unit of measure:</strong>
+  <%= @performance_measure.unit_of_measure %>
+</p>
+
+<p>
+  <strong>Measurement formula:</strong>
+  <%= @performance_measure.measurement_formula %>
+</p>
+
+<p>
+  <strong>Data source:</strong>
+  <%= @performance_measure.data_source %>
+</p>
+
+<p>
+  <strong>Rationale for target:</strong>
+  <%= @performance_measure.rationale_for_target %>
+</p>
+
+<p>
+  <strong>Data contact person:</strong>
+  <%= @performance_measure.data_contact_person %>
+</p>
+
+<p>
+  <strong>Person reporting data to bms:</strong>
+  <%= @performance_measure.person_reporting_data_to_bms %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @performance_measure.notes %>
+</p>
+
+<p>
+  <strong>Created by user:</strong>
+  <%= @performance_measure.created_by_user_id %>
+</p>
+
+<%= link_to 'Edit', edit_performance_measure_path(@performance_measure) %> |
+<%= link_to 'Back', performance_measures_path %>

@@ -1,17 +1,40 @@
-<%= form_for(@measure_report) do |f| %>
-  <% if @measure_report.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@measure_report.errors.count, "error") %> prohibited this measure_report from being saved:</h2>
+<%= form_for @measure_report, html: { class:"form-horizontal" } do |f| %>
+  <fieldset>
+    <legend>Measure Validation and Results Submission Form</legend>
 
-      <ul>
-      <% @measure_report.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @measure_report.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@measure_report.errors.count, "error") %> prohibited this measure_report from being saved:</h2>
+
+        <ul>
+        <% @measure_report.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group" id="key-focus-area-selection">
+      <label for="select" class="col-md-3 control-label">Key Focus Area</label>
+      <div class="col-md-9">
+        <%= collection_select(  :objective,
+                                :key_focus_area_id,
+                                KeyFocusArea.all,
+                                :id,
+                                :name,
+                                { prompt: "Please select the Key Focus Area" },
+                                class: "form-control" ) %>
+      </div>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <hr>
+
+    <div class="form-group hide" id="complete-form">
+      <div class="col-md-9 col-md-offset-3">
+        <%= link_to 'Cancel', measure_reports_path, class: "btn btn-default" %>
+        <%= f.submit class: "btn btn-primary" %>
+      </div>
+    </div>
+
+  </fieldset>
 <% end %>
