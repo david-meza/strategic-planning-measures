@@ -35,7 +35,7 @@ class MeasureReportsController < ApplicationController
         format.js
         format.json { render :show, status: :created, location: @measure_report }
       else
-        flash[:alert] = @measure_report.errors.full_messages.map { |error| error = "<li>#{error}</li>" }.join('').html_safe
+        flash[:alert] = @measure_report.errors.full_messages.map { |error| content_tag(:li, error) }.join
         format.html { render :new }
         format.js   { render :form_error }
         format.json { render json: @measure_report.errors, status: :unprocessable_entity }
