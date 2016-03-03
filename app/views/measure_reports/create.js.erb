@@ -1,4 +1,4 @@
-var $report = $('<%= j( render: "measure_reports/show") %>');
+var $report = $('<%= j( render partial: "measure_reports/measure_report", locals: { measure_report: @measure_report }) %>');
 
 var $target = $('#measure-attributes');
 
@@ -6,7 +6,8 @@ $report.insertAfter( $target )
        .hide()
        .slideDown(700);
 
-$('#new_measure_report').trigger('reset');
+// $('#new_measure_report').trigger('reset');
+$("input[type=text].form-control, textarea.form-control").val("");
 
 $('<%= j(render partial: "shared/flash", locals: { message: "Your report was successfully posted!", flash_type: "success" }) %>')
   .insertAfter($target)

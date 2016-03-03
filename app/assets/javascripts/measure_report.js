@@ -1,6 +1,8 @@
 (function($) {
 
-  $(document).ready(function() {
+  $(document).on('page:change', function() {
+
+    if ( $('.measure_reports.new').length === 0 ) { return; }
 
     var focusAreaId;
     var objectiveRadio;
@@ -22,7 +24,6 @@
     }
 
     function changeObjectiveGroup(evt) {
-      console.log(evt, this);
       var radioInput = evt.srcElement.value;
       var wrapper = this.querySelector('#objectives-wrapper');
       if (radioInput === 'no') {
@@ -37,7 +38,6 @@
     }
 
     function generateObjectivesDropdown(response) {
-      console.log(response);
       var wrapper = $('#objectives-wrapper');
       if (response.length === 0) {
         wrapper[0].innerHTML = '<p>There are no objectives for this key focus area. <a href="/objectives/new" class="btn btn-primary btn-xs">Create one?</a></p>';
@@ -54,7 +54,6 @@
     }
 
     function getPerformanceMeasures(evt) {
-      console.log(evt, this.value);
       $('#measure-selection').remove();
       measuresDropdown = $('<div class="form-group" id="measure-selection"><label class="col-md-3 control-label limit-text">Measure</label><div class="col-md-9" id="measures-wrapper"></div></div>').insertAfter(objectiveRadio);
 
@@ -71,7 +70,6 @@
     }
 
     function generateAllMeasureFields(measure) {
-      console.log('found', measure);
       var attributes =  '<div class="form-group" id="measure-attributes">' +
                           '<label class="col-md-3 control-label limit-text">Target</label>' +
                           '<div class="col-md-3">' +
@@ -109,11 +107,9 @@
       $('#measure-attributes').remove();
       $(attributes).insertAfter(measuresDropdown);
       $('#report-data-panel').removeClass('hide');
-      $('#complete-form').removeClass('hide');
     }
 
     function generateMeasuresDropdown(response) {
-      console.log(response);
       var wrapper = measuresDropdown.find('#measures-wrapper');
       if (response.length === 0) {
         wrapper[0].innerHTML = '<p>No measures found. <a href="/performance_measures/new" class="btn btn-primary btn-xs">Create one?</a></p>';
@@ -133,7 +129,6 @@
       var measureId = Number(evt.srcElement.value);
       if (measureId === 0) { return; }
       for (var i = 0; i < measuresResponse.length; i++) {
-        console.log(measuresResponse[i].id, measureId)
         if (measuresResponse[i].id === measureId) {
           return generateAllMeasureFields(measuresResponse[i]);
         }

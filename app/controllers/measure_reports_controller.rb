@@ -1,7 +1,7 @@
 class MeasureReportsController < ApplicationController
   
   before_action :set_measure_report, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /measure_reports
   # GET /measure_reports.json

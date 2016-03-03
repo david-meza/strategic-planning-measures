@@ -4,6 +4,13 @@ $danger: #E51C23;
 $black: #000;
 $dark-grey: #333;
 
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 input:focus, a:focus, button:focus, select:focus {
   outline: none;
 }
@@ -29,10 +36,6 @@ label.control-label {
   }
 }
 
-.well-paragraph {
-  display: inline-block;
-}
-
 .bg-default {
   background-color: rgba($dark-grey, 0.03);
 }
@@ -51,9 +54,42 @@ div[data-report-id] {
     align-content: center;
     align-items: center;
     max-width: 100%;
+  }
 
-    .btn:not(:last-child) {
-      margin-right: 10px;
+  .btn:not(:last-child) {
+    margin-right: 10px;
+  }
+}
+
+.flex {
+  @include display-flex;
+}
+
+.layout-row {
+  @include flex-direction( row );
+}
+
+.layout-column {
+  @include flex-direction( column );
+}
+
+.layout-align-space-between-start {
+  @include space-between;
+  @include flex-start;
+}
+
+.measure_reports.new {
+  #report-data-panel {
+    .well-paragraph {
+      @include space-between;
+      align-content: center;
+      align-items: center;
+
+      span {
+        white-space: nowrap;
+        padding: 0 2px;
+        // align-self: center;
+      }
     }
-  } 
+  }
 }

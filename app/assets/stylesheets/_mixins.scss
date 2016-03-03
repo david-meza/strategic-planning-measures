@@ -40,6 +40,22 @@
   display: inline-flex;
 }
 
+@mixin space-between() {
+  -webkit-justify-content: space-between;
+            -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@mixin flex-start() {
+  -webkit-align-items: flex-start;
+       -ms-flex-align: start;
+          align-items: flex-start;
+  
+  -webkit-align-content: flex-start;
+     -ms-flex-line-pack: start;
+          align-content: flex-start; 
+}
+
 @mixin flex-direction($direction) {
   -webkit-flex-direction: $direction;
       -ms-flex-direction: $direction;

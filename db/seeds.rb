@@ -5,6 +5,9 @@ MeasureReport.destroy_all
 User.destroy_all
 
 
+MULTIPLIER = 25
+
+
 def generate_key_focus_areas(admin)
   KeyFocusArea.create(name: "Economic Development and Innovation", goal: "Maintain and grow a diverse economy through partnerships and innovation to support large and small businesses and entrepreneurs, while providing employment opportunities for all citizens.", created_by_user_id: admin.id)
   KeyFocusArea.create(name: "Art and Cultural Resources", goal: "Embrace Raleigh’s diverse offerings of arts and cultural resources as iconic celebrations of our community that provide entertainment, community and economic benefit.", created_by_user_id: admin.id)
@@ -60,18 +63,18 @@ User.find(admin.id).confirm
 
 generate_key_focus_areas(admin)
 
-25.times do
+MULTIPLIER.times do
   generate_user
 end
 
-5.times do
+MULTIPLIER.times do
   generate_objective
 end
 
-3.times do
+(MULTIPLIER * 3).times do
   generate_performance_measure
 end
 
-10.times do
+(MULTIPLIER * 4).times do
   generate_measure_report
 end
