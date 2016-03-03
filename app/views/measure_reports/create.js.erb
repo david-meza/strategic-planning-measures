@@ -1,0 +1,14 @@
+var $report = $('<%= j( render: "measure_reports/show") %>');
+
+var $target = $('#measure-attributes');
+
+$report.insertAfter( $target )
+       .hide()
+       .slideDown(700);
+
+$('#new_measure_report').trigger('reset');
+
+$('<%= j(render partial: "shared/flash", locals: { message: "Your report was successfully posted!", flash_type: "success" }) %>')
+  .insertAfter($target)
+  .hide()
+  .fadeIn(500);

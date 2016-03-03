@@ -1,21 +1,9 @@
-<%= form_for @measure_report, html: { class:"form-horizontal" } do |f| %>
+<%= form_for @measure_report, remote: true, html: { class:"form-horizontal" }, data: { turbolinks: false } do |report_fields| %>
   <fieldset>
     <legend>Measure Validation and Results Submission Form</legend>
 
-    <% if @measure_report.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@measure_report.errors.count, "error") %> prohibited this measure_report from being saved:</h2>
-
-        <ul>
-        <% @measure_report.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
     <div class="form-group" id="key-focus-area-selection">
-      <label for="select" class="col-md-3 control-label">Key Focus Area</label>
+      <label for="key_focus_area_id" class="col-md-3 control-label">Key Focus Area</label>
       <div class="col-md-9">
         <%= collection_select(  :objective,
                                 :key_focus_area_id,
@@ -29,10 +17,45 @@
 
     <hr>
 
+    <div class="panel panel-info hide" id="report-data-panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">Current Data</h3>
+      </div>
+      
+      <div class="col-xs-12 well">
+        <p class="well-paragraph">Reporting Period:&nbsp; <%= report_fields.text_field :date_start %> to <%= report_fields.text_field :date_end %></p>
+      </div>
+      
+      <div class="panel-body">
+
+        <div class="form-group">
+          <%= report_fields.label :performance, "Performance", class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= report_fields.text_field :performance %>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <%= report_fields.label :status, "Status", class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= report_fields.text_field :status %>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <%= report_fields.label :comments, "Comments", class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= report_fields.text_field :comments %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <div class="form-group hide" id="complete-form">
       <div class="col-md-9 col-md-offset-3">
         <%= link_to 'Cancel', measure_reports_path, class: "btn btn-default" %>
-        <%= f.submit class: "btn btn-primary" %>
+        <%= report_fields.submit class: "btn btn-primary" %>
       </div>
     </div>
 

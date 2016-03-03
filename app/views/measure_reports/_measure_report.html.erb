@@ -1,0 +1,18 @@
+<div class="panel panel-info" data-report-id="<%= measure_report.id %>">
+  <div class="col-xs-12 bg-default">
+    <p>Period from <%= measure_report.date_start %> to <%= measure_report.date_end %></p>
+  </div>
+
+  <div class="panel-body">
+    <p><strong>Posted by:</strong> <%= measure_report.author.email %></p>
+    <p><strong>Performance:</strong> <%= measure_report.performance %></p>
+    <p><strong>Status:</strong> <%= measure_report.status %></p>
+    <p><strong>Comments:</strong> <%= measure_report.comments %></p>
+    
+    <div class="report-actions">
+      <%= link_to 'Show', measure_report, class: "btn btn-xs btn-primary" %>
+      <%= link_to 'Edit', edit_measure_report_path(measure_report), class: "btn btn-xs btn-default" %>
+      <%= link_to 'Delete', measure_report, method: :delete, remote: true, class: "btn btn-xs btn-danger" %>
+    </div>
+  </div>
+</div>

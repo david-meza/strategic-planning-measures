@@ -1,3 +1,9 @@
+@import 'mixins';
+
+$danger: #E51C23;
+$black: #000;
+$dark-grey: #333;
+
 input:focus, a:focus, button:focus, select:focus {
   outline: none;
 }
@@ -10,4 +16,44 @@ input:focus, a:focus, button:focus, select:focus {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+label.control-label {
+  font-weight: 600;
+}
+
+.field_with_errors {
+  display: inline-block;
+  input {
+    @include box-shadow( inset 0 -2px 0 $danger !important );
+  }
+}
+
+.well-paragraph {
+  display: inline-block;
+}
+
+.bg-default {
+  background-color: rgba($dark-grey, 0.03);
+}
+
+div[data-report-id] {
+  p {
+    margin: 0;
+    padding: 2px 0;
+  }
+ 
+  .report-actions {
+    @include display-flex;
+    @include flex-direction( row );
+    // Pending mixins
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+    max-width: 100%;
+
+    .btn:not(:last-child) {
+      margin-right: 10px;
+    }
+  } 
 }

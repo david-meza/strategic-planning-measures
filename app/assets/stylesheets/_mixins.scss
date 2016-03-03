@@ -34,6 +34,12 @@
   display: flex;
 }
 
+@mixin display-inline-flex() {
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
 @mixin flex-direction($direction) {
   -webkit-flex-direction: $direction;
       -ms-flex-direction: $direction;

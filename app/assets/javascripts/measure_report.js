@@ -74,40 +74,42 @@
       console.log('found', measure);
       var attributes =  '<div class="form-group" id="measure-attributes">' +
                           '<label class="col-md-3 control-label limit-text">Target</label>' +
-                          '<div class="col-md-9">' +
-                            '<p>' + (measure.target || 'No target specified') + '</p>' +
+                          '<div class="col-md-3">' +
+                            '<p>' + (measure.target || 'N/A') + '</p>' +
                           '</div>' +
                           '<label class="col-md-3 control-label limit-text">Unit of Measure</label>' +
-                          '<div class="col-md-9">' +
-                            '<p>' + (measure.unit_of_measure || 'No unit of measure') + '</p>' +
+                          '<div class="col-md-3">' +
+                            '<p>' + (measure.unit_of_measure || 'N/A') + '</p>' +
                           '</div>' +
                           '<label class="col-md-3 control-label limit-text">Measurement Formula</label>' +
                           '<div class="col-md-9">' +
-                            '<p>' + (measure.measurement_formula || 'No formula specified') + '</p>' +
+                            '<p>' + (measure.measurement_formula || 'N/A') + '</p>' +
                           '</div>' +
                           '<label class="col-md-3 control-label limit-text">Data Source</label>' +
                           '<div class="col-md-9">' +
-                            '<p>' + (measure.data_source || 'No data source') + '</p>' +
+                            '<p>' + (measure.data_source || 'N/A') + '</p>' +
                           '</div>' +
                           '<label class="col-md-3 control-label limit-text">Rationale for Target</label>' +
                           '<div class="col-md-9">' +
-                            '<p>' + (measure.rationale_for_target || 'No reason specified') + '</p>' +
+                            '<p>' + (measure.rationale_for_target || 'N/A') + '</p>' +
                           '</div>' +
                           '<label class="col-md-3 control-label limit-text">Data Contact Person</label>' +
-                          '<div class="col-md-9">' +
+                          '<div class="col-md-3">' +
                             '<p>' + (measure.data_contact_person || 'N/A') + '</p>' +
                           '</div>' +
                           '<label class="col-md-3 control-label limit-text">Person Reporting Data to BMS</label>' +
-                          '<div class="col-md-9">' +
+                          '<div class="col-md-3">' +
                             '<p>' + (measure.person_reporting_data_to_bms || 'N/A') + '</p>' +
                           '</div>' +
-                          '<label class="col-md-3 control-label limit-text">Notes</label>' +
+                          '<label class="col-md-3 control-label limit-text">Notes/Comments</label>' +
                           '<div class="col-md-9">' +
-                            '<p>' + (measure.notes || 'N/A') + '</p>' +
+                            '<p>' + (measure.notes || '') + '</p>' +
                           '</div>' +
                         '</div>';
       $('#measure-attributes').remove();
       $(attributes).insertAfter(measuresDropdown);
+      $('#report-data-panel').removeClass('hide');
+      $('#complete-form').removeClass('hide');
     }
 
     function generateMeasuresDropdown(response) {

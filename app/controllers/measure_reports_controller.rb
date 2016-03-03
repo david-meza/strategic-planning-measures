@@ -27,13 +27,17 @@ class MeasureReportsController < ApplicationController
   # POST /measure_reports.json
   def create
     @measure_report = MeasureReport.new(measure_report_params)
+    @measure_report.created_by_user_id = current_user.id
 
     respond_to do |format|
       if @measure_report.save
         format.html { redirect_to @measure_report, notice: 'Measure report was successfully created.' }
+        format.js
         format.json { render :show, status: :created, location: @measure_report }
       else
+        flash[:alert] = @measure_report.errors.full_messages.map { |error| error = "<li>#{error}</li>" }.join('').html_safe
         format.html { render :new }
+        format.js   { render :form_error }
         format.json { render json: @measure_report.errors, status: :unprocessable_entity }
       end
     end
@@ -59,6 +63,7 @@ class MeasureReportsController < ApplicationController
     @measure_report.destroy
     respond_to do |format|
       format.html { redirect_to measure_reports_url, notice: 'Measure report was successfully destroyed.' }
+      format.js   { render :destroy, :locals => { id: params[:id] } }
       format.json { head :no_content }
     end
   end
@@ -71,6 +76,6 @@ class MeasureReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def measure_report_params
-      params.fetch(:measure_report, {}).permit(:performance, :status, :date_start, :date_end, :comments)
+      params.fetch(:measure_report, {}).permit(:performance_measure_id, :performance, :status, :date_start, :date_end, :comments)
     end
 end
