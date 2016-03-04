@@ -1,49 +1,10 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Performance Measures</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Measurable</th>
-      <th>Measurable type</th>
-      <th>Description</th>
-      <th>Target</th>
-      <th>Unit of measure</th>
-      <th>Measurement formula</th>
-      <th>Data source</th>
-      <th>Rationale for target</th>
-      <th>Data contact person</th>
-      <th>Person reporting data to bms</th>
-      <th>Notes</th>
-      <th>Created by user</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @performance_measures.each do |performance_measure| %>
-      <tr>
-        <td><%= performance_measure.measurable_id %></td>
-        <td><%= performance_measure.measurable_type %></td>
-        <td><%= performance_measure.description %></td>
-        <td><%= performance_measure.target %></td>
-        <td><%= performance_measure.unit_of_measure %></td>
-        <td><%= performance_measure.measurement_formula %></td>
-        <td><%= performance_measure.data_source %></td>
-        <td><%= performance_measure.rationale_for_target %></td>
-        <td><%= performance_measure.data_contact_person %></td>
-        <td><%= performance_measure.person_reporting_data_to_bms %></td>
-        <td><%= performance_measure.notes %></td>
-        <td><%= performance_measure.created_by_user_id %></td>
-        <td><%= link_to 'Show', performance_measure %></td>
-        <td><%= link_to 'Edit', edit_performance_measure_path(performance_measure) %></td>
-        <td><%= link_to 'Destroy', performance_measure, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Performance measure', new_performance_measure_path %>
+<%= link_to 'New Measure', new_performance_measure_path, class: "btn btn-success pull-right" %>
+<h3>Performance Measures</h3>
+  
+<div class="row flex-row">
+  <% @performance_measures.each do |performance_measure| %>
+    <div class="col-md-6 col-lg-4">
+      <%= render performance_measure %>
+    </div>
+  <% end %>
+</div>

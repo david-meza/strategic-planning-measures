@@ -1,65 +1,83 @@
-<%= form_for(@performance_measure) do |f| %>
-  <% if @performance_measure.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@performance_measure.errors.count, "error") %> prohibited this performance_measure from being saved:</h2>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for @performance_measure, html: { class:"form-horizontal" } do |measure_fields| %>
+      <fieldset>
+        <legend><%= action_name.capitalize %> Performance Measure Form</legend>
+        
+        <%= render partial: 'shared/error_messages', locals: { resource: @performance_measure } %>
 
-      <ul>
-      <% @performance_measure.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        
+        <div class="form-group">
+          <%= measure_fields.label :description, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= measure_fields.text_field :description, class: "form-control" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.label :measurable_id %><br>
-    <%= f.text_field :measurable_id %>
+        <div class="form-group">
+          <%= measure_fields.label :target, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= measure_fields.text_field :target, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= measure_fields.label :unit_of_measure, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= measure_fields.text_field :unit_of_measure, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= measure_fields.label :measurement_formula, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= measure_fields.text_field :measurement_formula, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= measure_fields.label :data_source, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= measure_fields.text_field :data_source, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= measure_fields.label :rationale_for_target, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= measure_fields.text_field :rationale_for_target, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= measure_fields.label :data_contact_person, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= measure_fields.text_field :data_contact_person, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= measure_fields.label :person_reporting_data_to_bms, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= measure_fields.text_field :person_reporting_data_to_bms, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= measure_fields.label :notes, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= measure_fields.text_field :notes, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-9 col-md-offset-3">
+            <%= link_to 'Cancel', performance_measures_path, class: "btn btn-default" %>
+            <%= measure_fields.submit class: "btn btn-primary" %>
+          </div>
+        </div>
+        
+      </fieldset>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :measurable_type %><br>
-    <%= f.text_field :measurable_type %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :target %><br>
-    <%= f.text_field :target %>
-  </div>
-  <div class="field">
-    <%= f.label :unit_of_measure %><br>
-    <%= f.text_field :unit_of_measure %>
-  </div>
-  <div class="field">
-    <%= f.label :measurement_formula %><br>
-    <%= f.text_field :measurement_formula %>
-  </div>
-  <div class="field">
-    <%= f.label :data_source %><br>
-    <%= f.text_field :data_source %>
-  </div>
-  <div class="field">
-    <%= f.label :rationale_for_target %><br>
-    <%= f.text_field :rationale_for_target %>
-  </div>
-  <div class="field">
-    <%= f.label :data_contact_person %><br>
-    <%= f.text_field :data_contact_person %>
-  </div>
-  <div class="field">
-    <%= f.label :person_reporting_data_to_bms %><br>
-    <%= f.text_field :person_reporting_data_to_bms %>
-  </div>
-  <div class="field">
-    <%= f.label :notes %><br>
-    <%= f.text_field :notes %>
-  </div>
-  <div class="field">
-    <%= f.label :created_by_user_id %><br>
-    <%= f.text_field :created_by_user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

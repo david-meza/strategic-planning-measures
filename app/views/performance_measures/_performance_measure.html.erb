@@ -1,0 +1,101 @@
+<div class="panel panel-info" data-measure-id="<%= performance_measure.id %>">
+  <div class="panel-body">
+
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text capitalize"><%= performance_measure.measurable.model_name.human %></label>
+      <div class="col-xs-9">
+        <p><%= performance_measure.measurable.try(:name) %></p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text capitalize">Description</label>
+      <div class="col-xs-9">
+        <p><%= performance_measure.description %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text capitalize">target</label>
+      <div class="col-xs-9">
+        <p><%= performance_measure.target %></p>
+      </div>
+    </div>
+
+    <% if action_name == 'show' %>
+
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text capitalize">unit of measure</label>
+        <div class="col-xs-9">
+          <p><%= performance_measure.unit_of_measure %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text capitalize">measurement formula</label>
+        <div class="col-xs-9">
+          <p><%= performance_measure.measurement_formula %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text capitalize">data source</label>
+        <div class="col-xs-9">
+          <p><%= performance_measure.data_source %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text capitalize">Rationale for Target</label>
+        <div class="col-xs-9">
+          <p><%= performance_measure.rationale_for_target %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text capitalize">Data Contact Person</label>
+        <div class="col-xs-9">
+          <p><%= performance_measure.data_contact_person %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text capitalize">Person Reporting Data to BMS</label>
+        <div class="col-xs-9">
+          <p><%= performance_measure.person_reporting_data_to_bms %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text capitalize">Notes</label>
+        <div class="col-xs-9">
+          <p><%= performance_measure.notes %></p>
+        </div>
+      </div>
+
+    <% end %>
+
+
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text">Created By</label>
+      <div class="col-xs-9">
+        <p><%= performance_measure.author.try(:email) %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text">Last Edited by</label>
+      <div class="col-xs-9">
+        <p><%= performance_measure.last_editor.try(:email) %></p>
+      </div>
+    </div>
+
+    
+    <div class="kfa-actions">
+      <%= link_to 'Show', performance_measure, class: "btn btn-default" unless action_name == 'show' %>
+      <%= link_to 'Back', performance_measures_path, class: "btn btn-default" if action_name == 'show' %>
+      <%= link_to 'Edit', edit_performance_measure_path(performance_measure), class: "btn btn-default" %>
+      <%= link_to 'Delete', performance_measure, method: :delete, data: {confirm: 'Are you sure you want to delete this key focus area'}, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>

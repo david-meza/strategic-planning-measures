@@ -27,6 +27,7 @@ class PerformanceMeasuresController < ApplicationController
   # POST /performance_measures.json
   def create
     @performance_measure = PerformanceMeasure.new(performance_measure_params)
+    @performance_measure.author = current_user
 
     respond_to do |format|
       if @performance_measure.save
@@ -42,6 +43,8 @@ class PerformanceMeasuresController < ApplicationController
   # PATCH/PUT /performance_measures/1
   # PATCH/PUT /performance_measures/1.json
   def update
+    @performance_measure.last_editor = current_user
+
     respond_to do |format|
       if @performance_measure.update(performance_measure_params)
         format.html { redirect_to @performance_measure, notice: 'Performance measure was successfully updated.' }
