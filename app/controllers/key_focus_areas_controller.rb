@@ -1,5 +1,6 @@
 class KeyFocusAreasController < ApplicationController
 
+  before_action :set_focus_area, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -11,26 +12,58 @@ class KeyFocusAreasController < ApplicationController
   end
 
   def create
+    @focus_area = KeyFocusArea.new(focus_area_params)
+    @focus_area.author = current_user
+
+    respond_to do |format|
+      if @focus_area.save
+        format.html { redirect_to @focus_area, notice: 'Key focus area was successfully created.' }
+        format.json { render :show, status: :created, location: @focus_area }
+      else
+        format.html { render :new }
+        format.json { render json: @focus_area.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def show
-    @focus_area = KeyFocusArea.find(params[:id])
   end
 
   def edit
   end
 
   def update
+    @focus_area.last_editor = current_user
+
+    respond_to do |format|
+      if @focus_area.update(focus_area_params)
+        format.html { redirect_to @focus_area, notice: 'Key focus area was successfully updated.' }
+        format.json { render :show, status: :created, location: @focus_area }
+      else
+        format.html { render :edit }
+        format.json { render json: @focus_area.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
+    @focus_area.destroy
+    respond_to do |format|
+      format.html { redirect_to key_focus_areas_url, notice: 'Key focus area was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
 
-  def focus_area_params
-    params.require(:key_focus_area).permit(:name, :goal)
-  end
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_focus_area
+      @focus_area = KeyFocusArea.find(params[:id])
+    end
 
+    def focus_area_params
+      params.require(:key_focus_area).permit(:name, :goal)
+    end
 
 end

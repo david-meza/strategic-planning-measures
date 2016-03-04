@@ -6,49 +6,49 @@
   <div class="panel-body">
     
     <div class="row">
-      <label class="col-xs-3 control-label capitalize"><%= measure_report.performance_measure.measurable.model_name.human %></label>
+      <label class="col-xs-3 control-label limit-text capitalize"><%= measure_report.performance_measure.measurable.model_name.human %></label>
       <div class="col-xs-9">
         <p><%= measure_report.performance_measure.measurable.name %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label">Measure</label>
+      <label class="col-xs-3 control-label limit-text">Measure</label>
       <div class="col-xs-9">
         <p><%= measure_report.performance_measure.description %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label">Performance</label>
+      <label class="col-xs-3 control-label limit-text">Performance</label>
       <div class="col-xs-9">
         <p><%= measure_report.performance %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label">Status</label>
+      <label class="col-xs-3 control-label limit-text">Status</label>
       <div class="col-xs-9">
         <p><%= measure_report.status %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label">Comments</label>
+      <label class="col-xs-3 control-label limit-text">Comments</label>
       <div class="col-xs-9">
         <p><%= measure_report.comments %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label">Posted by</label>
+      <label class="col-xs-3 control-label limit-text">Posted by</label>
       <div class="col-xs-9">
         <p><%= measure_report.author.email %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label">Last Edited by</label>
+      <label class="col-xs-3 control-label limit-text">Last Edited by</label>
       <div class="col-xs-9">
         <p><%= measure_report.last_editor.try(:email) %></p>
       </div>

@@ -1,7 +1,61 @@
-<p>
-  <%= key_focus_area.name %>
-</p>
+<div class="panel panel-info" data-kfa-id="<%= key_focus_area.id %>">
+  <div class="panel-body">
+    
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text capitalize">Name</label>
+      <div class="col-xs-9">
+        <p><%= key_focus_area.name %></p>
+      </div>
+    </div>
 
-<p>
-  <%= key_focus_area.goal %>
-</p>
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text">Goal</label>
+      <div class="col-xs-9">
+        <p><%= key_focus_area.goal %></p>
+      </div>
+    </div>
+
+    <% if action_name == 'show' %>
+        <div class="row">
+          <label class="col-xs-3 control-label limit-text">Objectives</label>
+          <div class="col-xs-9">
+            <% key_focus_area.objectives.each do |objective| %>
+              <p><strong><%= objective.name %>:</strong> <%= objective.description %></p>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="col-xs-3 control-label limit-text">Measures</label>
+          <div class="col-xs-9">
+            <% key_focus_area.measures.each do |measure| %>
+              <p><%= measure.description %></p>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+
+
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text">Created By</label>
+      <div class="col-xs-9">
+        <p><%= key_focus_area.author.try(:email) %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text">Last Edited by</label>
+      <div class="col-xs-9">
+        <p><%= key_focus_area.last_editor.try(:email) %></p>
+      </div>
+    </div>
+
+    
+    <div class="kfa-actions">
+      <%= link_to 'Show', key_focus_area, class: "btn btn-default" unless action_name == 'show' %>
+      <%= link_to 'Back', key_focus_areas_path, class: "btn btn-default" if action_name == 'show' %>
+      <%= link_to 'Edit', edit_key_focus_area_path(key_focus_area), class: "btn btn-default" %>
+      <%= link_to 'Delete', key_focus_area, method: :delete, data: {confirm: 'Are you sure you want to delete this key focus area'}, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>

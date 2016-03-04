@@ -1,3 +1,10 @@
-<h2>Test</h2>
-
-<%= render @focus_areas %>
+<%= link_to 'New Key Focus Area', new_key_focus_area_path, class: "btn btn-success pull-right" %>
+<h3>Key Focus Areas</h3>
+  
+<div class="row">
+  <% @focus_areas.each do |kfa| %>
+    <div class="col-md-6 col-lg-4">
+      <%= render kfa %>
+    </div>
+  <% end %>
+</div>

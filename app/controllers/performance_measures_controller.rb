@@ -1,5 +1,7 @@
 class PerformanceMeasuresController < ApplicationController
+  
   before_action :set_performance_measure, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /performance_measures
   # GET /performance_measures.json

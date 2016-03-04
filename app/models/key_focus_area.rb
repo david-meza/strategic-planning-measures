@@ -4,7 +4,7 @@ class KeyFocusArea < ActiveRecord::Base
 
   has_many :objectives, dependent: :destroy
 
-  has_many :performance_measures, as: :measurable, dependent: :destroy
+  has_many :measures, as: :measurable, dependent: :destroy, class_name: "PerformanceMeasure"
 
   belongs_to :author, foreign_key: :created_by_user_id, class_name: "User"
   
