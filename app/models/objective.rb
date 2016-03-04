@@ -4,7 +4,7 @@ class Objective < ActiveRecord::Base
 
   belongs_to :key_focus_area
 
-  has_many :performance_measures, as: :measurable, dependent: :destroy
+  has_many :measures, as: :measurable, dependent: :destroy, class_name: 'PerformanceMeasure'
 
   belongs_to :author, foreign_key: :created_by_user_id, class_name: "User"
   

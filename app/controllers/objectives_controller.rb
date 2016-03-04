@@ -7,7 +7,7 @@ class ObjectivesController < ApplicationController
   # GET /objectives
   # GET /objectives.json
   def index
-    @objectives = params[:key_focus_area_id] ? Objective.where(key_focus_area_id: params[:key_focus_area_id]) : Objective.all
+    @objectives = params[:key_focus_area_id] ? Objective.where(key_focus_area_id: params[:key_focus_area_id]) : Objective.order(updated_at: :desc)
   end
 
   # GET /objectives/1
@@ -28,6 +28,7 @@ class ObjectivesController < ApplicationController
   # POST /objectives.json
   def create
     @objective = Objective.new(objective_params)
+    @objective.author = current_user
 
     respond_to do |format|
       if @objective.save
@@ -43,6 +44,8 @@ class ObjectivesController < ApplicationController
   # PATCH/PUT /objectives/1
   # PATCH/PUT /objectives/1.json
   def update
+    @objective.last_editor = current_user
+
     respond_to do |format|
       if @objective.update(objective_params)
         format.html { redirect_to @objective, notice: 'Objective was successfully updated.' }

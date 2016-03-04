@@ -1,0 +1,61 @@
+<div class="panel panel-info" data-objective-id="<%= objective.id %>">
+  <div class="panel-body">
+
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text capitalize">key focus area</label>
+      <div class="col-xs-9">
+        <p><%= objective.key_focus_area.try(:name) %></p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text capitalize">Name</label>
+      <div class="col-xs-9">
+        <p><%= objective.name %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text capitalize">description</label>
+      <div class="col-xs-9">
+        <p><%= objective.description %></p>
+      </div>
+    </div>
+
+    <% if action_name == 'show' %>
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text">Measures</label>
+        <div class="col-xs-9">
+          <ul>
+            <% objective.measures.each do |measure| %>
+              <li><%= measure.description %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text">Created By</label>
+      <div class="col-xs-9">
+        <p><%= objective.author.try(:email) %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text">Last Edited by</label>
+      <div class="col-xs-9">
+        <p><%= objective.last_editor.try(:email) %></p>
+      </div>
+    </div>
+
+    
+    <div class="kfa-actions">
+      <%= link_to 'Show', objective, class: "btn btn-default" unless action_name == 'show' %>
+      <%= link_to 'Back', objectives_path, class: "btn btn-default" if action_name == 'show' %>
+      <%= link_to 'Edit', edit_objective_path(objective), class: "btn btn-default" %>
+      <%= link_to 'Delete', objective, method: :delete, data: {confirm: 'Are you sure you want to delete this key focus area'}, class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>

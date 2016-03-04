@@ -20,9 +20,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use devise for user authentication
 gem 'devise'
-
-gem 'will_paginate'
-gem 'bootstrap-will_paginate'
+gem 'will_paginate', '~> 3.0.7'
+gem 'bootstrap-will_paginate', '~> 0.0.10'
 
 
 

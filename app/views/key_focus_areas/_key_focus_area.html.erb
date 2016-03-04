@@ -16,23 +16,25 @@
     </div>
 
     <% if action_name == 'show' %>
-        <div class="row">
-          <label class="col-xs-3 control-label limit-text">Objectives</label>
-          <div class="col-xs-9">
-            <% key_focus_area.objectives.each do |objective| %>
-              <p><strong><%= objective.name %>:</strong> <%= objective.description %></p>
-            <% end %>
-          </div>
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text">Objectives</label>
+        <div class="col-xs-9">
+          <% key_focus_area.objectives.each do |objective| %>
+            <p><strong><%= objective.name %>:</strong> <%= objective.description %></p>
+          <% end %>
         </div>
+      </div>
 
-        <div class="row">
-          <label class="col-xs-3 control-label limit-text">Measures</label>
-          <div class="col-xs-9">
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text">Measures</label>
+        <div class="col-xs-9">
+          <ul>
             <% key_focus_area.measures.each do |measure| %>
-              <p><%= measure.description %></p>
+              <li><%= measure.description %></li>
             <% end %>
-          </div>
+          </ul>
         </div>
+      </div>
     <% end %>
 
 

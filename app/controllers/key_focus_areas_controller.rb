@@ -4,7 +4,7 @@ class KeyFocusAreasController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @focus_areas = KeyFocusArea.all
+    @focus_areas = KeyFocusArea.order(updated_at: :desc)
   end
 
   def new

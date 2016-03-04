@@ -1,0 +1,1 @@
+json.merge! @focus_area.as_json
