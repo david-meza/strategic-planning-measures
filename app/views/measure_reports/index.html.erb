@@ -1,5 +1,5 @@
 <%= link_to 'New Measure report', new_measure_report_path, class: "btn btn-success pull-right" %>
-<h3>Listing Measure Reports</h3>
+<h3>Measure Reports</h3>
   
 <div class="row">
   <% @measure_reports.each do |measure_report| %>
@@ -9,3 +9,6 @@
   <% end %>
 </div>
 
+<div class="text-center">
+  <%= will_paginate @measure_reports %>
+</div>

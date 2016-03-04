@@ -2,5 +2,5 @@ var $report = $('div[data-report-id="<%= id %>"]');
 $("<%= j(render partial: 'shared/flash', locals: { message: 'Your report was deleted!', flash_type: 'info' }) %>").insertBefore($report).hide().fadeIn(500);
 
 $report.slideUp("normal", function() {
-        $(this).remove();
-    });;
+  $(this).remove();
+});;

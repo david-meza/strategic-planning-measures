@@ -21,6 +21,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use devise for user authentication
 gem 'devise'
 
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'

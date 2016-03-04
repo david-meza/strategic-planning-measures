@@ -6,7 +6,7 @@ class MeasureReportsController < ApplicationController
   # GET /measure_reports
   # GET /measure_reports.json
   def index
-    @measure_reports = MeasureReport.all
+    @measure_reports = MeasureReport.order(updated_at: :desc).paginate(:page => params[:page], :per_page => 12)
   end
 
   # GET /measure_reports/1
@@ -46,6 +46,7 @@ class MeasureReportsController < ApplicationController
   # PATCH/PUT /measure_reports/1
   # PATCH/PUT /measure_reports/1.json
   def update
+    @measure_report.last_editor = current_user
     respond_to do |format|
       if @measure_report.update(measure_report_params)
         format.html { redirect_to @measure_report, notice: 'Measure report was successfully updated.' }

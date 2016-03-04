@@ -6,6 +6,13 @@
         <legend>Measure Validation and Results Submission Form</legend>
 
         <div class="form-group">
+          <label class="col-md-3 control-label capitalize"><%= @measure_report.performance_measure.measurable.model_name.human %></label>
+          <div class="col-md-9">
+            <p class="measurable-name"><%= @measure_report.performance_measure.measurable.name %></p>
+          </div>
+        </div>
+
+        <div class="form-group">
           <%= report_fields.label :performance_measure_id, "Measure", class: "col-md-3 control-label" %>
           <div class="col-md-9">
             <%= report_fields.collection_select :performance_measure_id,

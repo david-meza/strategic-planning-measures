@@ -4,16 +4,62 @@
   </div>
 
   <div class="panel-body">
-    <p><strong>Measure:</strong> <%= measure_report.performance_measure.description %></p>
-    <p><strong>Performance:</strong> <%= measure_report.performance %></p>
-    <p><strong>Status:</strong> <%= measure_report.status %></p>
-    <p><strong>Comments:</strong> <%= measure_report.comments %></p>
-    <p><strong>Posted by:</strong> <%= measure_report.author.email %></p>
+    
+    <div class="row">
+      <label class="col-xs-3 control-label capitalize"><%= measure_report.performance_measure.measurable.model_name.human %></label>
+      <div class="col-xs-9">
+        <p><%= measure_report.performance_measure.measurable.name %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-xs-3 control-label">Measure</label>
+      <div class="col-xs-9">
+        <p><%= measure_report.performance_measure.description %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-xs-3 control-label">Performance</label>
+      <div class="col-xs-9">
+        <p><%= measure_report.performance %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-xs-3 control-label">Status</label>
+      <div class="col-xs-9">
+        <p><%= measure_report.status %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-xs-3 control-label">Comments</label>
+      <div class="col-xs-9">
+        <p><%= measure_report.comments %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-xs-3 control-label">Posted by</label>
+      <div class="col-xs-9">
+        <p><%= measure_report.author.email %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <label class="col-xs-3 control-label">Last Edited by</label>
+      <div class="col-xs-9">
+        <p><%= measure_report.last_editor.try(:email) %></p>
+      </div>
+    </div>
+
     
     <div class="report-actions">
-      <%= link_to 'Show', measure_report, class: "btn btn-xs btn-default" %>
-      <%= link_to 'Edit', edit_measure_report_path(measure_report), class: "btn btn-xs btn-default" %>
-      <%= link_to 'Delete', measure_report, method: :delete, remote: true, class: "btn btn-xs btn-danger" %>
+      <%= link_to 'Show', measure_report, class: "btn btn-default" unless action_name == 'show' %>
+      <%= link_to 'Back', measure_reports_path, class: "btn btn-default" if action_name == 'show' %>
+      <%= link_to 'Edit', edit_measure_report_path(measure_report), class: "btn btn-default" %>
+      <%= link_to 'Delete', measure_report, method: :delete, remote: true, class: "btn btn-danger" %>
     </div>
   </div>
 </div>
