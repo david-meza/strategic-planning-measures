@@ -3,6 +3,8 @@
     <h4 class="text-center">Log in</h4>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal" }) do |f| %>
+
+      <%= render partial: 'shared/error_messages', locals: { resource: resource } %>
       
       <div class="form-group">
         <div class="label-control col-md-3">
