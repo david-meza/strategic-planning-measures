@@ -57,7 +57,7 @@
       $('#measure-selection').remove();
       measuresDropdown = $('<div class="form-group" id="measure-selection"><label class="col-md-3 control-label limit-text">Measure</label><div class="col-md-9" id="measures-wrapper"></div></div>').insertAfter(objectiveRadio);
 
-      if (typeof evt === 'string') {
+      if (evt === 'no objective') {
         $.ajax('/performance_measures.json', {
           data: { measurable_id: focusAreaId, measurable_type: 'KeyFocusArea' }
         }).then( generateMeasuresDropdown, logError);
@@ -135,7 +135,7 @@
       }
     }
 
-  })
+  });
 
 
 })(jQuery);

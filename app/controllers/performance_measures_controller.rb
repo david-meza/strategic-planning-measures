@@ -6,7 +6,9 @@ class PerformanceMeasuresController < ApplicationController
   # GET /performance_measures
   # GET /performance_measures.json
   def index
-    @performance_measures = params[:measurable_id] ? PerformanceMeasure.where(measurable_id: params[:measurable_id], measurable_type: params[:measurable_type]) : PerformanceMeasure.all
+    @performance_measures = params[:measurable_id] && params[:measurable_type] ? 
+                              PerformanceMeasure.where(measurable_id: params[:measurable_id], measurable_type: params[:measurable_type]) : 
+                              PerformanceMeasure.order(updated_at: :desc)
   end
 
   # GET /performance_measures/1
