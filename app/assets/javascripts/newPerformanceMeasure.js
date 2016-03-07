@@ -6,9 +6,8 @@
 
     var focusAreaId;
     var objectiveRadio;
-    var measuresDropdown;
-    var measuresResponse;
     
+    // Trigger all the other functions when we change the dropdown value
     document.getElementById('objective_key_focus_area_id').addEventListener('change', showObjectives);
 
     function showObjectives(evt) {
