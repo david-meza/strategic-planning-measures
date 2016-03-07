@@ -295,7 +295,7 @@ DEPENDENCIES
   bootstrap-will_paginate (~> 0.0.10)
   byebug
   capybara
-  devise
+  devise (~> 3.5.6)
   factory_girl_rails (~> 4.0)
   faker (= 1.4.3)
   guard-rspec
