@@ -23,12 +23,12 @@
         </div>
 
         <%= measure_fields.hidden_field(:measurable_type) %>
-        
+
         <div id="edit-measure-fields" class="edit-measure-fields">
           <div class="form-group">
             <%= measure_fields.label :description, class: "col-md-3 control-label" %>
             <div class="col-md-9">
-              <%= measure_fields.text_field :description, class: "form-control" %>
+              <%= measure_fields.text_area :description, class: "form-control" %>
             </div>
           </div>
 

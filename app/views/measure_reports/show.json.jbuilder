@@ -1,1 +1,1 @@
-json.extract! @measure_report, :id, :created_at, :updated_at
+json.merge! @measure_report.as_json
