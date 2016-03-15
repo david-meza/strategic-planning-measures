@@ -11,6 +11,10 @@ html, body {
   padding: 0;
 }
 
+a {
+  cursor: pointer;
+}
+
 .flex-row {
   @include display-flex;
   @include flex-direction( row );
@@ -28,8 +32,11 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
   outline: none;
 }
 
-.form-group p {
-  padding-top: 7px;
+.form-group {
+
+  p, a {
+    padding-top: 7px;
+  }
 }
 
 .capitalize {

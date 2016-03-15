@@ -2,13 +2,37 @@
 
   $(document).on('page:change', function() {
 
-    if ( $('.performance_measures.new, .performance_measures.create').length === 0 ) { return; }
+    if ( $('.performance_measures.edit, .performance_measures.update').length === 0 ) { return; }
 
     var focusAreaId;
     var objectiveRadio;
     
-    // Trigger all the other functions when we change the dropdown value
-    document.getElementById('objective_key_focus_area_id').addEventListener('change', showObjectives);
+    
+    document.getElementById('update-measurable').addEventListener('click', showKeyFocusAreas);
+
+    function showKeyFocusAreas(evt) {
+      document.getElementById('key-focus-area-selection').innerHTML = '<label for="key_focus_area_id" class="col-md-3 control-label">Key Focus Area</label><div class="col-md-9" id="kfa-wrapper"></div>';
+
+      $.ajax('/key_focus_areas.json').then( generateKFADropdown, logError);
+
+    }
+
+    function generateKFADropdown(response) {
+      var wrapper = $('#kfa-wrapper');
+      if (response.length === 0) {
+        wrapper[0].innerHTML = '<p>There are no key focus areas. <a href="/key_focus_areas/new" class="btn btn-primary btn-xs">Create one?</a></p>';
+        return;
+      }
+      var kfaSelect = $('<select class="form-control" name="objective[key_focus_area_id]" id="objective_key_focus_area_id"></select>').appendTo(wrapper);
+      var options = '<option value="">Please Select the Key Focus Area</option>';
+      response.forEach(function(kfa) {
+        options += ('<option value="' + kfa.id + '">' + kfa.name + '</option>');
+      })
+      kfaSelect.append(options);
+      // Trigger all the other functions when we change the dropdown value
+      kfaSelect.on('change', showObjectives);
+      // document.getElementById('objective_key_focus_area_id').addEventListener('change', showObjectives);
+    }
 
     function showObjectives(evt) {
       if (this.value === '') { return; }
@@ -30,7 +54,6 @@
         // Set the measurable as key focus area
         $('#performance_measure_measurable_type').val('KeyFocusArea');
         $('#objective_key_focus_area_id').attr('name', 'performance_measure[measurable_id]');
-        getPerformanceMeasures('no objective');
       } else {
         // Set the measurable as objective
         $('#performance_measure_measurable_type').val('Objective');
@@ -54,12 +77,12 @@
         options += ('<option value="' + objective.id + '">' + objective.name + '</option>');
       })
       objectiveSelect.append(options);
-      objectiveSelect.on('change', getPerformanceMeasures);
+      // objectiveSelect[0].addEventListener('change', updateHiddenField);
     }
 
-    function getPerformanceMeasures(evt) {
-      $('#new-measure-fields').removeClass('hide');
-    }
+    // function updateHiddenField(evt) {
+    //   $('#performance_measure_measurable_id').val(evt.srcElement.value);
+    // }
 
   });
 
