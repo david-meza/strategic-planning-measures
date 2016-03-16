@@ -2,6 +2,7 @@ class KeyFocusAreasController < ApplicationController
 
   before_action :set_focus_area, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_admin, except: [:index, :show]
 
   def index
     @focus_areas = KeyFocusArea.order(updated_at: :desc)

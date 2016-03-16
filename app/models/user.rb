@@ -21,4 +21,11 @@ class User < ActiveRecord::Base
   validates :password,
             :length => { :in => 8..40 },
             allow_nil: true
+
+  # ----------------------- Methods --------------------
+
+  def name
+    self.email.sub(/@.+\z/i, "").gsub(/\W/i, " ").titleize
+  end
+
 end

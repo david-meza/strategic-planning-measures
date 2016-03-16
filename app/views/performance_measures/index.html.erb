@@ -1,4 +1,4 @@
-<%= link_to 'New Measure', new_performance_measure_path, class: "btn btn-success pull-right" %>
+<%= link_to 'New Measure', new_performance_measure_path, class: "btn btn-success pull-right" if current_user.try(:admin?) %>
 <h3>Performance Measures</h3>
   
 <div class="row flex-row">

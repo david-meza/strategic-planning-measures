@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229212201) do
+ActiveRecord::Schema.define(version: 20160316155536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20160229212201) do
     t.datetime "updated_at",              null: false
     t.integer  "created_by_user_id",      null: false
     t.integer  "last_updated_by_user_id"
+    t.string   "bms_comments"
   end
 
   add_index "measure_reports", ["performance_measure_id"], name: "index_measure_reports_on_performance_measure_id", using: :btree

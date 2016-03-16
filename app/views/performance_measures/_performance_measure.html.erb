@@ -94,8 +94,10 @@
     <div class="kfa-actions">
       <%= link_to 'Show', performance_measure, class: "btn btn-default" unless action_name == 'show' %>
       <%= link_to 'Back', performance_measures_path, class: "btn btn-default" if action_name == 'show' %>
-      <%= link_to 'Edit', edit_performance_measure_path(performance_measure), class: "btn btn-default" %>
-      <%= link_to 'Delete', performance_measure, method: :delete, data: {confirm: 'Are you sure you want to delete this key focus area'}, class: "btn btn-danger" %>
+      <% if current_user.try(:admin?) %>
+        <%= link_to 'Edit', edit_performance_measure_path(performance_measure), class: "btn btn-default" %>
+        <%= link_to 'Delete', performance_measure, method: :delete, data: {confirm: 'Are you sure you want to delete this key focus area'}, class: "btn btn-danger" %>
+      <% end %>
     </div>
   </div>
 </div>

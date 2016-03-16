@@ -3,6 +3,7 @@
 $danger: #E51C23;
 $black: #000;
 $dark-grey: #333;
+$navbar-text: #b2dbfb;
 
 html, body {
   height: 100%;
@@ -13,6 +14,14 @@ html, body {
 
 a {
   cursor: pointer;
+}
+
+a.self-name {
+  color: $navbar-text !important;
+  cursor: default !important;
+  &:hover {
+    color: $navbar-text !important;
+  }
 }
 
 .flex-row {
