@@ -119,7 +119,7 @@
       } else {
         commentsField.required = true;
         if ($('#comment-hint').length === 0) {
-          $(evt.srcElement).after('<p id="comment-hint">Please provide context regarding the performance of this measure in the comments below.</p>')
+          $(evt.srcElement).after('<p id="comment-hint"><em>Please provide context regarding the performance of this measure in the comments below.</em></p>')
         }
       }
     }
