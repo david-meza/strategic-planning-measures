@@ -64,7 +64,7 @@ class KeyFocusAreasController < ApplicationController
     end
 
     def focus_area_params
-      params.require(:key_focus_area).permit(:name, :goal)
+      params.fetch(:key_focus_area, {}).permit(:name, :goal)
     end
 
 end

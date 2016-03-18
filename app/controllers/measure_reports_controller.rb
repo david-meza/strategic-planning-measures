@@ -77,6 +77,6 @@ class MeasureReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def measure_report_params
-      params.fetch(:measure_report, {}).permit(:performance_measure_id, :performance, :status, :date_start, :date_end, :comments)
+      params.fetch(:measure_report, {}).permit(:performance_measure_id, :performance, :status, :date_start, :date_end, :comments, :bms_comments)
     end
 end

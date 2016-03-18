@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316155536) do
+ActiveRecord::Schema.define(version: 20160318173104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,21 +57,23 @@ ActiveRecord::Schema.define(version: 20160316155536) do
   add_index "objectives", ["name", "key_focus_area_id"], name: "index_objectives_on_name_and_key_focus_area_id", unique: true, using: :btree
 
   create_table "performance_measures", force: :cascade do |t|
-    t.integer  "measurable_id",                             null: false
-    t.string   "measurable_type",                           null: false
-    t.string   "description",                  default: "", null: false
+    t.integer  "measurable_id",                                   null: false
+    t.string   "measurable_type",                                 null: false
+    t.string   "description",                        default: "", null: false
     t.string   "target"
-    t.string   "unit_of_measure",                           null: false
+    t.string   "unit_of_measure",                                 null: false
     t.string   "measurement_formula"
     t.string   "data_source"
     t.string   "rationale_for_target"
     t.string   "data_contact_person"
     t.string   "person_reporting_data_to_bms"
     t.string   "notes"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.integer  "created_by_user_id",                        null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.integer  "created_by_user_id",                              null: false
     t.integer  "last_updated_by_user_id"
+    t.string   "data_contact_person_email"
+    t.string   "person_reporting_data_to_bms_email"
   end
 
   add_index "performance_measures", ["measurable_type", "measurable_id"], name: "index_performance_measures_on_measurable_type_and_measurable_id", using: :btree

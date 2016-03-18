@@ -77,6 +77,6 @@ class PerformanceMeasuresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def performance_measure_params
-      params.require(:performance_measure).permit(:measurable_id, :measurable_type, :description, :target, :unit_of_measure, :measurement_formula, :data_source, :rationale_for_target, :data_contact_person, :person_reporting_data_to_bms, :notes, :created_by_user_id)
+      params.fetch(:performance_measure, {}).permit(:measurable_id, :measurable_type, :description, :target, :unit_of_measure, :measurement_formula, :data_source, :rationale_for_target, :data_contact_person, :data_contact_person_email, :person_reporting_data_to_bms, :person_reporting_data_to_bms_email, :notes)
     end
 end

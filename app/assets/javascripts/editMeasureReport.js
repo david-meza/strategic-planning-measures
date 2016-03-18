@@ -7,7 +7,6 @@
     document.getElementById('measure_report_status').addEventListener('change', requireComment);
     
     function requireComment(evt) {
-      console.log('here');
       var text = evt.srcElement.value;
       var commentsField = document.getElementById('measure_report_comments');
       if (text === 'All is well with performance. Target will be or is met.') {

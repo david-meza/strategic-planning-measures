@@ -76,6 +76,6 @@ class ObjectivesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def objective_params
-      params.require(:objective).permit(:key_focus_area_id, :name, :description)
+      params.fetch(:objective, {}).permit(:key_focus_area_id, :name, :description)
     end
 end

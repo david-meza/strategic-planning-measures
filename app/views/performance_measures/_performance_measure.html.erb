@@ -2,22 +2,22 @@
   <div class="panel-body">
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text capitalize"><%= performance_measure.measurable.model_name.human %></label>
-      <div class="col-xs-9">
+      <label class="col-sm-3 control-label limit-text capitalize"><%= performance_measure.measurable.model_name.human %></label>
+      <div class="col-sm-9">
         <p><%= performance_measure.measurable.try(:name) %></p>
       </div>
     </div>
     
     <div class="row">
-      <label class="col-xs-3 control-label limit-text capitalize">Description</label>
-      <div class="col-xs-9">
+      <label class="col-sm-3 control-label limit-text capitalize">Description</label>
+      <div class="col-sm-9">
         <p><%= performance_measure.description %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text capitalize">target</label>
-      <div class="col-xs-9">
+      <label class="col-sm-3 control-label limit-text capitalize">target</label>
+      <div class="col-sm-9">
         <p><%= performance_measure.target %></p>
       </div>
     </div>
@@ -25,50 +25,52 @@
     <% if action_name == 'show' %>
 
       <div class="row">
-        <label class="col-xs-3 control-label limit-text capitalize">unit of measure</label>
-        <div class="col-xs-9">
+        <label class="col-sm-3 control-label limit-text capitalize">unit of measure</label>
+        <div class="col-sm-9">
           <p><%= performance_measure.unit_of_measure %></p>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-xs-3 control-label limit-text capitalize">measurement formula</label>
-        <div class="col-xs-9">
+        <label class="col-sm-3 control-label limit-text capitalize">measurement formula</label>
+        <div class="col-sm-9">
           <p><%= performance_measure.measurement_formula %></p>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-xs-3 control-label limit-text capitalize">data source</label>
-        <div class="col-xs-9">
+        <label class="col-sm-3 control-label limit-text capitalize">data source</label>
+        <div class="col-sm-9">
           <p><%= performance_measure.data_source %></p>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-xs-3 control-label limit-text capitalize">Rationale for Target</label>
-        <div class="col-xs-9">
+        <label class="col-sm-3 control-label limit-text capitalize">Rationale for Target</label>
+        <div class="col-sm-9">
           <p><%= performance_measure.rationale_for_target %></p>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-xs-3 control-label limit-text capitalize">Data Contact Person</label>
-        <div class="col-xs-9">
+        <label class="col-sm-3 control-label limit-text capitalize">Data Contact</label>
+        <div class="col-sm-9">
           <p><%= performance_measure.data_contact_person %></p>
+          <p><%= performance_measure.data_contact_person_email %></p>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-xs-3 control-label limit-text capitalize">Person Reporting Data to BMS</label>
-        <div class="col-xs-9">
+        <label class="col-sm-3 control-label limit-text capitalize">Person Reporting to BMS</label>
+        <div class="col-sm-9">
           <p><%= performance_measure.person_reporting_data_to_bms %></p>
+          <p><%= performance_measure.person_reporting_data_to_bms_email %></p>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-xs-3 control-label limit-text capitalize">Notes</label>
-        <div class="col-xs-9">
+        <label class="col-sm-3 control-label limit-text capitalize">Notes</label>
+        <div class="col-sm-9">
           <p><%= performance_measure.notes %></p>
         </div>
       </div>
@@ -77,15 +79,15 @@
 
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text">Created By</label>
-      <div class="col-xs-9">
+      <label class="col-sm-3 control-label limit-text">Created By</label>
+      <div class="col-sm-9">
         <p><%= performance_measure.author.try(:email) %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text">Last Edited by</label>
-      <div class="col-xs-9">
+      <label class="col-sm-3 control-label limit-text">Last Edited by</label>
+      <div class="col-sm-9">
         <p><%= performance_measure.last_editor.try(:email) %></p>
       </div>
     </div>
