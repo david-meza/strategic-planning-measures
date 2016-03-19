@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318173104) do
+ActiveRecord::Schema.define(version: 20160321160741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,17 +28,18 @@ ActiveRecord::Schema.define(version: 20160318173104) do
   add_index "key_focus_areas", ["name"], name: "index_key_focus_areas_on_name", unique: true, using: :btree
 
   create_table "measure_reports", force: :cascade do |t|
-    t.integer  "performance_measure_id",  null: false
-    t.date     "date_start",              null: false
-    t.date     "date_end",                null: false
-    t.string   "performance",             null: false
+    t.integer  "performance_measure_id",                  null: false
+    t.date     "date_start",                              null: false
+    t.date     "date_end",                                null: false
+    t.string   "performance",                             null: false
     t.string   "status"
     t.string   "comments"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "created_by_user_id",      null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "created_by_user_id",                      null: false
     t.integer  "last_updated_by_user_id"
     t.string   "bms_comments"
+    t.boolean  "expired",                 default: false, null: false
   end
 
   add_index "measure_reports", ["performance_measure_id"], name: "index_measure_reports_on_performance_measure_id", using: :btree

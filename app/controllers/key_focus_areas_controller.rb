@@ -50,7 +50,7 @@ class KeyFocusAreasController < ApplicationController
   def destroy
     @focus_area.destroy
     respond_to do |format|
-      format.html { redirect_to key_focus_areas_url, notice: 'Key focus area was successfully destroyed.' }
+      format.html { redirect_to key_focus_areas_url, notice: 'Key focus area was successfully deleted.' }
       format.json { head :no_content }
     end
   end

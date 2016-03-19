@@ -2,11 +2,13 @@ class MeasureReportsController < ApplicationController
   
   before_action :set_measure_report, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  # before_action :authenticate_admin, only: :destroy
+  before_action :authenticate_author, only: [:edit, :update, :destroy]
 
   # GET /measure_reports
   # GET /measure_reports.json
   def index
-    @measure_reports = MeasureReport.order(updated_at: :desc).paginate(:page => params[:page], :per_page => 12)
+    @measure_reports = MeasureReport.where(expired: false).order(updated_at: :desc).paginate(:page => params[:page], :per_page => 12)
   end
 
   # GET /measure_reports/1
@@ -61,9 +63,10 @@ class MeasureReportsController < ApplicationController
   # DELETE /measure_reports/1
   # DELETE /measure_reports/1.json
   def destroy
-    @measure_report.destroy
+    @measure_report.last_editor = current_user
+    @measure_report.update({expired: true})
     respond_to do |format|
-      format.html { redirect_to measure_reports_url, notice: 'Measure report was successfully destroyed.' }
+      format.html { redirect_to measure_reports_url, notice: 'Measure report was successfully deleted.' }
       format.js   { render :destroy, :locals => { id: params[:id] } }
       format.json { head :no_content }
     end
@@ -73,6 +76,14 @@ class MeasureReportsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_measure_report
       @measure_report = MeasureReport.find(params[:id])
+    end
+
+    # Only allow the author to edit their own report
+    def authenticate_author
+      unless current_user.try(:admin?) || @measure_report.author == current_user
+        flash[:notice] = "You cannot edit someone else's report with your current credentials"
+        redirect_to referer
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

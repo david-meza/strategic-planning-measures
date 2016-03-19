@@ -1,9 +1,5 @@
 @import 'mixins';
-
-$danger: #E51C23;
-$black: #000;
-$dark-grey: #333;
-$navbar-text: #b2dbfb;
+@import 'variables';
 
 html, body {
   height: 100%;
@@ -24,6 +20,10 @@ a.self-name {
   }
 }
 
+.panel p {
+  word-break: break-word;
+}
+
 #comment-hint {
   color: $danger;
   font-weight: 500;
@@ -32,6 +32,10 @@ a.self-name {
 
 .sublegend {
   font-size: 17px;
+}
+
+.kfa-actions, .objective-actions, .measure-actions, .report-actions {
+  padding-top: 10px;
 }
 
 .flex-row {

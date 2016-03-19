@@ -8,7 +8,9 @@ class ObjectivesController < ApplicationController
   # GET /objectives
   # GET /objectives.json
   def index
-    @objectives = params[:key_focus_area_id] ? Objective.where(key_focus_area_id: params[:key_focus_area_id]) : Objective.order(updated_at: :desc)
+    @objectives = params[:key_focus_area_id] ? 
+                  Objective.where(key_focus_area_id: params[:key_focus_area_id]) : 
+                  Objective.includes(:key_focus_area).order("key_focus_areas.name asc, objectives.name asc, objectives.updated_at desc")
   end
 
   # GET /objectives/1
@@ -63,7 +65,7 @@ class ObjectivesController < ApplicationController
   def destroy
     @objective.destroy
     respond_to do |format|
-      format.html { redirect_to objectives_url, notice: 'Objective was successfully destroyed.' }
+      format.html { redirect_to objectives_url, notice: 'Objective was successfully deleted.' }
       format.json { head :no_content }
     end
   end

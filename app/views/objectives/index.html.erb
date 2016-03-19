@@ -1,6 +1,6 @@
 <%= link_to 'New Objective', new_objective_path, class: "btn btn-success pull-right" if current_user.try(:admin?)%>
 <h3>Objectives</h3>
-  
+<hr>  
 <div class="row flex-row">
   <% @objectives.each do |objective| %>
     <div class="col-md-6 col-lg-4">

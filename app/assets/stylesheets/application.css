@@ -12,5 +12,6 @@
  *
  *= require_tree .
  *= require jquery-ui
+ *= require material
  *= require_self
  */

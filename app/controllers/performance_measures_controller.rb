@@ -9,7 +9,7 @@ class PerformanceMeasuresController < ApplicationController
   def index
     @performance_measures = params[:measurable_id] && params[:measurable_type] ? 
                               PerformanceMeasure.where(measurable_id: params[:measurable_id], measurable_type: params[:measurable_type]) : 
-                              PerformanceMeasure.order(updated_at: :desc)
+                              PerformanceMeasure.includes(:key_focus_area).order("key_focus_areas.name asc, performance_measures.updated_at desc")
   end
 
   # GET /performance_measures/1
@@ -64,7 +64,7 @@ class PerformanceMeasuresController < ApplicationController
   def destroy
     @performance_measure.destroy
     respond_to do |format|
-      format.html { redirect_to performance_measures_url, notice: 'Performance measure was successfully destroyed.' }
+      format.html { redirect_to performance_measures_url, notice: 'Performance measure was successfully deleted.' }
       format.json { head :no_content }
     end
   end
