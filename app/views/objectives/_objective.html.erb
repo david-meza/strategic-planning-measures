@@ -1,12 +1,14 @@
-<div class="panel panel-info" data-objective-id="<%= objective.id %>">
+<div class="panel panel-info" data-objective-id="<%= objective.id %>" data-objective-kfa="<%= objective.key_focus_area.try(:name) %>">
   <div class="panel-body">
 
-    <div class="row">
-      <label class="col-xs-3 control-label limit-text capitalize">key focus area</label>
-      <div class="col-xs-9">
-        <p class="kfa-name"><%= objective.key_focus_area.try(:name) %></p>
+    <% if action_name == 'show' %>
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text capitalize">key focus area</label>
+        <div class="col-xs-9">
+          <p class="kfa-name"><%= objective.key_focus_area.try(:name) %></p>
+        </div>
       </div>
-    </div>
+    <% end %>
     
     <div class="row">
       <label class="col-xs-3 control-label limit-text capitalize">Name</label>

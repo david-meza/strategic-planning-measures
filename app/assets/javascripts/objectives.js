@@ -10,9 +10,9 @@
     
     $panels.each(function(idx, panel) {
       var $panel = $(panel);
-      var kfaLabel = $panel.find('.kfa-name').text();
+      var kfaLabel = $panel.attr('data-objective-kfa');
       if (currentKFA !== kfaLabel) {
-        $panel.parent().before('<div class="col-xs-12"><h4>' + kfaLabel + '</h4></div>');
+        $panel.parent().before('<div class="col-xs-12"><h4 class="kfa-subheader text-center">' + kfaLabel + '</h4></div>');
         currentKFA = kfaLabel;
       }
     });

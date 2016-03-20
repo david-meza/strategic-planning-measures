@@ -26,6 +26,9 @@ gem 'bootstrap-will_paginate', '~> 0.0.10'
 
 gem 'rails-jquery-autocomplete'
 
+# Manage file attachments with Paperclip
+gem "paperclip", "~> 4.3"
+
 
 
 # Use Unicorn as the app server
