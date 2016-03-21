@@ -1,4 +1,4 @@
-<div class="panel panel-info" data-measure-id="<%= performance_measure.id %>">
+<div class="panel panel-info" data-measure-id="<%= performance_measure.id %>" data-objective-kfa="<%= performance_measure.parents[0].name %>" data-objective-name="<%= performance_measure.parents[1].name %>">
   <div class="panel-body">
     
     <% performance_measure.parents.each do |parent| %>

@@ -7,9 +7,12 @@ class PerformanceMeasuresController < ApplicationController
   # GET /performance_measures
   # GET /performance_measures.json
   def index
-    @performance_measures = params[:measurable_id] && params[:measurable_type] ? 
-                              PerformanceMeasure.where(measurable_id: params[:measurable_id], measurable_type: params[:measurable_type]) : 
-                              PerformanceMeasure.includes(:key_focus_area).order("key_focus_areas.name asc, performance_measures.updated_at desc")
+    @performance_measures = 
+    if params[:measurable_id] && params[:measurable_type]
+      PerformanceMeasure.where(measurable_id: params[:measurable_id], measurable_type: params[:measurable_type])
+    else
+      PerformanceMeasure.includes(:key_focus_area, :objective).order("key_focus_areas.name asc, objectives.key_focus_area_id asc, objectives.name asc, performance_measures.updated_at desc")
+    end
   end
 
   # GET /performance_measures/1
