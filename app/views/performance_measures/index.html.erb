@@ -1,5 +1,7 @@
 <%= link_to 'New Measure', new_performance_measure_path, class: "btn btn-success pull-right" if current_user.try(:admin?) %>
 <h3>Performance Measures</h3>
+
+<hr />
   
 <div class="row flex-row">
   <% @performance_measures.each do |performance_measure| %>
