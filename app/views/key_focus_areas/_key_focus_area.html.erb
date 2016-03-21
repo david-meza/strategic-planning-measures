@@ -1,11 +1,9 @@
 <div class="panel panel-info" data-kfa-id="<%= key_focus_area.id %>">
   <div class="panel-body">
     
-    <div class="row">
-      <label class="col-xs-3 control-label limit-text capitalize">Name</label>
-      <div class="col-xs-9">
-        <p><%= key_focus_area.name %></p>
-      </div>
+    <div class="flex layout-row layout-align-space-between-center logo-row">
+      <h4><%= key_focus_area.name %></h4>
+      <%= image_tag key_focus_area.logo.url(:thumb) if key_focus_area.logo.present? %>
     </div>
 
     <div class="row">

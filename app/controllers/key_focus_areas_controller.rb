@@ -5,7 +5,7 @@ class KeyFocusAreasController < ApplicationController
   before_action :authenticate_admin, except: [:index, :show]
 
   def index
-    @focus_areas = KeyFocusArea.order(updated_at: :desc)
+    @focus_areas = KeyFocusArea.includes(:objectives, :measures).order(name: :asc, updated_at: :desc)
   end
 
   def new
@@ -64,7 +64,7 @@ class KeyFocusAreasController < ApplicationController
     end
 
     def focus_area_params
-      params.fetch(:key_focus_area, {}).permit(:name, :goal)
+      params.fetch(:key_focus_area, {}).permit(:name, :goal, :logo)
     end
 
 end

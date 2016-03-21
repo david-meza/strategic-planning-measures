@@ -10,6 +10,11 @@ class KeyFocusArea < ActiveRecord::Base
   
   belongs_to :last_editor, foreign_key: :last_updated_by_user_id, class_name: "User"
 
+  # ----------------------- Logo --------------------
+  
+  has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/honeycomb.png"
+  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
+
   # ----------------------- Validations --------------------
 
   validates :name, :goal, :created_by_user_id,
