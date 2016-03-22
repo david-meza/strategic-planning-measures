@@ -7,23 +7,23 @@
         <%= render partial: 'shared/error_messages', locals: { resource: @focus_area } %>
 
         <div class="form-group">
-          <%= focus_area_fields.label :name, class: "col-md-3 control-label" %>
+          <%= focus_area_fields.label :name, "Name*", class: "col-md-3 control-label" %>
           <div class="col-md-9">
-            <%= focus_area_fields.text_field :name, class: "form-control" %>
+            <%= focus_area_fields.text_field :name, class: "form-control", required: true %>
           </div>
         </div>
         
         <div class="form-group">
-          <%= focus_area_fields.label :goal, class: "col-md-3 control-label" %>
+          <%= focus_area_fields.label :goal, "Goal*", class: "col-md-3 control-label" %>
           <div class="col-md-9">
-            <%= focus_area_fields.text_area :goal, class: "form-control" %>
+            <%= focus_area_fields.text_area :goal, class: "form-control", required: true %>
           </div>
         </div>
 
         <div class="form-group">
           <%= focus_area_fields.label :logo, class: "col-md-3 control-label" %>
           <div class="col-md-9">
-            <%= focus_area_fields.file_field :logo, class: "form-control" %>
+            <%= focus_area_fields.file_field :logo, class: "form-control file-upload", accept: 'image/png,image/gif,image/jpeg' %>
           </div>
         </div>
 

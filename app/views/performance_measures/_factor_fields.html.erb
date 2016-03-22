@@ -1,0 +1,22 @@
+<div data-factor-index="<%= factor_fields.index %>">
+  <div class="form-group">
+    <%= factor_fields.label :label_text, class: "col-md-3 control-label" %>
+    <div class="col-md-9">
+      <%= factor_fields.text_field :label_text, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= factor_fields.label :field_type, class: "col-md-3 control-label" %>
+    <div class="col-md-9">
+      <%= factor_fields.select :field_type, [ ["Please select a type", ""], ["Text", "text"], ["Number", "number"] ], {}, class: "form-control" %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <% if factor_fields.object.persisted? %>
+      <%= factor_fields.hidden_field :_destroy %>
+      <%= link_to "Remove this factor?", "#", class: "btn btn-warning btn-sm pull-right remove-factor" %>
+    <% end %>
+  </div>
+</div>

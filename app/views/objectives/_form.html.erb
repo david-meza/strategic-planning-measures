@@ -7,28 +7,29 @@
         <%= render partial: 'shared/error_messages', locals: { resource: @objective } %>
 
         <div class="form-group">
-          <%= objective_fields.label :key_focus_area_id, "Key Focus Area", class: "col-md-3 control-label" %>
+          <%= objective_fields.label :key_focus_area_id, "Key Focus Area*", class: "col-md-3 control-label" %>
           <div class="col-md-9">
             <%= objective_fields.collection_select  :key_focus_area_id,
                                                     KeyFocusArea.all,
                                                     :id,
                                                     :name,
                                                     { prompt: "Please select a Key Focus Area for this objective"},
-                                                    class: "form-control" %>
+                                                    class: "form-control",
+                                                    required: true %>
           </div>
         </div>
         
         <div class="form-group">
-          <%= objective_fields.label :name, class: "col-md-3 control-label" %>
+          <%= objective_fields.label :name, "Name*", class: "col-md-3 control-label" %>
           <div class="col-md-9">
-            <%= objective_fields.text_field :name, class: "form-control" %>
+            <%= objective_fields.text_field :name, class: "form-control", required: true %>
           </div>
         </div>
 
         <div class="form-group">
-          <%= objective_fields.label :description, class: "col-md-3 control-label" %>
+          <%= objective_fields.label :description, "Description*", class: "col-md-3 control-label" %>
           <div class="col-md-9">
-            <%= objective_fields.text_area :description, class: "form-control" %>
+            <%= objective_fields.text_area :description, class: "form-control", required: true %>
           </div>
         </div>
 

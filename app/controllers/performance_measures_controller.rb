@@ -24,6 +24,11 @@ class PerformanceMeasuresController < ApplicationController
   def new
     @performance_measure = PerformanceMeasure.new
     @performance_measure.performance_factors.build
+
+    respond_to do |format|
+      format.html { render :new }
+      format.js   { render :new_factor_fields }
+    end
   end
 
   # GET /performance_measures/1/edit

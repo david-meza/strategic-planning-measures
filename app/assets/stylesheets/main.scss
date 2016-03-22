@@ -35,6 +35,12 @@ a.self-name {
   text-transform: italic;
 }
 
+input[type="file"].file-upload {
+  &:focus {
+    outline: none;
+  }
+}
+
 .sublegend {
   font-size: 17px;
 }
@@ -77,8 +83,9 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
 
 .form-group {
 
-  p, a {
+  p, a:not(.btn) {
     padding-top: 7px;
+    font-size: 15px;
   }
 }
 
