@@ -39,6 +39,17 @@ a.self-name {
   font-size: 17px;
 }
 
+.checkbox-danger {
+  &:focus:after {
+    border-color: $danger !important;
+  }
+
+  &:checked:after {
+    border-color: darken($danger, 5%) !important;
+    background-color: $danger !important;
+  }
+}
+
 .kfa-subheader {
   color: $indigo;
 }

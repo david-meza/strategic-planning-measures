@@ -1,0 +1,2 @@
+module PerformanceFactorEntriesHelper
+end

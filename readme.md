@@ -4,4 +4,4 @@ Web app that captures data and measures for the COR strategic plan
 
 ### Demo
 
-Heroku: [Open](https://strategic-planning.herokuapp.com/measure_reports)
+Heroku: [Open](https://strategic-planning.herokuapp.com/)

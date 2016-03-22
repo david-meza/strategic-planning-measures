@@ -7,12 +7,15 @@ class PerformanceMeasure < ActiveRecord::Base
   belongs_to :key_focus_area, -> { where(performance_measures: {measurable_type: 'KeyFocusArea'}) }, foreign_key: 'measurable_id'
   belongs_to :objective, -> { where(performance_measures: {measurable_type: 'Objective'}) }, foreign_key: 'measurable_id'
 
-  has_many :measure_reports, dependent: :destroy
-
   belongs_to :author, foreign_key: :created_by_user_id, class_name: "User"
-  
   belongs_to :last_editor, foreign_key: :last_updated_by_user_id, class_name: "User"
 
+  has_many :measure_reports, dependent: :destroy
+  has_many :performance_factors, dependent: :destroy
+
+  accepts_nested_attributes_for :performance_factors,
+                                reject_if: :all_blank,
+                                allow_destroy: true
 
   # ----------------------- Validations --------------------
 

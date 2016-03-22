@@ -55,18 +55,59 @@
       </div>
 
       <div class="row">
-        <label class="col-sm-3 control-label limit-text capitalize">Data Contact</label>
+        <label class="col-sm-3 control-label limit-text capitalize">Performance Factors</label>
+        <div class="col-sm-9">
+          <ul>
+          <% performance_measure.performance_factors.each do |factor| %>
+            <li><%= factor.label_text %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-xs-12">
+          <h5>Data Contact</h5>
+        </div>
+      </div>
+      
+      <div class="row">
+        <label class="col-sm-3 control-label limit-text capitalize">Name</label>
         <div class="col-sm-9">
           <p><%= performance_measure.data_contact_person %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-3 control-label limit-text capitalize">Email</label>
+        <div class="col-sm-9">
           <p><%= performance_measure.data_contact_person_email %></p>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-sm-3 control-label limit-text capitalize">Person Reporting to BMS</label>
+        <div class="col-xs-12">
+          <h5>Person Reporting to BMS Contact</h5>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-3 control-label limit-text capitalize">Name</label>
         <div class="col-sm-9">
           <p><%= performance_measure.person_reporting_data_to_bms %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-3 control-label limit-text capitalize">Email</label>
+        <div class="col-sm-9">
           <p><%= performance_measure.person_reporting_data_to_bms_email %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <h5>Extras</h5>
         </div>
       </div>
 

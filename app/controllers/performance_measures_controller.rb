@@ -23,10 +23,12 @@ class PerformanceMeasuresController < ApplicationController
   # GET /performance_measures/new
   def new
     @performance_measure = PerformanceMeasure.new
+    @performance_measure.performance_factors.build
   end
 
   # GET /performance_measures/1/edit
   def edit
+    @performance_measure.performance_factors.build
   end
 
   # POST /performance_measures
@@ -75,11 +77,14 @@ class PerformanceMeasuresController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_performance_measure
-      @performance_measure = PerformanceMeasure.find(params[:id])
+      @performance_measure = PerformanceMeasure.includes(:author, :last_editor, :performance_factors).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def performance_measure_params
-      params.fetch(:performance_measure, {}).permit(:measurable_id, :measurable_type, :description, :target, :unit_of_measure, :measurement_formula, :data_source, :rationale_for_target, :data_contact_person, :data_contact_person_email, :person_reporting_data_to_bms, :person_reporting_data_to_bms_email, :notes)
+      params.fetch(:performance_measure, {}).permit(:measurable_id, :measurable_type, :description, :target, :unit_of_measure, 
+                                                    :measurement_formula, :data_source, :rationale_for_target, :data_contact_person, 
+                                                    :data_contact_person_email, :person_reporting_data_to_bms, :person_reporting_data_to_bms_email, 
+                                                    :notes, performance_factors_attributes: [:id, :_destroy, :label_text, :field_type] )
     end
 end

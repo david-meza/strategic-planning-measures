@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321174153) do
+ActiveRecord::Schema.define(version: 20160322135520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,28 @@ ActiveRecord::Schema.define(version: 20160321174153) do
   add_index "objectives", ["key_focus_area_id"], name: "index_objectives_on_key_focus_area_id", using: :btree
   add_index "objectives", ["name", "key_focus_area_id"], name: "index_objectives_on_name_and_key_focus_area_id", unique: true, using: :btree
 
+  create_table "performance_factor_entries", force: :cascade do |t|
+    t.integer  "performance_factor_id", null: false
+    t.integer  "measure_report_id",     null: false
+    t.string   "data",                  null: false
+    t.text     "comments"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "performance_factor_entries", ["measure_report_id"], name: "index_performance_factor_entries_on_measure_report_id", using: :btree
+  add_index "performance_factor_entries", ["performance_factor_id"], name: "index_performance_factor_entries_on_performance_factor_id", using: :btree
+
+  create_table "performance_factors", force: :cascade do |t|
+    t.integer  "performance_measure_id", null: false
+    t.string   "label_text",             null: false
+    t.string   "field_type",             null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "performance_factors", ["performance_measure_id"], name: "index_performance_factors_on_performance_measure_id", using: :btree
+
   create_table "performance_measures", force: :cascade do |t|
     t.integer  "measurable_id",                                   null: false
     t.string   "measurable_type",                                 null: false
@@ -109,4 +131,7 @@ ActiveRecord::Schema.define(version: 20160321174153) do
 
   add_foreign_key "measure_reports", "performance_measures"
   add_foreign_key "objectives", "key_focus_areas"
+  add_foreign_key "performance_factor_entries", "measure_reports"
+  add_foreign_key "performance_factor_entries", "performance_factors"
+  add_foreign_key "performance_factors", "performance_measures"
 end
