@@ -22,9 +22,15 @@
 
     function addFields(evt) {
       evt.preventDefault();
+      var target = $(evt.target).addClass('disabled');
+      
+      setTimeout(function() {
+        target.removeClass('disabled');
+      }, 1000);
+      
       $.ajax('/performance_measures/new', {
         dataType: 'script'
-      }, logError, logError);
+      });
     }
 
   });
