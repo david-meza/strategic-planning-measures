@@ -33,7 +33,6 @@ class PerformanceMeasuresController < ApplicationController
 
   # GET /performance_measures/1/edit
   def edit
-    @performance_measure.performance_factors.build
   end
 
   # POST /performance_measures

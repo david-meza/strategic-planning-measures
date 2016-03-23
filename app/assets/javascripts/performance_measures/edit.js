@@ -11,7 +11,7 @@
     document.getElementById('update-measurable').addEventListener('click', showKeyFocusAreas);
 
     function showKeyFocusAreas(evt) {
-      document.getElementById('key-focus-area-selection').innerHTML = '<label for="key_focus_area_id" class="col-md-3 control-label">Key Focus Area</label><div class="col-md-9" id="kfa-wrapper"></div>';
+      document.getElementById('key-focus-area-selection').innerHTML = '<div class="form-group"><label for="key_focus_area_id" class="col-md-3 control-label">Key Focus Area</label><div class="col-md-9" id="kfa-wrapper"></div></div>';
 
       $.ajax('/key_focus_areas.json').then( generateKFADropdown, logError);
 

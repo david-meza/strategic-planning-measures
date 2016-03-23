@@ -57,9 +57,11 @@
 
       <div class="row">
         <label class="col-sm-3 control-label limit-text capitalize">Performance Factors</label>
+        <% factors = performance_measure.performance_factors %>
         <div class="col-sm-9">
+          <%= content_tag :p, "N/A" if factors.length == 0 %>
           <ul>
-          <% performance_measure.performance_factors.each do |factor| %>
+          <% factors.each do |factor| %>
             <li><%= factor.label_text %></li>
           <% end %>
           </ul>
@@ -68,7 +70,7 @@
       
       <div class="row">
         <div class="col-xs-12">
-          <h5>Data Contact</h5>
+          <h5 class="md-primary">Data Contact</h5>
         </div>
       </div>
       
@@ -88,7 +90,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <h5>Person Reporting to BMS Contact</h5>
+          <h5 class="md-primary">Person Reporting to BMS Contact</h5>
         </div>
       </div>
 
@@ -108,7 +110,7 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <h5>Extras</h5>
+          <h5 class="md-primary">Extras</h5>
         </div>
       </div>
 

@@ -42,6 +42,7 @@
 
 
 <legend class="sublegend">Performance Factors</legend>
+<p class="text-info">Leave blank if there are <b>not</b> multiple factors</p>
 
 <%= measure_fields.fields_for :performance_factors do |factor_fields| %>
   <%= render partial: "factor_fields", locals: { factor_fields: factor_fields } %>
