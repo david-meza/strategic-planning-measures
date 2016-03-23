@@ -5,12 +5,14 @@
 
   <div class="panel-body">
     
-    <div class="row">
-      <label class="col-xs-3 control-label limit-text capitalize"><%= measure_report.performance_measure.measurable.model_name.human %></label>
-      <div class="col-xs-9">
-        <p><%= measure_report.performance_measure.measurable.name %></p>
+    <% measure_report.performance_measure.parents.each do |parent| %>
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text capitalize"><%= parent.model_name.human %></label>
+        <div class="col-xs-9">
+          <p><%= parent.name %></p>
+        </div>
       </div>
-    </div>
+    <% end %>
 
     <div class="row">
       <label class="col-xs-3 control-label limit-text">Measure</label>

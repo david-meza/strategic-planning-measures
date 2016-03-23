@@ -20,10 +20,55 @@ a.self-name {
   }
 }
 
+md-card {
+
+  md-card-title-text {
+    padding-right: 10px;
+  }
+  
+  .card-media {
+    background-color: rgba($black, 0.12);
+  }
+}
+
 form {
   legend {
     color: $indigo;
     border-bottom: 1px solid rgba($dark-indigo, 0.27);
+
+    &.sublegend {
+      font-size: 17px;
+    }
+  }
+
+  .form-group {
+
+    p, a:not(.btn) {
+      padding-top: 7px;
+      font-size: 15px;
+    }
+
+    p {
+      color: rgba($black, 0.6);
+    }
+  }
+
+  label.control-label {
+    font-weight: 600;
+    color: rgba($black, 0.6);
+  }
+
+  .field_with_errors {
+    display: block;
+    input {
+      @include box-shadow( inset 0 -2px 0 $danger !important );
+    }
+  }
+
+  input[type="file"].file-upload {
+    &:focus {
+      outline: none;
+    }
   }
 }
 
@@ -46,15 +91,7 @@ form {
   text-transform: italic;
 }
 
-input[type="file"].file-upload {
-  &:focus {
-    outline: none;
-  }
-}
 
-.sublegend {
-  font-size: 17px;
-}
 
 .checkbox-danger {
   &:focus:after {
@@ -92,14 +129,6 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
   outline: none;
 }
 
-.form-group {
-
-  p, a:not(.btn) {
-    padding-top: 7px;
-    font-size: 15px;
-  }
-}
-
 .capitalize {
   text-transform: capitalize;
 }
@@ -112,17 +141,6 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
 
 .devise-link {
   display: block;
-}
-
-label.control-label {
-  font-weight: 600;
-}
-
-.field_with_errors {
-  display: block;
-  input {
-    @include box-shadow( inset 0 -2px 0 $danger !important );
-  }
 }
 
 .bg-default {
@@ -169,15 +187,17 @@ div[data-report-id] {
 
 .measure_reports.new {
   #report-data-panel {
-    .well-paragraph {
-      @include space-between;
-      align-content: center;
-      align-items: center;
+    .date-section {
 
-      span {
-        white-space: nowrap;
-        padding: 0 2px;
-        // align-self: center;
+      > * {
+        margin: 0 4px;
+      }
+
+      .date-text {
+        // align-self: baseline;
+        font-size: 14px;
+        font-weight: 500;
+        color: rgba($black, 0.79);
       }
     }
   }

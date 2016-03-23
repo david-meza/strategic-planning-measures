@@ -11,7 +11,7 @@ class PerformanceMeasuresController < ApplicationController
     if params[:measurable_id] && params[:measurable_type]
       PerformanceMeasure.where(measurable_id: params[:measurable_id], measurable_type: params[:measurable_type])
     else
-      PerformanceMeasure.includes(:key_focus_area, :objective).order("key_focus_areas.name asc, objectives.key_focus_area_id asc, objectives.name asc, performance_measures.updated_at desc")
+      PerformanceMeasure.includes(:key_focus_area, objective: :key_focus_area).order("key_focus_areas.name ASC, key_focus_areas_objectives.name ASC, objectives.name ASC")
     end
   end
 

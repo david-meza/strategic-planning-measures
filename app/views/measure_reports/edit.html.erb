@@ -4,23 +4,26 @@
     <%= form_for @measure_report, html: { class:"form-horizontal" }, data: { turbolinks: true } do |report_fields| %>
       <fieldset>
         <legend>Measure Validation and Results Submission Form</legend>
-
-        <div class="form-group">
-          <label class="col-md-3 control-label capitalize"><%= @measure_report.performance_measure.measurable.model_name.human %></label>
-          <div class="col-md-9">
-            <p class="measurable-name"><%= @measure_report.performance_measure.measurable.name %></p>
+        
+        <% @measure_report.performance_measure.parents.each do |parent| %>
+          <div class="form-group">
+            <label class="col-md-3 control-label capitalize"><%= parent.model_name.human %></label>
+            <div class="col-md-9">
+              <p class="measurable-name"><%= parent.name %></p>
+            </div>
           </div>
-        </div>
+        <% end %>
 
         <div class="form-group">
           <%= report_fields.label :performance_measure_id, "Measure", class: "col-md-3 control-label" %>
           <div class="col-md-9">
-            <%= report_fields.collection_select :performance_measure_id,
+            <%# report_fields.collection_select :performance_measure_id,
                                                 PerformanceMeasure.all,
                                                 :id,
                                                 :description,
                                                 {},
                                                 class: "form-control" %> 
+            <%= content_tag :p, @measure_report.performance_measure.description %>
           </div>
         </div>
 
@@ -37,11 +40,13 @@
             <%= report_fields.date_select :date_end, { order: [:month, :year], with_css_classes: true }, { class: "form-control", required: true } %> 
           </div>
         </div>
+
+        <!-- <legend class="sublegend">Performance Factors</legend> -->
         
         <div class="form-group">
           <%= report_fields.label :performance, "Performance", class: "col-md-3 control-label" %>
           <div class="col-md-9">
-            <%= report_fields.text_field :performance, class: "form-control", required: true %>
+            <%= report_fields.text_field :performance, class: "form-control", required: true, disabled: !current_user.try(:admin?) %>
           </div>
         </div>
         

@@ -5,7 +5,7 @@ class KeyFocusAreasController < ApplicationController
   before_action :authenticate_admin, except: [:index, :show]
 
   def index
-    @focus_areas = KeyFocusArea.includes(:objectives, :measures).order(name: :asc, updated_at: :desc)
+    @focus_areas = KeyFocusArea.includes(:objectives, :measures, :author, :last_editor).order(name: :asc, updated_at: :desc)
   end
 
   def new

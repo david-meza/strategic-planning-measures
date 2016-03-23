@@ -23,13 +23,11 @@
         <h3 class="panel-title">Current Data</h3>
       </div>
       
-      <div class="col-xs-12 well">
-        <p class="well-paragraph flex layout-row">
-          <span flex>Reporting Period:&nbsp;</span>
-          <%= report_fields.date_select :date_start, { order: [:month, :year], with_css_classes: true }, { class: "form-control" } %> 
-          <span flex>to</span>
-          <%= report_fields.date_select :date_end, { order: [:month, :year], with_css_classes: true }, { class: "form-control" } %>
-        </p>
+      <div class="col-xs-12 well layout-row layout-align-space-between-center date-section">
+        <p class="date-text">Reporting Period:&nbsp;</p>
+        <%= report_fields.date_select :date_start, { order: [:month, :year], with_css_classes: true }, { class: "form-control flex" } %> 
+        <p class="date-text">to</p>
+        <%= report_fields.date_select :date_end, { order: [:month, :year], with_css_classes: true }, { class: "form-control flex" } %>
       </div>
       
       <div class="panel-body">

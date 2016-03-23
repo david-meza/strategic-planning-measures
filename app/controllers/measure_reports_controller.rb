@@ -8,7 +8,7 @@ class MeasureReportsController < ApplicationController
   # GET /measure_reports
   # GET /measure_reports.json
   def index
-    @measure_reports = MeasureReport.where(expired: false).order(updated_at: :desc).paginate(:page => params[:page], :per_page => 12)
+    @measure_reports = MeasureReport.includes(:author, :last_editor, performance_measure: [:key_focus_area, objective: :key_focus_area]).where(expired: false).order('key_focus_areas.name ASC, key_focus_areas_objectives.name ASC, objectives.name ASC').paginate(:page => params[:page], :per_page => 12)
   end
 
   # GET /measure_reports/1
