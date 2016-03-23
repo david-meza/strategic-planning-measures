@@ -4,7 +4,8 @@ class PerformanceFactor < ActiveRecord::Base
  
   belongs_to :performance_measure
 
-  has_many :performance_factor_entries
+  has_many :performance_factor_entries, dependent: :destroy
+  has_many :measure_reports, through: :performance_factor_entries
 
   # ----------------------- Validations --------------------
 

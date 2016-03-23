@@ -41,40 +41,27 @@
           </div>
         </div>
 
-        <!-- <legend class="sublegend">Performance Factors</legend> -->
+        <legend class="sublegend">Performance Factors</legend>
+        <%= report_fields.fields_for :performance_factor_entries do |factor_entry_fields| %>
+            
+            <div class="form-group">
+              <%= factor_entry_fields.label :data, factor_entry_fields.object.performance_factor.label_text, class: "col-md-3 control-label" %>
+              <div class="col-md-9">
+                <%= factor_entry_fields.send("#{factor_entry_fields.object.performance_factor.field_type}_field", :data, { class: "form-control", required: true } ) %>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <%= factor_entry_fields.label :comments, "Additional Comments", class: "col-md-3 control-label" %>
+              <div class="col-md-9">
+                <%= factor_entry_fields.text_area :comments, class: "form-control" %>
+              </div>
+            </div>
+        <% end %>
+        <legend class="sublegend"></legend>
         
-        <div class="form-group">
-          <%= report_fields.label :performance, "Performance", class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= report_fields.text_field :performance, class: "form-control", required: true, disabled: !current_user.try(:admin?) %>
-          </div>
-        </div>
+        <%= render partial: 'common_form_fields', locals: { report_fields: report_fields } %>
         
-        <div class="form-group">
-          <%= report_fields.label :status, "Status", class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= report_fields.select :status, ["All is well with performance. Target will be or is met.", "Performance is not where expected or current status is in trouble.", "Target will not be or is not met."], {}, class: "form-control" %>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <%= report_fields.label :comments, "Comments", class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= report_fields.text_area :comments, class: "form-control" %>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= report_fields.label :bms_comments, "BMS Comments", class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= report_fields.text_area :bms_comments, class: "form-control" %>
-          </div>
-        </div>
-
-        <div class="pull-right">
-          <%= report_fields.submit class: "btn btn-primary" %>
-        </div>
-
         <%= link_to 'Cancel', measure_reports_path, class: "btn btn-default" %>
 
       </fieldset>

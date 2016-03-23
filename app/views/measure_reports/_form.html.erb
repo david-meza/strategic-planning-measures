@@ -32,37 +32,31 @@
       
       <div class="panel-body">
 
-        <div class="form-group">
-          <%= report_fields.label :performance, "Performance*", class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= report_fields.text_field :performance, class: "form-control", required: true %>
-          </div>
-        </div>
+        <%= report_fields.fields_for :performance_factor_entries do |factor_entry_fields| %>
+          <legend class="sublegend">Performance Factors</legend>
+          <% @measure_report.form_factors.each_with_index do |factor, idx| %>
+            
+            <%= factor_entry_fields.hidden_field :performance_factor_id, value: factor.id, name: "measure_report[performance_factor_entries_attributes][#{idx}][performance_factor_id]" %>
+            
+            <div class="form-group">
+              <%= factor_entry_fields.label :data, factor.label_text, class: "col-md-3 control-label" %>
+              <div class="col-md-9">
+                <%= factor_entry_fields.send("#{factor.field_type}_field", :data, { class: "form-control", required: true, name: "measure_report[performance_factor_entries_attributes][#{idx}][data]" } ) %>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <%= factor_entry_fields.label :comments, "Additional Comments", class: "col-md-3 control-label" %>
+              <div class="col-md-9">
+                <%= factor_entry_fields.text_area :comments, class: "form-control", name: "measure_report[performance_factor_entries_attributes][#{idx}][comments]" %>
+              </div>
+            </div>
+          <% end %>
+          <legend class="sublegend"></legend>
+        <% end %>
         
-        <div class="form-group">
-          <%= report_fields.label :status, "Status*", class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= report_fields.select :status, ["All is well with performance. Target will be or is met.", "Performance is not where expected or current status is in trouble.", "Target will not be or is not met."], {}, class: "form-control", required: true %>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <%= report_fields.label :comments, "Comments", class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= report_fields.text_area :comments, class: "form-control" %>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <%= report_fields.label :bms_comments, "BMS Comments", class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= report_fields.text_area :bms_comments, class: "form-control" %>
-          </div>
-        </div>
+        <%= render partial: 'common_form_fields', locals: { report_fields: report_fields } %>
 
-        <div class="pull-right">
-          <%= report_fields.submit class: "btn btn-primary" %>
-        </div>
       </div>
     </div>
 

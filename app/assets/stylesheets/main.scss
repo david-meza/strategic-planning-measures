@@ -31,6 +31,11 @@ md-card {
   }
 }
 
+label.control-label {
+  font-weight: 600;
+  color: rgba($black, 0.6);
+}
+
 form {
   legend {
     color: $indigo;
@@ -51,11 +56,6 @@ form {
     p {
       color: rgba($black, 0.6);
     }
-  }
-
-  label.control-label {
-    font-weight: 600;
-    color: rgba($black, 0.6);
   }
 
   .field_with_errors {
