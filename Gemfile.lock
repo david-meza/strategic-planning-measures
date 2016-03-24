@@ -15,6 +15,17 @@ GIT
       pry-stack_explorer (~> 0.4.9)
       railties (>= 3.0, < 5.0)
 
+GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: 25be0b25d67923e28419c6146e8f8307741a974b
+  specs:
+    paperclip (5.0.0.beta1)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (~> 0.3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,6 +67,12 @@ GEM
     addressable (2.4.0)
     arel (6.0.3)
     awesome_print (1.6.1)
+    aws-sdk (2.2.30)
+      aws-sdk-resources (= 2.2.30)
+    aws-sdk-core (2.2.30)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.2.30)
+      aws-sdk-core (= 2.2.30)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -76,7 +93,7 @@ GEM
       xpath (~> 2.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
-    cocaine (0.5.7)
+    cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.1)
     coffee-rails (4.1.1)
@@ -109,6 +126,8 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     ffi (1.9.10)
+    figaro (1.1.1)
+      thor (~> 0.14)
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -135,6 +154,7 @@ GEM
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jmespath (1.1.3)
     jquery-rails (4.1.0)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -156,7 +176,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (1.25.1)
-    mimemagic (0.3.0)
+    mimemagic (0.3.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
@@ -167,12 +187,6 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
-    paperclip (4.3.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      cocaine (~> 0.5.5)
-      mime-types
-      mimemagic (= 0.3.0)
     pg (0.18.4)
     posix-spawn (0.3.11)
     pry (0.9.12.6)
@@ -305,6 +319,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk (>= 2.0.0)
   better_errors
   binding_of_caller
   bootstrap-will_paginate (~> 0.0.10)
@@ -313,13 +328,14 @@ DEPENDENCIES
   devise (~> 3.5.6)
   factory_girl_rails (~> 4.0)
   faker (= 1.4.3)
+  figaro (~> 1.1)
   guard-rspec
   jazz_hands!
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails
   letter_opener
-  paperclip (~> 4.3)
+  paperclip!
   pg
   puma
   rails (= 4.2.2)

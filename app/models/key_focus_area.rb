@@ -12,7 +12,11 @@ class KeyFocusArea < ActiveRecord::Base
 
   # ----------------------- Logo --------------------
   
-  has_attached_file :logo, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/honeycomb.png"
+  has_attached_file :logo, 
+                    styles: { medium: "300x300>", thumb: "100x100>" }, 
+                    default_url: "/images/honeycomb.png",
+                    storage: :s3  
+  
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
 
   # ----------------------- Validations --------------------
@@ -21,4 +25,8 @@ class KeyFocusArea < ActiveRecord::Base
             presence: true
 
   validates_uniqueness_of :name
+  
+  # ----------------------- Methods --------------------
+
+
 end

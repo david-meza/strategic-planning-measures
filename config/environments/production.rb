@@ -64,6 +64,17 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_host_name: 's3-us-west-2.amazonaws.com',
+    s3_region: Rails.application.secrets.aws_region,
+    :s3_credentials => {
+      bucket: Rails.application.secrets.s3_bucket_name,
+      access_key_id: Rails.application.secrets.aws_access_key_id,
+      secret_access_key: Rails.application.secrets.aws_secret_access_key
+    }
+  }
+
   config.action_mailer.default_url_options = { host: 'strategic-planning.herokuapp.com' }
 
   config.action_mailer.smtp_settings = {
