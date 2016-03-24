@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Key Focus Area</Data></Cell>
+        <Cell><Data ss:Type="String">Objective</Data></Cell>
+        <Cell><Data ss:Type="String">Performance Measure</Data></Cell>
+        <Cell><Data ss:Type="String">Start Date</Data></Cell>
+        <Cell><Data ss:Type="String">End Date</Data></Cell>
+        <Cell><Data ss:Type="String">Status</Data></Cell>
+        <Cell><Data ss:Type="String">Performance</Data></Cell>
+        <Cell><Data ss:Type="String">Comments</Data></Cell>
+        <Cell><Data ss:Type="String">BMS Comments</Data></Cell>
+        <Cell><Data ss:Type="String">Author</Data></Cell>
+      </Row>
+    <% @measure_reports.each do |report| %>
+      <Row>
+        <% report.performance_measure.parents.each do |parent| %>
+          <Cell><Data ss:Type="String"><%= parent.name %></Data></Cell>
+        <% end %>
+        <Cell><Data ss:Type="String"> <%= report.performance_measure.description %> </Data></Cell>
+        <Cell><Data ss:Type="String"> <%= report.date_start %> </Data></Cell>
+        <Cell><Data ss:Type="String"> <%= report.date_end %> </Data></Cell>
+        <Cell><Data ss:Type="String"> <%= report.status %> </Data></Cell>
+        <Cell><Data ss:Type="String"> <%= report.performance %> </Data></Cell>
+        <Cell><Data ss:Type="String"> <%= report.comments %> </Data></Cell>
+        <Cell><Data ss:Type="String"> <%= report.bms_comments %> </Data></Cell>
+        <Cell><Data ss:Type="String"> <%= report.author.email %> </Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

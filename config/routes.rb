@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   resources :key_focus_areas
   resources :objectives
   resources :performance_measures
-  resources :measure_reports
+  
+  resources :measure_reports do
+    get 'download', on: :collection
+  end
+  
   resources :performance_factors
   resources :performance_factor_entries
 

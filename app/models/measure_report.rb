@@ -33,5 +33,15 @@ class MeasureReport < ActiveRecord::Base
   validates :performance_measure_id, :date_start, :date_end, :performance, :created_by_user_id,
             presence: true
 
+  # ----------------------- Methods --------------------
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      self.all.each do |report|
+        csv << report.attributes.values_at(*column_names)
+      end
+    end
+  end
   
 end

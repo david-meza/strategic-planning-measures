@@ -23,21 +23,30 @@
     </div>
 
     <% if action_name == "show" %>
-      <hr />
-
-      <% measure_report.performance_factor_entries.each do |entry| %>
+      
+      <% entries = measure_report.performance_factor_entries %>
+      <% entries.each_with_index do |entry, idx| %>
+        
+        <%= tag :hr if idx == 0 %>
+        
         <div class="row">
+          
           <label class="col-xs-3 control-label limit-text"><%= entry.performance_factor.label_text %></label>
+          
           <div class="col-xs-3">
             <p><%= entry.data %></p>
           </div>
+          
           <div class="col-xs-6">
             <p><%= entry.comments %></p>
           </div>
+          
         </div>
+        
+        <%= tag :hr if idx == entries.size - 1 %>
+      
       <% end %>
 
-      <hr />
     <% end %>
 
     <div class="row">

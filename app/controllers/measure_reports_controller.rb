@@ -11,6 +11,16 @@ class MeasureReportsController < ApplicationController
     @measure_reports = MeasureReport.includes(:author, :last_editor, performance_measure: [:key_focus_area, objective: :key_focus_area]).where(expired: false).order('key_focus_areas.name ASC, key_focus_areas_objectives.name ASC, objectives.name ASC').paginate(:page => params[:page], :per_page => 12)
   end
 
+  def download
+    @measure_reports = MeasureReport.includes(:author, :last_editor, performance_measure: [:key_focus_area, objective: :key_focus_area]).order('key_focus_areas.name ASC, key_focus_areas_objectives.name ASC, objectives.name ASC')
+
+    respond_to do |format|
+      format.csv { send_data @measure_reports.to_csv }
+      format.xls
+    end
+
+  end
+
   # GET /measure_reports/1
   # GET /measure_reports/1.json
   def show
