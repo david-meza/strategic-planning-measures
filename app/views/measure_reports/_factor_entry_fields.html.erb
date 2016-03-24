@@ -1,0 +1,39 @@
+<div id="performance-factor-entries">
+
+  <%= report_fields.fields_for :performance_factor_entries do |factor_entry_fields| %>
+    
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1">
+        <legend class="sublegend">Performance Factors</legend>
+      </div>
+    </div>
+    
+    <% measure_report.form_factors.each_with_index do |factor, idx| %>
+      
+      <%= factor_entry_fields.hidden_field :performance_factor_id, value: factor.id, name: "measure_report[performance_factor_entries_attributes][#{idx}][performance_factor_id]" %>
+      
+      <div class="form-group">
+        <%= factor_entry_fields.label :data, factor.label_text, class: "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= factor_entry_fields.send("#{factor.field_type}_field", :data, { class: "form-control", required: true, name: "measure_report[performance_factor_entries_attributes][#{idx}][data]" } ) %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <%= factor_entry_fields.label :comments, "Additional Comments", class: "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= factor_entry_fields.text_area :comments, class: "form-control", name: "measure_report[performance_factor_entries_attributes][#{idx}][comments]" %>
+        </div>
+      </div>
+    <% end %>
+    
+    <br />
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1">
+        <legend class="sublegend">Data</legend>
+      </div>
+    </div>
+
+  <% end %>
+  
+</div>

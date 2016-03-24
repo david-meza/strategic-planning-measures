@@ -9,7 +9,7 @@ class ObjectivesController < ApplicationController
   # GET /objectives.json
   def index
     @objectives = params[:key_focus_area_id] ? 
-                  Objective.where(key_focus_area_id: params[:key_focus_area_id]) : 
+                  Objective.where(key_focus_area_id: params[:key_focus_area_id]).order(name: :asc) : 
                   Objective.includes(:key_focus_area, :author, :last_editor).order("key_focus_areas.name asc, objectives.name asc, objectives.updated_at desc")
   end
 

@@ -54,18 +54,42 @@
     }
 
     function getPerformanceMeasures(evt) {
+      if (this.value === '') { return; }
+      
       $('#measure-selection').remove();
       measuresDropdown = $('<div class="form-group" id="measure-selection"><label class="col-md-3 control-label limit-text">Measure</label><div class="col-md-9" id="measures-wrapper"></div></div>').insertAfter(objectiveRadio);
 
-      if (evt === 'no objective') {
-        $.ajax('/performance_measures.json', {
-          data: { measurable_id: focusAreaId, measurable_type: 'KeyFocusArea' }
-        }).then( generateMeasuresDropdown, logError);
-      } else {
-        if (this.value === '') { return; }
-        $.ajax('/performance_measures.json', {
-          data: { measurable_id: this.value, measurable_type: 'Objective' }
-        }).then( generateMeasuresDropdown, logError);
+      var kfaData = { measurable_id: focusAreaId, measurable_type: 'KeyFocusArea' };
+      var objectiveData = { measurable_id: this.value, measurable_type: 'Objective' };
+
+      $.ajax('/performance_measures.json', {
+        data: evt === 'no objective' ? kfaData : objectiveData
+      }).then( generateMeasuresDropdown, logError);
+    }
+
+    function generateMeasuresDropdown(response) {
+      var wrapper = measuresDropdown.find('#measures-wrapper');
+      if (response.length === 0) {
+        wrapper[0].innerHTML = '<p>No measures found. <a href="/performance_measures/new" class="btn btn-primary btn-xs">Create one?</a></p>';
+        return;
+      }
+      measuresResponse = response;
+      var measureSelect = $('<select class="form-control" name="measure_report[performance_measure_id]" id="measure_report_performance_measure_id"></select>').appendTo(wrapper);
+      var options = '<option value="">Please Select the Performance Measure</option>';
+      response.forEach(function(measure) {
+        options += ('<option value="' + measure.id + '">' + measure.description + '</option>');
+      })
+      measureSelect.append(options);
+      measureSelect[0].addEventListener('change', updateMeasureFields);
+    }
+
+    function updateMeasureFields(evt) {
+      var measureId = Number(evt.srcElement.value);
+      if (measureId === 0) { return; }
+      for (var i = 0; i < measuresResponse.length; i++) {
+        if (measuresResponse[i].id === measureId) {
+          return generateAllMeasureFields(measuresResponse[i]);
+        }
       }
     }
 
@@ -91,13 +115,21 @@
                           '<div class="col-md-9">' +
                             '<p>' + (measure.rationale_for_target || 'N/A') + '</p>' +
                           '</div>' +
-                          '<label class="col-md-3 control-label limit-text">Data Contact Person</label>' +
+                          '<label class="col-md-3 control-label limit-text">Data Contact Name</label>' +
                           '<div class="col-md-3">' +
                             '<p>' + (measure.data_contact_person || 'N/A') + '</p>' +
                           '</div>' +
-                          '<label class="col-md-3 control-label limit-text">Person Reporting Data to BMS</label>' +
+                          '<label class="col-md-2 control-label limit-text">Email</label>' +
+                          '<div class="col-md-4">' +
+                            '<p>' + (measure.data_contact_person_email || 'N/A') + '</p>' +
+                          '</div>' +
+                          '<label class="col-md-3 control-label limit-text">Person Reporting to BMS</label>' +
                           '<div class="col-md-3">' +
                             '<p>' + (measure.person_reporting_data_to_bms || 'N/A') + '</p>' +
+                          '</div>' +
+                          '<label class="col-md-2 control-label limit-text">Email</label>' +
+                          '<div class="col-md-4">' +
+                            '<p>' + (measure.person_reporting_data_to_bms_email || 'N/A') + '</p>' +
                           '</div>' +
                           '<label class="col-md-3 control-label limit-text">Notes/Comments</label>' +
                           '<div class="col-md-9">' +
@@ -106,10 +138,24 @@
                         '</div>';
       $('#measure-attributes').remove();
       $(attributes).insertAfter(measuresDropdown);
-      $('#report-data-panel').removeClass('hide');
-      document.getElementById('measure_report_status').addEventListener('change', requireComment);
+      getFactorEntryFields(measure.id);
     }
 
+    function getFactorEntryFields(measureId) {
+      // Show the panel that holds our form content
+      $('#report-data-panel').removeClass('hide');
+
+      // Get the Performance factors that belong to this measure
+      $.ajax('/measure_reports/new', {
+        data: { measure_id: measureId },
+        dataType: 'script'
+      });
+
+    }
+
+    // Runs on page load when it is hidden
+    document.getElementById('measure_report_status').addEventListener('change', requireComment);
+    
     function requireComment(evt) {
       var text = evt.srcElement.value;
       var commentsField = document.getElementById('measure_report_comments');
@@ -120,32 +166,6 @@
         commentsField.required = true;
         if ($('#comment-hint').length === 0) {
           $(evt.srcElement).after('<p id="comment-hint"><em>Please provide context regarding the performance of this measure in the comments below.</em></p>')
-        }
-      }
-    }
-
-    function generateMeasuresDropdown(response) {
-      var wrapper = measuresDropdown.find('#measures-wrapper');
-      if (response.length === 0) {
-        wrapper[0].innerHTML = '<p>No measures found. <a href="/performance_measures/new" class="btn btn-primary btn-xs">Create one?</a></p>';
-        return;
-      }
-      measuresResponse = response;
-      var measureSelect = $('<select class="form-control" name="measure_report[performance_measure_id]" id="measure_report_performance_measure_id"></select>').appendTo(wrapper);
-      var options = '<option value="">Please Select the Performance Measure</option>';
-      response.forEach(function(measure) {
-        options += ('<option value="' + measure.id + '">' + measure.description + '</option>');
-      })
-      measureSelect.append(options);
-      measureSelect[0].addEventListener('change', updateMeasureFields);
-    }
-
-    function updateMeasureFields(evt) {
-      var measureId = Number(evt.srcElement.value);
-      if (measureId === 0) { return; }
-      for (var i = 0; i < measuresResponse.length; i++) {
-        if (measuresResponse[i].id === measureId) {
-          return generateAllMeasureFields(measuresResponse[i]);
         }
       }
     }

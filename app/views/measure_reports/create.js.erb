@@ -7,7 +7,7 @@ $report.insertAfter( $target )
        .slideDown(700);
 
 // $('#new_measure_report').trigger('reset');
-$("input[type=text].form-control, textarea.form-control").val("");
+$("input[type=text], input[type=number], textarea").val("");
 
 $('<%= j(render partial: "shared/flash", locals: { message: "Your report was successfully posted!", flash_type: "success" }) %>')
   .insertAfter($target)

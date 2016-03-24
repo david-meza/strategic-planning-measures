@@ -20,6 +20,12 @@ class MeasureReportsController < ApplicationController
   def new
     @measure_report = MeasureReport.new
     @measure_report.performance_factor_entries.build
+    @measure_report.performance_measure_id = params[:measure_id] if params[:measure_id]
+
+    respond_to do |format|
+      format.html { render :new }
+      format.js   { render :new_factor_entry_fields }
+    end
   end
 
   # GET /measure_reports/1/edit

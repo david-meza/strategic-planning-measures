@@ -1,0 +1,9 @@
+var newFieldGroup = '<%= j factor_entry_fields(@measure_report) %>';
+
+var $target = $('.panel-body');
+
+// Remove any existing performance factors from other measures
+$('#performance-factor-entries').remove();
+
+// Animate the entry of these factors
+$(newFieldGroup).prependTo($target).hide().fadeIn();
