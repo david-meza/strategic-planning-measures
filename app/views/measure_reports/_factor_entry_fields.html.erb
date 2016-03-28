@@ -2,13 +2,16 @@
 
   <%= report_fields.fields_for :performance_factor_entries do |factor_entry_fields| %>
     
-    <div class="row">
-      <div class="col-md-11 col-md-offset-1">
-        <legend class="sublegend">Performance Factors</legend>
-      </div>
-    </div>
-    
-    <% measure_report.form_factors.each_with_index do |factor, idx| %>
+    <% factors = measure_report.form_factors %>
+    <% factors.each_with_index do |factor, idx| %>
+      
+      <% if idx == 0 %>
+        <div class="row">
+          <div class="col-md-11 col-md-offset-1">
+            <legend class="sublegend">Performance Factors</legend>
+          </div>
+        </div>
+      <% end %>
       
       <%= factor_entry_fields.hidden_field :performance_factor_id, value: factor.id, name: "measure_report[performance_factor_entries_attributes][#{idx}][performance_factor_id]" %>
       
@@ -25,14 +28,17 @@
           <%= factor_entry_fields.text_area :comments, class: "form-control", name: "measure_report[performance_factor_entries_attributes][#{idx}][comments]" %>
         </div>
       </div>
+    
+      <% if idx == factors.length - 1 %>
+        <br />
+        <div class="row">
+          <div class="col-md-11 col-md-offset-1">
+            <legend class="sublegend">Data</legend>
+          </div>
+        </div>
+      <% end %>
     <% end %>
     
-    <br />
-    <div class="row">
-      <div class="col-md-11 col-md-offset-1">
-        <legend class="sublegend">Data</legend>
-      </div>
-    </div>
 
   <% end %>
   
