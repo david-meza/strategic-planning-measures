@@ -30,7 +30,7 @@ class MeasureReport < ActiveRecord::Base
 
   # ----------------------- Validations --------------------
 
-  validates :performance_measure_id, :date_start, :date_end, :performance, :created_by_user_id,
+  validates :performance_measure_id, :date_start, :date_end, :status, :created_by_user_id,
             presence: true
 
   # ----------------------- Methods --------------------
@@ -42,6 +42,11 @@ class MeasureReport < ActiveRecord::Base
         csv << report.attributes.values_at(*column_names)
       end
     end
+  end
+
+  def self.filter_query(query)
+    return all if query.empty?
+    self.where(query)
   end
   
 end
