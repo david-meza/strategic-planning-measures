@@ -45,7 +45,7 @@ class MeasureReport < ActiveRecord::Base
   end
 
   def self.filter_query(query)
-    return all if query.empty?
+    return all if query.empty? || query.values.all?(&:empty?)
     self.where(query)
   end
   
