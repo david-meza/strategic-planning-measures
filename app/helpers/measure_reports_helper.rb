@@ -6,4 +6,8 @@ module MeasureReportsHelper
     end
   end
 
+  def formatted_date(date)
+    date.strftime("%B %Y")
+  end
+
 end

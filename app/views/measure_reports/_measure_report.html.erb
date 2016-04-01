@@ -1,23 +1,23 @@
 <div class="panel panel-info" data-report-id="<%= measure_report.id %>">
   
   <div class="col-xs-12 bg-default">
-    <p>Period from <strong><%= measure_report.date_start %></strong> to <strong><%= measure_report.date_end %></strong></p>
+    <p>Period from <strong><%= formatted_date(measure_report.date_start) %></strong> to <strong><%= formatted_date(measure_report.date_end) %></strong></p>
   </div>
 
   <div class="panel-body">
     
     <% measure_report.performance_measure.parents.each do |parent| %>
       <div class="row">
-        <label class="col-xs-3 control-label limit-text capitalize"><%= parent.model_name.human %></label>
-        <div class="col-xs-9">
+        <label class="col-xs-4 control-label measure-report-label capitalize"><%= parent.model_name.human %></label>
+        <div class="col-xs-8">
           <p><%= parent.name %></p>
         </div>
       </div>
     <% end %>
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text">Measure</label>
-      <div class="col-xs-9">
+      <label class="col-xs-4 control-label measure-report-label">Measure</label>
+      <div class="col-xs-8">
         <p><%= measure_report.performance_measure.description %></p>
       </div>
     </div>
@@ -31,9 +31,9 @@
         
         <div class="row">
           
-          <label class="col-xs-3 control-label limit-text"><%= entry.performance_factor.label_text %></label>
+          <label class="col-xs-4 control-label measure-report-label"><%= entry.performance_factor.label_text %></label>
           
-          <div class="col-xs-3">
+          <div class="col-xs-4">
             <p><%= entry.data %></p>
           </div>
           
@@ -50,46 +50,55 @@
     <% end %>
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text">Performance</label>
-      <div class="col-xs-9">
+      <label class="col-xs-4 control-label measure-report-label">Performance</label>
+      <div class="col-xs-8">
         <p><%= measure_report.performance %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text">Status</label>
-      <div class="col-xs-9">
+      <label class="col-xs-4 control-label measure-report-label">Status</label>
+      <div class="col-xs-8">
         <p><%= measure_report.status %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text">Comments</label>
-      <div class="col-xs-9">
+      <label class="col-xs-4 control-label measure-report-label">Comments</label>
+      <div class="col-xs-8">
         <p><%= measure_report.comments %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text">BMS Comments</label>
-      <div class="col-xs-9">
+      <label class="col-xs-4 control-label measure-report-label">BMS Comments</label>
+      <div class="col-xs-8">
         <p><%= measure_report.bms_comments %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text">Posted by</label>
-      <div class="col-xs-9">
-        <p><%= measure_report.author.try(:email) %></p>
+      <label class="col-xs-4 control-label measure-report-label">Person Reporting To BMS</label>
+      <div class="col-xs-8">
+        <p><%= measure_report.performance_measure.person_reporting_data_to_bms %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text">Last Edited by</label>
-      <div class="col-xs-9">
-        <p><%= measure_report.last_editor.try(:email) %></p>
+      <label class="col-xs-4 control-label measure-report-label">Posted by</label>
+      <div class="col-xs-8">
+        <p><%= measure_report.author.try(:email) %></p>
       </div>
     </div>
+
+    <% if action_name == "show" %>
+      <div class="row">
+        <label class="col-xs-4 control-label measure-report-label">Last Edited by</label>
+        <div class="col-xs-8">
+          <p><%= measure_report.last_editor.try(:email) %></p>
+        </div>
+      </div>
+    <% end -%>
 
     
     <div class="report-actions">

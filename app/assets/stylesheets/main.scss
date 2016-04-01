@@ -139,6 +139,11 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
   text-overflow: ellipsis;
 }
 
+.measure-report-label {
+  line-height: 14px;
+  padding: 7px 0 3px;
+}
+
 .devise-link {
   display: block;
 }
