@@ -1,9 +1,13 @@
-var newFieldGroup = '<%= j factor_entry_fields(@measure_report) %>';
+(function($){
 
-var $target = $('.panel-body');
+  var newFieldGroup = '<%= j factor_entry_fields(@measure_report) %>';
 
-// Remove any existing performance factors from other measures
-$('#performance-factor-entries').remove();
+  var $target = $('.panel-body');
 
-// Animate the entry of these factors
-$(newFieldGroup).prependTo($target).hide().fadeIn();
+  // Remove any existing performance factors from other measures
+  $('#performance-factor-entries').remove();
+
+  // Animate the entry of these factors
+  $(newFieldGroup).prependTo($target).hide().fadeIn();
+
+})(jQuery);

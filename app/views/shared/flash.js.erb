@@ -1,1 +1,5 @@
-$("<%= j(render partial: 'shared/flash_messages') %>").appendTo("#flash-messages").hide().fadeIn(500);
+(function($) {
+  
+  $("<%= j(render partial: 'shared/flash_messages') %>").appendTo("#flash-messages").hide().fadeIn(500);
+
+})(jQuery);

@@ -1,5 +1,9 @@
-var newFieldGroup = '<%= j link_to_add_fields(@performance_measure) %>';
+(function($) {
 
-var $target = $('.add-factor').parent();
+  var newFieldGroup = '<%= j link_to_add_fields(@performance_measure) %>';
 
-$(newFieldGroup).insertBefore($target).hide().slideDown();
+  var $target = $('.add-factor').parent();
+
+  $(newFieldGroup).insertBefore($target).hide().slideDown();
+
+})(jQuery);

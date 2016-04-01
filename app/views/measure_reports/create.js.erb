@@ -1,15 +1,20 @@
-var $report = $('<%= j( render partial: "measure_reports/measure_report", locals: { measure_report: @measure_report }) %>');
+(function($) {
 
-var $target = $('#measure-attributes');
+  var $report = $('<%= j( render partial: "measure_reports/measure_report", locals: { measure_report: @measure_report }) %>');
 
-$report.insertAfter( $target )
-       .hide()
-       .slideDown(700);
+  var $target = $('#measure-attributes');
 
-// $('#new_measure_report').trigger('reset');
-$("input[type=text], input[type=number], textarea").val("");
+  $report.insertAfter( $target )
+         .hide()
+         .slideDown(700);
 
-$('<%= j(render partial: "shared/flash", locals: { message: "Your report was successfully posted!", flash_type: "success" }) %>')
-  .insertAfter($target)
-  .hide()
-  .fadeIn(500);
+  // $('#new_measure_report').trigger('reset');
+  $("input[type=text], input[type=number], textarea").val("");
+
+  $('<%= j(render partial: "shared/flash", locals: { message: "Your report was successfully posted!", flash_type: "success" }) %>')
+    .insertAfter($target)
+    .hide()
+    .fadeIn(500);
+
+})(jQuery);
+

@@ -1,1 +1,5 @@
-$("<%= j(render partial: 'shared/flash_messages') %>").insertBefore("#report-data-panel").hide().fadeIn(500);
+(function($){
+
+  $("<%= j(render partial: 'shared/flash_messages') %>").insertBefore("#report-data-panel").hide().fadeIn(500);
+
+})(jQuery);
