@@ -102,11 +102,17 @@
 
     
     <div class="report-actions">
-      <%= link_to 'Show', measure_report, class: "btn btn-default" unless action_name == 'show' %>
       <%= link_to 'Back', measure_reports_path, class: "btn btn-default" if action_name == 'show' %>
+      <%= link_to measure_report, class: "icon-action", 'aria-label': "Show details" do %>
+        <i class="fa fa-lg fa-eye text-primary"></i>
+      <% end unless action_name == 'show' %>
       <% if current_user.try(:admin?) || current_user == measure_report.author %>
-        <%= link_to 'Edit', edit_measure_report_path(measure_report), class: "btn btn-default"  %>
-        <%= link_to 'Delete', measure_report, method: :delete, remote: true, data: {confirm: 'Are you sure you want to delete this report?'}, class: "btn btn-danger" %>
+        <%= link_to edit_measure_report_path(measure_report), class: "icon-action", 'aria-label': "Edit" do  %>
+          <i class="fa fa-lg fa-pencil text-primary"></i>
+        <% end -%>
+        <%= link_to measure_report, method: :delete, remote: true, class: "icon-action", data: {confirm: 'Are you sure you want to delete this report?'}, "aria-label": "Delete" do %>
+          <i class="fa fa-lg fa-trash text-danger"></i>
+        <% end -%>
       <% end %>
     </div>
   </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322135520) do
+ActiveRecord::Schema.define(version: 20160401162142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160322135520) do
     t.integer  "performance_measure_id",                  null: false
     t.date     "date_start",                              null: false
     t.date     "date_end",                                null: false
-    t.string   "performance",                             null: false
+    t.string   "performance"
     t.string   "status"
     t.string   "comments"
     t.datetime "created_at",                              null: false
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20160322135520) do
     t.integer  "last_updated_by_user_id"
     t.string   "data_contact_person_email"
     t.string   "person_reporting_data_to_bms_email"
+    t.string   "frequency_data_available"
   end
 
   add_index "performance_measures", ["measurable_type", "measurable_id"], name: "index_performance_measures_on_measurable_type_and_measurable_id", using: :btree

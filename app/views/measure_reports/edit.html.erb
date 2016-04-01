@@ -47,7 +47,8 @@
             <div class="form-group">
               <%= factor_entry_fields.label :data, factor_entry_fields.object.performance_factor.label_text, class: "col-md-3 control-label" %>
               <div class="col-md-9">
-                <%= factor_entry_fields.send("#{factor_entry_fields.object.performance_factor.field_type}_field", :data, { class: "form-control", required: true } ) %>
+                <% field_type = factor_entry_fields.object.performance_factor.field_type %>
+                <%= factor_entry_fields.text_field :data, { class: "form-control", required: true, pattern: pattern_for_field_type(field_type) } %>
               </div>
             </div>
             
