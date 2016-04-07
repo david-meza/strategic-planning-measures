@@ -33,31 +33,24 @@
           </ul>
         </div>
       </div>
+    
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text">Created By</label>
+        <div class="col-xs-9">
+          <p><%= key_focus_area.author.try(:email) %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text">Last Edited by</label>
+        <div class="col-xs-9">
+          <p><%= key_focus_area.last_editor.try(:email) %></p>
+        </div>
+      </div>
     <% end %>
 
 
-    <div class="row">
-      <label class="col-xs-3 control-label limit-text">Created By</label>
-      <div class="col-xs-9">
-        <p><%= key_focus_area.author.try(:email) %></p>
-      </div>
-    </div>
+    <%= render partial: "shared/card_actions", locals: { resource: key_focus_area } %>
 
-    <div class="row">
-      <label class="col-xs-3 control-label limit-text">Last Edited by</label>
-      <div class="col-xs-9">
-        <p><%= key_focus_area.last_editor.try(:email) %></p>
-      </div>
-    </div>
-
-    
-    <div class="kfa-actions">
-      <%= link_to 'Show', key_focus_area, class: "btn btn-default" unless action_name == 'show' %>
-      <%= link_to 'Back', key_focus_areas_path, class: "btn btn-default" if action_name == 'show' %>
-      <% if current_user.try(:admin?) %>
-        <%= link_to 'Edit', edit_key_focus_area_path(key_focus_area), class: "btn btn-default" %>
-        <%= link_to 'Delete', key_focus_area, method: :delete, data: {confirm: 'Are you sure you want to delete this key focus area'}, class: "btn btn-danger" %>
-      <% end %>
-    </div>
   </div>
 </div>

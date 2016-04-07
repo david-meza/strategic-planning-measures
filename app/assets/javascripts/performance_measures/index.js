@@ -10,8 +10,11 @@
 
   $(document).on('page:change', function() {
 
-    if ( $('.performance_measures.index').length === 0 ) { return; }
+    $usedBackButton = $('#page_is_dirty');
 
+    if ( $('.performance_measures.index').length === 0 || Number($usedBackButton.val()) > 0 ) { return; }
+
+    $usedBackButton.val(1);
 
     $('.row.flex-row').children().sortDomElements(function(a,b){
       var akey = $(a).children().first();
@@ -46,6 +49,5 @@
     });
 
   });
-
 
 })(jQuery);

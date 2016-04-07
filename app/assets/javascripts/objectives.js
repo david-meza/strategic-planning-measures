@@ -2,11 +2,15 @@
 
   $(document).on('page:change', function() {
 
-    if ( $('.objectives.index').length === 0 ) { return; }
+    var $usedBackButton, $panels, currentKFA;
 
-    var $panels = $('.panel');
+    $usedBackButton = $('#page_is_dirty');
 
-    var currentKFA = '';
+    if ( $('.objectives.index').length === 0 || Number($usedBackButton.val()) > 0 ) { return; }
+
+    $usedBackButton.val(1);
+    $panels = $('.panel');
+    currentKFA = '';
     
     $panels.each(function(idx, panel) {
       var $panel = $(panel);

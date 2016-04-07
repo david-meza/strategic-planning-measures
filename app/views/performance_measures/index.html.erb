@@ -1,5 +1,7 @@
 <%= link_to 'New Measure', new_performance_measure_path, class: "btn btn-success pull-right" if current_user.try(:admin?) %>
+
 <h3>Performance Measures</h3>
+<%= hidden_field_tag "page_is_dirty", 0 %>
 
 <hr />
   

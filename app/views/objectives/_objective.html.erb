@@ -55,28 +55,7 @@
       </div>
     <% end -%>
 
+    <%= render partial: "shared/card_actions", locals: { resource: objective } %>
     
-    <div class="objective-actions layout-row layout-align-space-between-center">
-      
-      <span class="flex"></span>
-      
-      <%= link_to objectives_path, class: "icon-action", 'aria-label': "Back", title: 'Back', data: {toggle: 'tooltip', placement: 'top'} do  %>
-        <i class="fa fa-lg fa-arrow-left text-primary"></i>
-      <% end if action_name == 'show' %>
-      
-      <%= link_to objective, class: "icon-action", 'aria-label': "Show details", title: 'Show Details', data: {toggle: 'tooltip', placement: 'top'} do %>
-        <i class="fa fa-lg fa-eye text-primary"></i>
-      <% end unless action_name == 'show' %>
-
-      <% if current_user.try(:admin?) %>
-        <%= link_to edit_objective_path(objective), class: "icon-action", 'aria-label': "Edit", title: 'Edit', data: {toggle: 'tooltip', placement: 'top'} do  %>
-          <i class="fa fa-lg fa-pencil text-primary"></i>
-        <% end -%>
-        <%= link_to objective, method: :delete, remote: true, class: "icon-action", title: 'Delete', data: {toggle: 'tooltip', placement: 'top', confirm: 'Are you sure you want to delete this objective?'}, "aria-label": "Delete" do %>
-          <i class="fa fa-lg fa-trash text-danger"></i>
-        <% end -%>
-      <% end %>
-
-    </div>
   </div>
 </div>
