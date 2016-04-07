@@ -1,14 +1,15 @@
 <div class="panel panel-info" data-objective-id="<%= objective.id %>" data-objective-kfa="<%= objective.key_focus_area.try(:name) %>">
   <div class="panel-body">
-
-    <% if action_name == 'show' %>
-      <div class="row">
-        <label class="col-xs-3 control-label limit-text capitalize">key focus area</label>
-        <div class="col-xs-9">
-          <p class="kfa-name"><%= objective.key_focus_area.try(:name) %></p>
+    
+    <div class="row">
+      <label class="col-xs-3 control-label limit-text capitalize">key focus area</label>
+      <div class="col-xs-9 layout-row layout-align-space-between-center">
+        <p class="kfa-name"><%= objective.key_focus_area.try(:name) %></p>
+        <div class="kfa-logo-card">
+          <%= image_tag objective.key_focus_area.logo.url(:thumb), alt: "Key Focus Area logo", class: "img-responsive" if objective.key_focus_area.logo.present? %>
         </div>
       </div>
-    <% end %>
+    </div>
     
     <div class="row">
       <label class="col-xs-3 control-label limit-text capitalize">Name</label>
@@ -38,28 +39,44 @@
     <% end %>
 
 
-    <div class="row">
-      <label class="col-xs-3 control-label limit-text">Created By</label>
-      <div class="col-xs-9">
-        <p><%= objective.author.try(:email) %></p>
+    <% if action_name == 'show' %>
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text">Created By</label>
+        <div class="col-xs-9">
+          <p><%= objective.author.try(:email) %></p>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <label class="col-xs-3 control-label limit-text">Last Edited by</label>
-      <div class="col-xs-9">
-        <p><%= objective.last_editor.try(:email) %></p>
+      <div class="row">
+        <label class="col-xs-3 control-label limit-text">Last Edited by</label>
+        <div class="col-xs-9">
+          <p><%= objective.last_editor.try(:email) %></p>
+        </div>
       </div>
-    </div>
+    <% end -%>
 
     
-    <div class="objective-actions">
-      <%= link_to 'Show', objective, class: "btn btn-default" unless action_name == 'show' %>
-      <%= link_to 'Back', objectives_path, class: "btn btn-default" if action_name == 'show' %>
+    <div class="objective-actions layout-row layout-align-space-between-center">
+      
+      <span class="flex"></span>
+      
+      <%= link_to objectives_path, class: "icon-action", 'aria-label': "Back", title: 'Back', data: {toggle: 'tooltip', placement: 'top'} do  %>
+        <i class="fa fa-lg fa-arrow-left text-primary"></i>
+      <% end if action_name == 'show' %>
+      
+      <%= link_to objective, class: "icon-action", 'aria-label': "Show details", title: 'Show Details', data: {toggle: 'tooltip', placement: 'top'} do %>
+        <i class="fa fa-lg fa-eye text-primary"></i>
+      <% end unless action_name == 'show' %>
+
       <% if current_user.try(:admin?) %>
-        <%= link_to 'Edit', edit_objective_path(objective), class: "btn btn-default" %>
-        <%= link_to 'Delete', objective, method: :delete, data: {confirm: 'Are you sure you want to delete this objective'}, class: "btn btn-danger" %>
+        <%= link_to edit_objective_path(objective), class: "icon-action", 'aria-label': "Edit", title: 'Edit', data: {toggle: 'tooltip', placement: 'top'} do  %>
+          <i class="fa fa-lg fa-pencil text-primary"></i>
+        <% end -%>
+        <%= link_to objective, method: :delete, remote: true, class: "icon-action", title: 'Delete', data: {toggle: 'tooltip', placement: 'top', confirm: 'Are you sure you want to delete this objective?'}, "aria-label": "Delete" do %>
+          <i class="fa fa-lg fa-trash text-danger"></i>
+        <% end -%>
       <% end %>
+
     </div>
   </div>
 </div>

@@ -101,11 +101,15 @@
     <% end -%>
 
     
-    <div class="report-actions">
+    <div class="report-actions layout-row layout-align-space-between-center">
+      <span class="flex"></span>
+      
       <%= link_to 'Back', measure_reports_path, class: "btn btn-default" if action_name == 'show' %>
+      
       <%= link_to measure_report, class: "icon-action", 'aria-label': "Show details" do %>
         <i class="fa fa-lg fa-eye text-primary"></i>
       <% end unless action_name == 'show' %>
+      
       <% if current_user.try(:admin?) || current_user == measure_report.author %>
         <%= link_to edit_measure_report_path(measure_report), class: "icon-action", 'aria-label': "Edit" do  %>
           <i class="fa fa-lg fa-pencil text-primary"></i>
@@ -114,6 +118,7 @@
           <i class="fa fa-lg fa-trash text-danger"></i>
         <% end -%>
       <% end %>
+    
     </div>
   </div>
 </div>

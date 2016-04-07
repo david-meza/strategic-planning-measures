@@ -104,6 +104,10 @@ form {
   }
 }
 
+.kfa-logo-card {
+  width: 40px;
+}
+
 .kfa-subheader {
   color: $indigo;
 }
@@ -158,27 +162,6 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
 
 .bg-default {
   background-color: rgba($dark-grey, 0.03);
-}
-
-div[data-report-id] {
-  p {
-    margin: 0;
-    padding: 2px 0;
-  }
- 
-  .report-actions {
-    @include display-flex;
-    @include flex-direction( row );
-    // Pending mixins
-    justify-content: flex-end;
-    align-content: center;
-    align-items: center;
-    max-width: 100%;
-  }
-
-  .btn:not(:last-child) {
-    margin-right: 10px;
-  }
 }
 
 .flex {
