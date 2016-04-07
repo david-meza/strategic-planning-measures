@@ -1,25 +1,8 @@
 <% parents = performance_measure.parents %>
 <div class="panel panel-info" data-measure-id="<%= performance_measure.id %>" data-objective-kfa="<%= parents[0].name %>" data-objective-name="<%= parents[1].name %>">
   <div class="panel-body">
-    
-    <% parents.each_with_index do |parent, idx| %>
-      <div class="row">
-        
-        <label class="col-sm-3 control-label limit-text capitalize"><%= parent.model_name.human %></label>
-        
-        <div class="col-sm-9 layout-row layout-align-space-between-stretch">
-          
-          <p><%= parent.try(:name) %></p>
-          
-          <% if idx == 0 %>
-            <div class="kfa-logo-card">
-              <%= image_tag parent.logo.url(:thumb), alt: "Key Focus Area logo", class: "img-responsive" if parent.logo.present? %>
-            </div>
-          <% end -%>
 
-        </div>
-      </div>
-    <% end %>
+    <%= render partial: 'shared/parents_information', locals: { parents: parents } %>
     
     <div class="row">
       <label class="col-sm-3 control-label limit-text capitalize">Description</label>

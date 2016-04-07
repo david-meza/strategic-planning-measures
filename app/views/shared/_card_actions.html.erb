@@ -10,7 +10,7 @@
     <i class="fa fa-lg fa-eye text-primary"></i>
   <% end unless action_name == 'show' %>
 
-  <% if current_user.try(:admin?) %>
+  <% if current_user.try(:admin?) || current_user == resource.try(:author) %>
     <%= link_to edit_polymorphic_path(resource), class: "icon-action", 'aria-label': "Edit", title: 'Edit', data: {toggle: 'tooltip', placement: 'top'} do  %>
       <i class="fa fa-lg fa-pencil text-primary"></i>
     <% end -%>
