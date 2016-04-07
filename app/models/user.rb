@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   # ----------------------- Validations --------------------
 
   validates :email,
-            :format => { with: /\A([\w\.%\+\-]+)@raleighnc.gov\z/i, message: "is invalid. Please use your @raleighnc.gov email." },
+            :format => { with: /\A([\w\.%\+\-]+)@raleighnc\.gov\z/i, message: "is invalid. Please use your @raleighnc.gov email." },
             length: { in: 14..40 },
             presence: true,
             uniqueness: true

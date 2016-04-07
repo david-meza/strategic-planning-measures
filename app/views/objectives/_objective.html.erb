@@ -29,11 +29,14 @@
       <div class="row">
         <label class="col-xs-4 control-label form-label capitalize">Measures</label>
         <div class="col-xs-8">
-          <ul>
-            <% objective.measures.each do |measure| %>
-              <li><%= measure.description %></li>
-            <% end %>
-          </ul>
+          <% objective.measures.each do |measure| %>
+            <p>
+              <%= link_to measure, class: "icon-action", 'aria-label': "Info", title: 'Take me to this measure', data: {toggle: 'tooltip', placement: 'top'} do %>
+                <i class="fa fa-fw fa-info text-primary"></i>
+              <% end %>
+              <%= measure.description %>
+            </p>
+          <% end %>
         </div>
       </div>
     <% end %>

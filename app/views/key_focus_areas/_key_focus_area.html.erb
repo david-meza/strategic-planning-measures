@@ -15,10 +15,18 @@
 
     <% if action_name == 'show' %>
       <div class="row">
+        
         <label class="col-sm-2 col-xs-3 form-label control-label">Objectives</label>
+        
         <div class="col-sm-10 col-xs-9">
           <% key_focus_area.objectives.each do |objective| %>
-            <p><strong><%= objective.name %>:</strong> <%= objective.description %></p>
+            <p>
+              <%= link_to objective, class: "icon-action", 'aria-label': "Info", title: 'Take me to this objective', data: {toggle: 'tooltip', placement: 'top'} do %>
+                <i class="fa fa-fw fa-info text-primary"></i>
+              <% end %>
+              
+              <strong><%= objective.name %>:</strong> <%= objective.description %>
+            </p>
           <% end %>
         </div>
       </div>
@@ -26,11 +34,14 @@
       <div class="row">
         <label class="col-sm-2 col-xs-3 form-label control-label">Measures</label>
         <div class="col-sm-10 col-xs-9">
-          <ul>
-            <% key_focus_area.measures.each do |measure| %>
-              <li><%= measure.description %></li>
-            <% end %>
-          </ul>
+          <% key_focus_area.measures.each do |measure| %>
+            <p>
+              <%= link_to measure, class: "icon-action", 'aria-label': "Info", title: 'Take me to this measure', data: {toggle: 'tooltip', placement: 'top'} do %>
+                <i class="fa fa-fw fa-info text-primary"></i>
+              <% end %>
+              <%= measure.description %>
+            </p>
+          <% end %>
         </div>
       </div>
     
