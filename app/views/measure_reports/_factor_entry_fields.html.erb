@@ -18,7 +18,7 @@
       <div class="form-group">
         <%= factor_entry_fields.label :data, factor.label_text, class: "col-md-3 control-label" %>
         <div class="col-md-9">
-          <%= factor_entry_fields.text_field :data, { class: "form-control", required: true, pattern: pattern_for_field_type(factor.field_type), name: "measure_report[performance_factor_entries_attributes][#{idx}][data]" } ) %>
+          <%= factor_entry_fields.text_field :data, class: "form-control", required: true, pattern: pattern_for_field_type(factor.field_type), name: "measure_report[performance_factor_entries_attributes][#{idx}][data]" %>
         </div>
       </div>
       

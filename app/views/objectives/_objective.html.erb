@@ -2,8 +2,8 @@
   <div class="panel-body">
     
     <div class="row">
-      <label class="col-xs-3 control-label limit-text capitalize">key focus area</label>
-      <div class="col-xs-9 layout-row layout-align-space-between-center">
+      <label class="col-xs-4 control-label form-label capitalize">key focus area</label>
+      <div class="col-xs-8 layout-row layout-align-space-between-center">
         <p class="kfa-name"><%= objective.key_focus_area.try(:name) %></p>
         <div class="kfa-logo-card">
           <%= image_tag objective.key_focus_area.logo.url(:thumb), alt: "Key Focus Area logo", class: "img-responsive" if objective.key_focus_area.logo.present? %>
@@ -12,23 +12,23 @@
     </div>
     
     <div class="row">
-      <label class="col-xs-3 control-label limit-text capitalize">Name</label>
-      <div class="col-xs-9">
+      <label class="col-xs-4 control-label form-label capitalize">Name</label>
+      <div class="col-xs-8">
         <p><%= objective.name %></p>
       </div>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text capitalize">description</label>
-      <div class="col-xs-9">
+      <label class="col-xs-4 control-label form-label capitalize">description</label>
+      <div class="col-xs-8">
         <p><%= objective.description %></p>
       </div>
     </div>
 
     <% if action_name == 'show' %>
       <div class="row">
-        <label class="col-xs-3 control-label limit-text">Measures</label>
-        <div class="col-xs-9">
+        <label class="col-xs-4 control-label form-label capitalize">Measures</label>
+        <div class="col-xs-8">
           <ul>
             <% objective.measures.each do |measure| %>
               <li><%= measure.description %></li>
@@ -41,15 +41,15 @@
 
     <% if action_name == 'show' %>
       <div class="row">
-        <label class="col-xs-3 control-label limit-text">Created By</label>
-        <div class="col-xs-9">
+        <label class="col-xs-4 control-label form-label capitalize">Created By</label>
+        <div class="col-xs-8">
           <p><%= objective.author.try(:email) %></p>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-xs-3 control-label limit-text">Last Edited by</label>
-        <div class="col-xs-9">
+        <label class="col-xs-4 control-label form-label capitalize">Last Edited by</label>
+        <div class="col-xs-8">
           <p><%= objective.last_editor.try(:email) %></p>
         </div>
       </div>

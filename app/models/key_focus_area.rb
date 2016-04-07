@@ -15,7 +15,8 @@ class KeyFocusArea < ActiveRecord::Base
   has_attached_file :logo, 
                     styles: { medium: "300x300>", thumb: "100x100>" }, 
                     default_url: "/images/honeycomb.png",
-                    storage: :s3  
+                    storage: :s3,
+                    s3_protocol: :https
   
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
 

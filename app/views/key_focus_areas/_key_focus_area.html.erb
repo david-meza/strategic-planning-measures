@@ -3,20 +3,20 @@
     
     <div class="flex layout-row layout-align-space-between-center logo-row">
       <h4><%= key_focus_area.name %></h4>
-      <%= image_tag key_focus_area.logo.url(:thumb) if key_focus_area.logo.present? %>
+      <%= image_tag key_focus_area.logo.url(:thumb), alt: "Key Focus Area logo", class: "img-responsive" if key_focus_area.logo.present? %>
     </div>
 
     <div class="row">
-      <label class="col-xs-3 control-label limit-text">Goal</label>
-      <div class="col-xs-9">
+      <label class="col-sm-2 col-xs-3 form-label control-label">Goal</label>
+      <div class="col-sm-10 col-xs-9">
         <p><%= key_focus_area.goal %></p>
       </div>
     </div>
 
     <% if action_name == 'show' %>
       <div class="row">
-        <label class="col-xs-3 control-label limit-text">Objectives</label>
-        <div class="col-xs-9">
+        <label class="col-sm-2 col-xs-3 form-label control-label">Objectives</label>
+        <div class="col-sm-10 col-xs-9">
           <% key_focus_area.objectives.each do |objective| %>
             <p><strong><%= objective.name %>:</strong> <%= objective.description %></p>
           <% end %>
@@ -24,8 +24,8 @@
       </div>
 
       <div class="row">
-        <label class="col-xs-3 control-label limit-text">Measures</label>
-        <div class="col-xs-9">
+        <label class="col-sm-2 col-xs-3 form-label control-label">Measures</label>
+        <div class="col-sm-10 col-xs-9">
           <ul>
             <% key_focus_area.measures.each do |measure| %>
               <li><%= measure.description %></li>
@@ -35,15 +35,15 @@
       </div>
     
       <div class="row">
-        <label class="col-xs-3 control-label limit-text">Created By</label>
-        <div class="col-xs-9">
+        <label class="col-sm-2 col-xs-3 form-label control-label">Created By</label>
+        <div class="col-sm-10 col-xs-9">
           <p><%= key_focus_area.author.try(:email) %></p>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-xs-3 control-label limit-text">Last Edited by</label>
-        <div class="col-xs-9">
+        <label class="col-sm-2 col-xs-3 form-label control-label">Last Edited by</label>
+        <div class="col-sm-10 col-xs-9">
           <p><%= key_focus_area.last_editor.try(:email) %></p>
         </div>
       </div>
