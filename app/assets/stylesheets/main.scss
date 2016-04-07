@@ -76,6 +76,10 @@ form {
   color: $indigo;
 }
 
+.text-default {
+  color: $dark-grey
+}
+
 .logo-row {
   // background-color: $indigo;
   margin-bottom: 15px;
@@ -91,7 +95,9 @@ form {
   text-transform: italic;
 }
 
-
+.no-margin {
+  margin: 0;
+}
 
 .checkbox-danger {
   &:focus:after {

@@ -94,48 +94,72 @@
     }
 
     function generateAllMeasureFields(measure) {
-      var attributes =  '<div class="form-group" id="measure-attributes">' +
-                          '<label class="col-md-3 control-label limit-text">Target</label>' +
-                          '<div class="col-md-3">' +
-                            '<p>' + (measure.target || 'N/A') + '</p>' +
+      var attributes =  '<div id="measure-attributes">' +
+                          
+                          '<div class="form-group">' +
+                            '<label class="col-md-3 control-label limit-text">Target</label>' +
+                            '<div class="col-md-3">' +
+                              '<p>' + (measure.target || 'N/A') + '</p>' +
+                            '</div>' +
+                            '<label class="col-md-3 control-label limit-text">Unit of Measure</label>' +
+                            '<div class="col-md-3">' +
+                              '<p>' + (measure.unit_of_measure || 'N/A') + '</p>' +
+                            '</div>' +
                           '</div>' +
-                          '<label class="col-md-3 control-label limit-text">Unit of Measure</label>' +
-                          '<div class="col-md-3">' +
-                            '<p>' + (measure.unit_of_measure || 'N/A') + '</p>' +
+                          
+                          '<div class="form-group">' +
+                            '<label class="col-md-3 control-label limit-text">Measurement Formula</label>' +
+                            '<div class="col-md-9">' +
+                              '<p>' + (measure.measurement_formula || 'N/A') + '</p>' +
+                            '</div>' +
                           '</div>' +
-                          '<label class="col-md-3 control-label limit-text">Measurement Formula</label>' +
-                          '<div class="col-md-9">' +
-                            '<p>' + (measure.measurement_formula || 'N/A') + '</p>' +
+                          
+                          '<div class="form-group">' +
+                            '<label class="col-md-3 control-label limit-text">Data Source</label>' +
+                            '<div class="col-md-9">' +
+                              '<p>' + (measure.data_source || 'N/A') + '</p>' +
+                            '</div>' +
                           '</div>' +
-                          '<label class="col-md-3 control-label limit-text">Data Source</label>' +
-                          '<div class="col-md-9">' +
-                            '<p>' + (measure.data_source || 'N/A') + '</p>' +
+                          
+                          '<div class="form-group">' +
+                            '<label class="col-md-3 control-label limit-text">Rationale for Target</label>' +
+                            '<div class="col-md-9">' +
+                              '<p>' + (measure.rationale_for_target || 'N/A') + '</p>' +
+                            '</div>' +
                           '</div>' +
-                          '<label class="col-md-3 control-label limit-text">Rationale for Target</label>' +
-                          '<div class="col-md-9">' +
-                            '<p>' + (measure.rationale_for_target || 'N/A') + '</p>' +
+                          
+                          '<div class="form-group">' +
+                            '<label class="col-md-3 control-label limit-text">Data Contact Name</label>' +
+                            '<div class="col-md-3">' +
+                              '<p>' + (measure.data_contact_person || 'N/A') + '</p>' +
+                            '</div>' +
+                          
+                            '<label class="col-md-2 control-label limit-text">Email</label>' +
+                            '<div class="col-md-4">' +
+                              '<p>' + (measure.data_contact_person_email || 'N/A') + '</p>' +
+                            '</div>' +
                           '</div>' +
-                          '<label class="col-md-3 control-label limit-text">Data Contact Name</label>' +
-                          '<div class="col-md-3">' +
-                            '<p>' + (measure.data_contact_person || 'N/A') + '</p>' +
+                          
+                          '<div class="form-group">' +
+                            '<label class="col-md-3 control-label limit-text">Person Reporting to BMS</label>' +
+                            '<div class="col-md-3">' +
+                              '<p>' + (measure.person_reporting_data_to_bms || 'N/A') + '</p>' +
+                            '</div>' +
+                            
+                            '<label class="col-md-2 control-label limit-text">Email</label>' +
+                            '<div class="col-md-4">' +
+                              '<p>' + (measure.person_reporting_data_to_bms_email || 'N/A') + '</p>' +
+                            '</div>' +
                           '</div>' +
-                          '<label class="col-md-2 control-label limit-text">Email</label>' +
-                          '<div class="col-md-4">' +
-                            '<p>' + (measure.data_contact_person_email || 'N/A') + '</p>' +
-                          '</div>' +
-                          '<label class="col-md-3 control-label limit-text">Person Reporting to BMS</label>' +
-                          '<div class="col-md-3">' +
-                            '<p>' + (measure.person_reporting_data_to_bms || 'N/A') + '</p>' +
-                          '</div>' +
-                          '<label class="col-md-2 control-label limit-text">Email</label>' +
-                          '<div class="col-md-4">' +
-                            '<p>' + (measure.person_reporting_data_to_bms_email || 'N/A') + '</p>' +
-                          '</div>' +
-                          '<label class="col-md-3 control-label limit-text">Notes/Comments</label>' +
-                          '<div class="col-md-9">' +
-                            '<p>' + (measure.notes || '') + '</p>' +
+                          
+                          '<div class="form-group">' +
+                            '<label class="col-md-3 control-label limit-text">Notes/Comments</label>' +
+                            '<div class="col-md-9">' +
+                              '<p>' + (measure.notes || '') + '</p>' +
+                            '</div>' +
                           '</div>' +
                         '</div>';
+      
       $('#measure-attributes').remove();
       $(attributes).insertAfter(measuresDropdown);
       getFactorEntryFields(measure.id);
