@@ -45,7 +45,10 @@ class MeasureReport < ActiveRecord::Base
   end
 
   def self.filter_query(query)
+    # Cover cases when the hash is empty (regular index landing)
+    # or a query is passed via form POST, but the values are not filled (no value selected in dropdown)
     return all if query.empty? || query.values.all?(&:empty?)
+    # Otherwise execute the SQL query (parameters have already been sanitized at this point so we can safely use them)
     self.where(query)
   end
   

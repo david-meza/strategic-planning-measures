@@ -25,8 +25,6 @@ Rails.application.routes.draw do
     get 'download', on: :collection
   end
   
-  resources :performance_factors
-  resources :performance_factor_entries
 
   # Example resource route with options:
   #   resources :products do

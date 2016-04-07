@@ -1,6 +1,10 @@
 <div class="card-actions layout-row layout-align-space-between-center">
   
   <span class="flex"></span>
+
+  <%= link_to measure_reports_path(query: { "#{resource.class.model_name.collection}.id": resource.id }), class: "icon-action", 'aria-label': "Reports", title: "Associated Reports", data: {toggle: 'tooltip', placement: 'top'} do %>
+    <i class="fa fa-lg fa-file-text-o text-info"></i>
+  <% end unless controller_name == "measure_reports" %>
   
   <%= link_to polymorphic_path(resource.class), class: "icon-action", 'aria-label': "Back", title: 'Back', data: {toggle: 'tooltip', placement: 'top'} do  %>
     <i class="fa fa-lg fa-arrow-left text-primary"></i>
@@ -14,7 +18,7 @@
     <%= link_to edit_polymorphic_path(resource), class: "icon-action", 'aria-label': "Edit", title: 'Edit', data: {toggle: 'tooltip', placement: 'top'} do  %>
       <i class="fa fa-lg fa-pencil text-primary"></i>
     <% end -%>
-    <%= link_to resource, method: :delete, remote: true, class: "icon-action", title: 'Delete', data: {toggle: 'tooltip', placement: 'top', confirm: 'Are you sure you want to delete this resource?'}, "aria-label": "Delete" do %>
+    <%= link_to resource, method: :delete, remote: true, class: "icon-action", title: 'Delete', data: {toggle: 'tooltip', placement: 'top', confirm: "Are you sure you want to delete this #{resource.class.to_s.downcase}?"}, "aria-label": "Delete" do %>
       <i class="fa fa-lg fa-trash text-danger"></i>
     <% end -%>
   <% end %>
