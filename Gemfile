@@ -43,7 +43,7 @@ gem 'figaro', '~> 1.1'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
+group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -53,15 +53,19 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-  gem "letter_opener"
 
   gem 'better_errors'
   gem 'binding_of_caller'
 
-  gem 'faker', '1.4.3'
 
   gem 'jazz_hands', github: 'nixme/jazz_hands', branch: 'bring-your-own-debugger'
 
+end
+
+group :development, :test do
+  gem 'faker', '1.4.3'
+
+  gem "letter_opener"
 end
 
 group :test do
