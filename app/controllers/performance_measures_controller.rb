@@ -11,7 +11,7 @@ class PerformanceMeasuresController < ApplicationController
     if params[:measurable_id] && params[:measurable_type]
       PerformanceMeasure.where(measurable_id: params[:measurable_id], measurable_type: params[:measurable_type]).order(description: :asc)
     else
-      PerformanceMeasure.includes(:key_focus_area, objective: :key_focus_area).order("key_focus_areas.name ASC, key_focus_areas_objectives.name ASC, objectives.name ASC")
+      PerformanceMeasure.filter_results(allowed_query_params, current_user).includes(:key_focus_area, objective: :key_focus_area).order("key_focus_areas.name ASC, key_focus_areas_objectives.name ASC, objectives.name ASC")
     end
   end
 
@@ -90,5 +90,9 @@ class PerformanceMeasuresController < ApplicationController
                                                     :measurement_formula, :data_source, :rationale_for_target, :data_contact_person, 
                                                     :data_contact_person_email, :person_reporting_data_to_bms, :person_reporting_data_to_bms_email, 
                                                     :notes, performance_factors_attributes: [:id, :_destroy, :label_text, :field_type] )
+    end
+
+    def allowed_query_params
+      params.permit(:measurable_id, :measurable_type, :filter_data_contact)
     end
 end

@@ -36,6 +36,10 @@ label.control-label {
   color: rgba($black, 0.6);
 }
 
+.spaced-items + .spaced-items {
+  margin-left: 15px;
+}
+
 form {
   legend {
     color: $indigo;

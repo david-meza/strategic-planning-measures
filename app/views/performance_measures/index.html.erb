@@ -4,6 +4,18 @@
 <%= hidden_field_tag "page_is_dirty", 0 %>
 
 <hr />
+<div class="layout-row flex layout-align-end-center">
+  <%= link_to performance_measures_path(filter_data_contact: true), class: "text-info spaced-items" do %>
+    <i class="fa fa-lg fa-filter"></i> Only show me measures where I am the data contact
+  <% end -%>
+  <%= link_to performance_measures_path, class: "text-info spaced-items" do %>
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-filter fa-stack-1x"></i>
+      <i class="fa fa-ban fa-stack-2x"></i>
+    </span>
+    Clear Filters
+  <% end -%>
+</div>
   
 <div class="row flex-row">
   <% @performance_measures.each do |performance_measure| %>

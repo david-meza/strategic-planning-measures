@@ -29,22 +29,9 @@ class PerformanceMeasure < ActiveRecord::Base
     measurable.key_focus_area.name
   end
 
-  def self.kfas
-    joins("INNER JOIN key_focus_areas ON key_focus_areas.id = performance_measures.measurable_id AND performance_measures.measurable_type = 'KeyFocusArea'")
-  end
-
-  def self.objectives
-    joins("INNER JOIN objectives ON objectives.id = performance_measures.measurable_id AND performance_measures.measurable_type = 'Objective'").
-    joins("INNER JOIN key_focus_areas ON objectives.key_focus_area_id = key_focus_areas.id")
-  end
-
-  def self.all_with_kfa
-    joins(" INNER JOIN key_focus_areas ON key_focus_areas.id = performance_measures.measurable_id AND performance_measures.measurable_type = 'KeyFocusArea'
-            UNION 
-            SELECT performance_measures.* FROM performance_measures
-            INNER JOIN objectives ON objectives.id = performance_measures.measurable_id AND performance_measures.measurable_type = 'Objective'
-            INNER JOIN key_focus_areas ON objectives.key_focus_area_id = key_focus_areas.id").
-    order("key_focus_areas.name ASC, objectives.name ASC")
+  def self.filter_results(query, current_user)
+    return where(data_contact_person_email: current_user.email) if query[:filter_data_contact]
+    all
   end
 
   def parents
