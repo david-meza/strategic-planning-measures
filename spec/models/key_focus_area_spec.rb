@@ -45,8 +45,7 @@ describe KeyFocusArea do
   context "user permissions" do
 
     it "shouldn't allow non-admins to create/update a new key focus area" do
-      kfa.author = user
-      expect(kfa).to_not be_valid
+      expect{ create(:key_focus_area, author: user)}.to raise_error(ActiveRecord::RecordInvalid)
     end
 
   end

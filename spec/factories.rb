@@ -23,4 +23,11 @@ FactoryGirl.define do
     association :author, factory: :admin
   end
 
+  factory :objective do
+    association :key_focus_area
+    sequence(:name)     { |n| "Objective #{n}" }
+    description         Faker::Lorem.sentence
+    association :author, factory: :admin
+  end
+
 end

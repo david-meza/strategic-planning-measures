@@ -6,9 +6,12 @@ class KeyFocusArea < ActiveRecord::Base
 
   has_many :measures, as: :measurable, dependent: :destroy, class_name: "PerformanceMeasure"
 
-  belongs_to :author, foreign_key: :created_by_user_id, class_name: "User"
+  include UserRules
+
+  # ----------------------- Callbacks --------------------
   
-  belongs_to :last_editor, foreign_key: :last_updated_by_user_id, class_name: "User"
+  before_create :author_is_admin
+  before_update :editor_is_admin
 
   # ----------------------- Logo --------------------
   
@@ -31,20 +34,11 @@ class KeyFocusArea < ActiveRecord::Base
 
   validates_associated :author
 
-  validate :author_is_admin
-
   validates_uniqueness_of :name,
                           message: "duplicate key focus area with this name",
                           case_sensitive: false
   
   # ----------------------- Methods --------------------
-
-
-  private
-
-    def author_is_admin
-      errors.add(:permission, "only admins can create a Key Focus Area") unless author.try(:admin?)
-    end
 
 
 end
