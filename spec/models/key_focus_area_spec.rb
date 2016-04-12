@@ -23,8 +23,6 @@ describe KeyFocusArea do
     
     it { should validate_presence_of(:goal) }
     
-    it { should validate_presence_of(:created_by_user_id) }
-    
     it do 
       should validate_uniqueness_of(:name).
       with_message("duplicate key focus area with this name").

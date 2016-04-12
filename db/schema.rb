@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401162142) do
+ActiveRecord::Schema.define(version: 20160412171014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20160401162142) do
     t.string   "goal",                    default: "", null: false
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
-    t.integer  "created_by_user_id",                   null: false
+    t.integer  "created_by_user_id"
     t.integer  "last_updated_by_user_id"
     t.string   "logo_file_name"
     t.string   "logo_content_type"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160401162142) do
     t.string   "comments"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
-    t.integer  "created_by_user_id",                      null: false
+    t.integer  "created_by_user_id"
     t.integer  "last_updated_by_user_id"
     t.string   "bms_comments"
     t.boolean  "expired",                 default: false, null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20160401162142) do
     t.string   "description",             default: "", null: false
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
-    t.integer  "created_by_user_id",                   null: false
+    t.integer  "created_by_user_id"
     t.integer  "last_updated_by_user_id"
   end
 
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20160401162142) do
     t.string   "notes"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
-    t.integer  "created_by_user_id",                              null: false
+    t.integer  "created_by_user_id"
     t.integer  "last_updated_by_user_id"
     t.string   "data_contact_person_email"
     t.string   "person_reporting_data_to_bms_email"

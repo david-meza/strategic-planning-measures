@@ -26,7 +26,7 @@ class KeyFocusArea < ActiveRecord::Base
 
   # ----------------------- Validations --------------------
 
-  validates :name, :goal, :created_by_user_id,
+  validates :name, :goal,
             presence: true
 
   validates_associated :author
