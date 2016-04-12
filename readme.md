@@ -16,7 +16,7 @@ Web app that captures data and measures for the COR strategic plan
 
 ### Setting up the test environment
 
-This application uses RSpec Rails, Guard, and Factory Girl for testing.
+This application uses RSpec Rails, Guard, Shoulda matchers, and Factory Girl for testing.
 
 * To prepare your test database after first cloning/forking this repository run `rake db:test:prepare`
 * To run all tests one time simple run `rspec` or `bundle exec rspec` if you don't have the gem installed globally

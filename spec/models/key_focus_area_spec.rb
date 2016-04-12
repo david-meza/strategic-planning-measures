@@ -2,10 +2,11 @@ require 'rails_helper'
 
 describe KeyFocusArea do
   
-  let(:user) { create(:user) }
-  let(:kfa)  { build(:key_focus_area) }
+  let(:user)  { create(:user) }
+  let(:admin) { create(:admin) }
+  let(:kfa)   { build(:key_focus_area) }
 
-
+  # Sanity checks
   it "is valid with default attributes" do
     expect(kfa).to be_valid
   end
@@ -14,8 +15,67 @@ describe KeyFocusArea do
     expect{ kfa.save! }.to_not raise_error
   end
 
-  it "responds to the author association" do
-    expect(kfa).to respond_to(:author)
+  context "validations" do
+
+    subject { build :key_focus_area }
+
+    it { should validate_presence_of(:name) }
+    
+    it { should validate_presence_of(:goal) }
+    
+    it { should validate_presence_of(:created_by_user_id) }
+    
+    it do 
+      should validate_uniqueness_of(:name).
+      with_message("duplicate key focus area with this name").
+      case_insensitive
+    end
+
   end
+
+  context "associations" do
+    it { should have_many :objectives }
+    
+    it { should have_many :measures }
+
+    it { should belong_to :author }
+
+    it { should belong_to :last_editor }
+
+  end
+
+  context "user permissions" do
+
+    it "shouldn't allow non-admins to create/update a new key focus area" do
+      kfa.author = user
+      expect(kfa).to_not be_valid
+    end
+
+  end
+
+  context "logo / image attachment" do 
+
+    it { should have_attached_file(:logo) }
+    
+    it { should_not validate_attachment_presence(:logo) }
+    
+    it { should validate_attachment_content_type(:logo).
+          allowing('image/png', 'image/gif').
+          rejecting('text/plain', 'text/xml') }
+    
+    it { should validate_attachment_size(:logo).less_than(2.megabytes) }
+
+  end
+
+  context "edge cases" do
+
+    it "should not be deleted if author is deleted" do
+      deleted_author_kfa = create(:key_focus_area, author: admin)
+      admin.destroy
+      expect(KeyFocusArea.where(id: deleted_author_kfa.id)).to exist
+    end
+
+  end
+
 
 end

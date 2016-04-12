@@ -13,21 +13,38 @@ class KeyFocusArea < ActiveRecord::Base
   # ----------------------- Logo --------------------
   
   has_attached_file :logo, 
-                    styles: { medium: "300x300>", thumb: "100x100>" }, 
+                    styles: { medium: "300x300>", thumb: "100x100>" },
                     default_url: "/images/honeycomb.png",
                     storage: :s3,
                     s3_protocol: :https
   
-  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :logo, 
+                                    content_type: /\Aimage\/.*\Z/
+  
+  validates_attachment_size :logo, 
+                            less_than: 2.megabytes
 
   # ----------------------- Validations --------------------
 
   validates :name, :goal, :created_by_user_id,
             presence: true
 
-  validates_uniqueness_of :name
+  validates_associated :author
+
+  validate :author_is_admin
+
+  validates_uniqueness_of :name,
+                          message: "duplicate key focus area with this name",
+                          case_sensitive: false
   
   # ----------------------- Methods --------------------
+
+
+  private
+
+    def author_is_admin
+      errors.add(:permission, "only admins can create a Key Focus Area") unless author.try(:admin?)
+    end
 
 
 end

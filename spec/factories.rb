@@ -6,7 +6,7 @@ FactoryGirl.define do
   # is the same as the symbol you passed
   # (so here, it assumes this is a User)
   factory :user, aliases: [:author, :editor] do
-    email                   "test@raleighnc.gov"
+    sequence(:email)  { |n| "test#{n}@raleighnc.gov" }
     password                "testpassword"
     password_confirmation   "testpassword"
     confirmed_at            Date.today
@@ -20,7 +20,7 @@ FactoryGirl.define do
   factory :key_focus_area do
     sequence(:name) { |n| "Key Focus Area #{n}" }
     goal                  "To conquer the world"
-    association :author
+    association :author, factory: :admin
   end
 
 end
