@@ -10,7 +10,7 @@
           <%= objective_fields.label :key_focus_area_id, "Key Focus Area*", class: "col-md-3 control-label" %>
           <div class="col-md-9">
             <%= objective_fields.collection_select  :key_focus_area_id,
-                                                    KeyFocusArea.all,
+                                                    KeyFocusArea.order(:name),
                                                     :id,
                                                     :name,
                                                     { prompt: "Please select a Key Focus Area for this objective"},

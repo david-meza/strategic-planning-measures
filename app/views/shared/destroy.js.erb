@@ -1,0 +1,10 @@
+(function($){
+
+  var $card = $('div[data-<%= data_label %>-id="<%= resource.id %>"]');
+  $('<%= j(render partial: "shared/flash", locals: { message: "Your #{resource.class.model_name.human} was deleted!", flash_type: "info" }) %>').insertBefore($card).hide().fadeIn(500);
+
+  $card.slideUp('normal', function() {
+    $(this).remove();
+  });
+
+})(jQuery);

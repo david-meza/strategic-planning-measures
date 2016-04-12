@@ -75,6 +75,7 @@ class PerformanceMeasuresController < ApplicationController
     respond_to do |format|
       format.html { redirect_to performance_measures_url, notice: 'Performance measure was successfully deleted.' }
       format.json { head :no_content }
+      format.js   { render 'shared/destroy', locals: { resource: @performance_measure, data_label: "measure" } }
     end
   end
 

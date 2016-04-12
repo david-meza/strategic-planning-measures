@@ -4,13 +4,7 @@ class MeasureReport < ActiveRecord::Base
 
   belongs_to :performance_measure
 
-  belongs_to  :author, 
-              foreign_key: :created_by_user_id, 
-              class_name: "User"
-  
-  belongs_to  :last_editor, 
-              foreign_key: :last_updated_by_user_id, 
-              class_name: "User"
+  include UserRules
 
   has_many  :performance_factor_entries, 
             dependent: :destroy

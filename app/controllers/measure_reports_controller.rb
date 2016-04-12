@@ -84,7 +84,7 @@ class MeasureReportsController < ApplicationController
     @measure_report.update({expired: true})
     respond_to do |format|
       format.html { redirect_to measure_reports_url, notice: 'Measure report was successfully deleted.' }
-      format.js   { render :destroy, :locals => { id: params[:id] } }
+      format.js   { render 'shared/destroy', locals: { resource: @measure_report, data_label: "report" } }
       format.json { head :no_content }
     end
   end

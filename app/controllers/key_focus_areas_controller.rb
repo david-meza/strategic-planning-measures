@@ -52,6 +52,7 @@ class KeyFocusAreasController < ApplicationController
     respond_to do |format|
       format.html { redirect_to key_focus_areas_url, notice: 'Key focus area was successfully deleted.' }
       format.json { head :no_content }
+      format.js   { render 'shared/destroy', locals: { resource: @focus_area, data_label: "kfa" } }
     end
   end
 

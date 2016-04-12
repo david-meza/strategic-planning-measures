@@ -2,9 +2,13 @@ module UserRules
   extend ActiveSupport::Concern
 
   included do
-    belongs_to :author, foreign_key: :created_by_user_id, class_name: "User"
-    
-    belongs_to :last_editor, foreign_key: :last_updated_by_user_id, class_name: "User"
+    belongs_to  :author, 
+                foreign_key: :created_by_user_id, 
+                class_name: "User"
+      
+    belongs_to  :last_editor, 
+                foreign_key: :last_updated_by_user_id, 
+                class_name: "User"
   end
 
   def author_is_admin

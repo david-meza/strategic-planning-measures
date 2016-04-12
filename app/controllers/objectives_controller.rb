@@ -67,6 +67,7 @@ class ObjectivesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to objectives_url, notice: 'Objective was successfully deleted.' }
       format.json { head :no_content }
+      format.js   { render 'shared/destroy', locals: { resource: @objective, data_label: "objective" } }
     end
   end
 

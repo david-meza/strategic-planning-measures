@@ -11,7 +11,7 @@
           <div class="col-md-9">
             <%= collection_select(  :objective,
                                     :key_focus_area_id,
-                                    KeyFocusArea.all,
+                                    KeyFocusArea.order(:name),
                                     :id,
                                     :name,
                                     { prompt: "Please select the Key Focus Area" },
