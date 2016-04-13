@@ -1,10 +1,6 @@
 #Storing it all in one file until the app grows and we need to make a file for each model
 FactoryGirl.define do
-  # A block defining the attributes of a model
-  # The symbol is how you will later call it
-  # Factory Girl assumes that your class name
-  # is the same as the symbol you passed
-  # (so here, it assumes this is a User)
+
   factory :user, aliases: [:author, :editor] do
     sequence(:email)  { |n| "test#{n}@raleighnc.gov" }
     password                "testpassword"
@@ -15,7 +11,6 @@ FactoryGirl.define do
       admin                 true
     end
   end
-
 
   factory :key_focus_area do
     sequence(:name) { |n| "Key Focus Area #{n}" }
@@ -28,6 +23,24 @@ FactoryGirl.define do
     sequence(:name)     { |n| "Objective #{n}" }
     description         Faker::Lorem.sentence
     association :author, factory: :admin
+  end
+
+  factory :performance_measure, aliases: [:measure] do
+    description         Faker::Lorem.sentence
+    unit_of_measure     "Percentage"
+    association :measurable, factory: :objective
+    association :author, factory: :admin
+    
+    factory :measure_no_objective do
+      association :measurable, factory: :key_focus_area
+    end
+  end
+
+  factory :measure_report, aliases: [:report] do
+    association :author
+    association :performance_measure, factory: :measure
+    date_start      1.year.ago.to_date
+    date_end        Date.today
   end
 
 end

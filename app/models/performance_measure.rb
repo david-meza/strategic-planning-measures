@@ -24,7 +24,7 @@ class PerformanceMeasure < ActiveRecord::Base
 
   # ----------------------- Validations --------------------
 
-  validates :measurable_id, :measurable_type, :description, :unit_of_measure, :created_by_user_id,
+  validates :measurable_id, :measurable_type, :description, :unit_of_measure,
             presence: true
   
   # ----------------------- Virtual attributes --------------------
@@ -33,17 +33,23 @@ class PerformanceMeasure < ActiveRecord::Base
     return measurable.name if measurable_type == "KeyFocusArea"
     measurable.key_focus_area.name
   end
+  
+  def parents
+    # Display N/A in objectives for those measures that target directly a KFA
+    # dummy = OpenStruct.new( { name: "N/A", model_name: OpenStruct.new({ human: "Objective" }) })
+    dummy = Objective.new(name: "N/A")
+    return [measurable, dummy] if measurable_type == "KeyFocusArea"
+    [measurable.key_focus_area, measurable]
+  end
 
+  # ----------------------- Class methods --------------------
+  
   def self.filter_results(query, current_user)
     return where(data_contact_person_email: current_user.email) if query[:filter_data_contact]
     all
   end
 
-  def parents
-    # Display N/A in objectives for those measures that target directly a KFA
-    dummy = OpenStruct.new( { name: "N/A", model_name: OpenStruct.new({ human: "Objective" }) })
-    return [measurable, dummy] if measurable_type == "KeyFocusArea"
-    [measurable.key_focus_area, measurable]
-  end
+  # ----------------------- Instance methods --------------------
+  
 
 end

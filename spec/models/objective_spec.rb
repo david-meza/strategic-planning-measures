@@ -51,6 +51,10 @@ describe Objective do
       expect{ create(:objective, author: user) }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
+    it "shouldn't raise an error when admins do the same" do
+      expect{ create(:objective, author: admin) }.not_to raise_error
+    end
+
   end
 
   context "edge cases" do

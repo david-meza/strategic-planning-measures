@@ -48,6 +48,10 @@ describe KeyFocusArea do
       expect{ create(:key_focus_area, author: user)}.to raise_error(ActiveRecord::RecordInvalid)
     end
 
+    it "shouldn't raise an error when admins do the same" do
+      expect{ create(:key_focus_area, author: admin) }.not_to raise_error
+    end
+
   end
 
   context "logo / image attachment" do 

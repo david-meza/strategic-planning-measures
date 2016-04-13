@@ -41,14 +41,14 @@ describe User do
     it { should have_many(:authored_kfa).dependent(:nullify) }
     it { should have_many(:edited_kfa).dependent(:nullify) }
     
-    it { should have_many :authored_objectives }
-    it { should have_many :edited_objectives }
+    it { should have_many(:authored_objectives).dependent(:nullify) }
+    it { should have_many(:edited_objectives).dependent(:nullify) }
     
-    it { should have_many :authored_measures }
-    it { should have_many :edited_measures }
+    it { should have_many(:authored_measures).dependent(:nullify) }
+    it { should have_many(:edited_measures).dependent(:nullify) }
     
-    it { should have_many :authored_reports }
-    it { should have_many :edited_reports }
+    it { should have_many(:authored_reports).dependent(:nullify) }
+    it { should have_many(:edited_reports).dependent(:nullify) }
   end
 
   context "virtual attributes" do

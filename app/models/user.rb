@@ -18,24 +18,30 @@ class User < ActiveRecord::Base
   
   has_many  :authored_objectives, 
             foreign_key: :created_by_user_id, 
-            class_name: "Objective"
+            class_name: "Objective",
+            dependent: :nullify
   has_many  :edited_objectives, 
             foreign_key: :last_updated_by_user_id, 
-            class_name: "Objective"
+            class_name: "Objective",
+            dependent: :nullify
   
   has_many  :authored_measures, 
             foreign_key: :created_by_user_id, 
-            class_name: "PerformanceMeasure"
+            class_name: "PerformanceMeasure",
+            dependent: :nullify
   has_many  :edited_measures, 
             foreign_key: :last_updated_by_user_id, 
-            class_name: "PerformanceMeasure"
+            class_name: "PerformanceMeasure",
+            dependent: :nullify
   
   has_many  :authored_reports, 
             foreign_key: :created_by_user_id, 
-            class_name: "MeasureReport"
+            class_name: "MeasureReport",
+            dependent: :nullify
   has_many  :edited_reports, 
             foreign_key: :last_updated_by_user_id, 
-            class_name: "MeasureReport"
+            class_name: "MeasureReport",
+            dependent: :nullify
 
 
   # ----------------------- Validations --------------------
