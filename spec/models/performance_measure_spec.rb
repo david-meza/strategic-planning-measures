@@ -98,5 +98,21 @@ describe PerformanceMeasure do
     end
   end
 
+  context "class methods" do
+    describe "filter_results" do
+      it "should return the measures where the data contact is the current user" do
+        my_measure = create(:measure, data_contact_person_email: user.email)
+        create_list(:measure, 5) # Create some other data so we can make sure our method is filtering properly
+        search = PerformanceMeasure.filter_results({filter_data_contact: true}, user)
+        expect(search.length).to eq(1)
+        expect(search).to match_array([my_measure])
+      end
+
+      it "should return all the measures if a query parameter wasn't passed" do
+        expect(PerformanceMeasure.filter_results({}, user)).to match_array(PerformanceMeasure.all)
+      end
+    end
+  end
+
 
 end
