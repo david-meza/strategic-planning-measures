@@ -44,4 +44,17 @@ FactoryGirl.define do
     status          "Almost there!"
   end
 
+  factory :performance_factor, aliases: [:factor] do
+    association :performance_measure
+    label_text  "Raleigh Population"
+    field_type  "number"
+  end
+
+  factory :performance_factor_entry, aliases: [:factor_entry] do
+    association :performance_factor
+    association :measure_report
+    data        "500,000"
+    comments    "A lot! (not really)"
+  end
+
 end
