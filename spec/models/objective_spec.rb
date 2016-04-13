@@ -37,7 +37,7 @@ describe Objective do
   context "associations" do
     it { should belong_to :key_focus_area }
     
-    it { should have_many :measures }
+    it { should have_many(:measures).dependent(:destroy) }
 
     it { should belong_to :author }
 

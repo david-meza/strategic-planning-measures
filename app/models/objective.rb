@@ -4,7 +4,10 @@ class Objective < ActiveRecord::Base
 
   belongs_to :key_focus_area
 
-  has_many :measures, as: :measurable, dependent: :destroy, class_name: 'PerformanceMeasure'
+  has_many  :measures, 
+            as: :measurable, 
+            dependent: :destroy, 
+            class_name: 'PerformanceMeasure'
 
   include UserRules
  
@@ -15,7 +18,7 @@ class Objective < ActiveRecord::Base
 
   # ----------------------- Validations --------------------
 
-  validates :key_focus_area_id, :name, :description, :created_by_user_id,
+  validates :key_focus_area_id, :name, :description,
             presence: true
 
   validates_uniqueness_of :name, 

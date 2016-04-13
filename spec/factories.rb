@@ -41,6 +41,7 @@ FactoryGirl.define do
     association :performance_measure, factory: :measure
     date_start      1.year.ago.to_date
     date_end        Date.today
+    status          "Almost there!"
   end
 
 end

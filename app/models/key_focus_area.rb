@@ -2,9 +2,13 @@ class KeyFocusArea < ActiveRecord::Base
 
   # ----------------------- Associations --------------------
 
-  has_many :objectives, dependent: :destroy
+  has_many  :objectives, 
+            dependent: :destroy
 
-  has_many :measures, as: :measurable, dependent: :destroy, class_name: "PerformanceMeasure"
+  has_many  :measures, 
+            as: :measurable, 
+            dependent: :destroy, 
+            class_name: "PerformanceMeasure"
 
   include UserRules
 

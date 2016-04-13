@@ -2,15 +2,24 @@ class PerformanceMeasure < ActiveRecord::Base
 
   # ----------------------- Associations --------------------
 
-  belongs_to :measurable, polymorphic: true
+  belongs_to  :measurable, 
+              polymorphic: true
 
-  belongs_to :key_focus_area, -> { where(performance_measures: { measurable_type: :KeyFocusArea }) }, foreign_key: 'measurable_id'
-  belongs_to :objective, -> { where(performance_measures: { measurable_type: :Objective }) }, foreign_key: 'measurable_id'
+  belongs_to  :key_focus_area, 
+              -> { where(performance_measures: { measurable_type: :KeyFocusArea }) }, 
+              foreign_key: 'measurable_id'
+  
+  belongs_to  :objective, 
+              -> { where(performance_measures: { measurable_type: :Objective }) }, 
+              foreign_key: 'measurable_id'
 
   include UserRules
 
-  has_many :measure_reports, dependent: :destroy
-  has_many :performance_factors, dependent: :destroy
+  has_many  :measure_reports, 
+            dependent: :destroy
+  
+  has_many  :performance_factors, 
+            dependent: :destroy
 
   accepts_nested_attributes_for :performance_factors,
                                 reject_if: :all_blank,

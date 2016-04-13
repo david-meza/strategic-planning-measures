@@ -26,6 +26,8 @@ describe PerformanceMeasure do
     
     it { should validate_presence_of(:measurable_id) }
     it { should validate_presence_of(:measurable_type) }
+    
+    it { should accept_nested_attributes_for(:performance_factors).allow_destroy(true) }
 
   end
 
@@ -34,8 +36,8 @@ describe PerformanceMeasure do
     it { should belong_to :key_focus_area }
     it { should belong_to :objective }
     
-    it { should have_many :measure_reports }
-    it { should have_many :performance_factors }
+    it { should have_many(:measure_reports).dependent(:destroy) }
+    it { should have_many(:performance_factors).dependent(:destroy) }
 
     it { should belong_to :author }
 
@@ -109,6 +111,7 @@ describe PerformanceMeasure do
       end
 
       it "should return all the measures if a query parameter wasn't passed" do
+        create_list(:measure, 5) # Create some measures so we know it's not just matching two empty arrays
         expect(PerformanceMeasure.filter_results({}, user)).to match_array(PerformanceMeasure.all)
       end
     end

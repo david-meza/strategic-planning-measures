@@ -32,9 +32,9 @@ describe KeyFocusArea do
   end
 
   context "associations" do
-    it { should have_many :objectives }
+    it { should have_many(:objectives).dependent(:destroy) }
     
-    it { should have_many :measures }
+    it { should have_many(:measures).dependent(:destroy) }
 
     it { should belong_to :author }
 

@@ -22,9 +22,14 @@ class MeasureReport < ActiveRecord::Base
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
+  # ----------------------- Callbacks --------------------
+  
+  before_update :editor_is_admin_or_author
+
+
   # ----------------------- Validations --------------------
 
-  validates :performance_measure_id, :date_start, :date_end, :status, :created_by_user_id,
+  validates :performance_measure_id, :date_start, :date_end, :status,
             presence: true
 
   # ----------------------- Methods --------------------
@@ -38,7 +43,7 @@ class MeasureReport < ActiveRecord::Base
     end
   end
 
-  def self.filter_query(query)
+  def self.filter_query(query = {})
     # Cover cases when the hash is empty (regular index landing)
     # or a query is passed via form POST, but the values are not filled (no value selected in dropdown)
     return all if query.empty? || query.values.all?(&:empty?)

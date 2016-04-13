@@ -19,8 +19,15 @@ module UserRules
   end
 
   def editor_is_admin
-    unless author.try(:admin?)
+    unless last_editor.try(:admin?)
       errors.add(:permission, "only admins can update a #{self.class.model_name.human}")
+      raise ActiveRecord::RecordInvalid.new(self)
+    end
+  end
+
+  def editor_is_admin_or_author
+    unless last_editor.try(:admin?) || last_editor.id == author.id
+      errors.add(:permission, "you don't have permission to update this #{self.class.model_name.human}")
       raise ActiveRecord::RecordInvalid.new(self)
     end
   end
