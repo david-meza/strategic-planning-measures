@@ -78,6 +78,7 @@ group :test do
   gem 'capybara'
   # gem 'launchy'
   # gem 'vcr'
+  gem 'rake'
 end
 
 group :production do

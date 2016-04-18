@@ -1,4 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/david-meza/strategic-planning-measures.png?label=ready&title=Ready)](https://waffle.io/david-meza/strategic-planning-measures)
+[![Build Status](https://travis-ci.org/david-meza/strategic-planning-measures.svg?branch=master)](https://travis-ci.org/david-meza/strategic-planning-measures)
+
 
 # Strategic Planning Measures
 
