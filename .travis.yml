@@ -1,0 +1,21 @@
+language: ruby
+rvm:
+  - 2.2.3
+
+script: 
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec spec/
+
+notifications:
+  email:
+    on_success: change
+    on_failure: never
+  slack:
+    rooms:
+      - coraleigh:vDcYipa4yAxBxN0a0FbueXXA#builds
+    on_success: change
+    on_failure: always
+
+branches:
+  only:
+    - master

@@ -62,4 +62,8 @@ class User < ActiveRecord::Base
     self.email.sub(/@.+\z/i, "").gsub(/\W/i, " ").titleize
   end
 
+  def self.admins
+    where(admin: true)
+  end
+
 end

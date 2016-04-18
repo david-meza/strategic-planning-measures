@@ -19,16 +19,35 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
+            
             <li><%= link_to "Key Focus Areas", key_focus_areas_path, class: "" %></li>
             <li><%= link_to "Objectives", objectives_path, class: "" %></li>
             <li><%= link_to "Performance Measures", performance_measures_path, class: "" %></li>
+            
             <li class="divider"></li>
-            <li><%= link_to "Measure Reports", measure_reports_path, class: "" %></li>
+            
+            <li>
+              <%= link_to measure_reports_path, class: "" do %>
+                <i class="fa fa-fw fa-flag"></i> Measure Reports
+              <% end -%>
+            </li>
+            
+            <li class="divider"></li>
+            
+            <li>
+              <%= link_to contact_path, class: "" do %>
+                <i class="fa fa-fw fa-envelope"></i> Contact Us
+              <% end -%>
+            </li>
+            
             <% if current_user.try(:admin?) %>
-              <li><%= link_to "Download Reports", download_measure_reports_path(format: :xls), class: "" %></li>
+              <li>
+                <%= link_to download_measure_reports_path(format: :xls), class: "" do %>
+                  <i class="fa fa-fw fa-download"></i> Download Reports
+                <% end -%>
+              </li>
             <% end %>
-            <li class="divider"></li>
-            <li><%= link_to "Contact Us", contact_path, class: "" %></li>
+
           </ul>
         </li>
       </ul>

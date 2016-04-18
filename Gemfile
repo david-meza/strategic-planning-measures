@@ -26,11 +26,11 @@ gem 'bootstrap-will_paginate', '~> 0.0.10'
 
 gem 'rails-jquery-autocomplete'
 
-# Manage file attachments with Paperclip
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
-
 # Upload images to Amazon S3
 gem 'aws-sdk', '>= 2.0.0'
+
+# Manage file attachments with Paperclip
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
 # Use figaro to manage environmental variables
 gem 'figaro', '~> 1.1'
@@ -78,6 +78,7 @@ group :test do
   gem 'capybara'
   # gem 'launchy'
   # gem 'vcr'
+  gem 'rake'
 end
 
 group :production do
