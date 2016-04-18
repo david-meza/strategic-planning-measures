@@ -9,9 +9,13 @@ script:
 notifications:
   email:
     on_success: change
-    on_failure: change
+    on_failure: never
   slack:
     rooms:
       - coraleigh:vDcYipa4yAxBxN0a0FbueXXA#builds
     on_success: change
     on_failure: always
+
+branches:
+  only:
+    - master

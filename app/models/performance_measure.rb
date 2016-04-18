@@ -54,7 +54,7 @@ class PerformanceMeasure < ActiveRecord::Base
   # ----------------------- Class methods --------------------
   
   def self.filter_results(query, current_user)
-    return where(data_contact_person_email: current_user.email) if query[:filter_data_contact]
+    return where( data_contact_person_email: current_user.try(:email) ) if query[:filter_data_contact]
     all
   end
 
