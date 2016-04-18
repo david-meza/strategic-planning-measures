@@ -3,6 +3,15 @@ rvm:
   - 2.2.3
 
 script: 
-  - env RAILS_ENV=test bundle exec rake db:schema:load --trace
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec/
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+  slack:
+    rooms:
+      - coraleigh:vDcYipa4yAxBxN0a0FbueXXA#builds
+    on_success: change
+    on_failure: always
