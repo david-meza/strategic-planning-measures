@@ -20,6 +20,37 @@ a.self-name {
   }
 }
 
+@include keyframes(slide-in-btt) {
+  from { @include transform(translateY(100px)); opacity: 0; }
+  to { @include transform(translateX(0)); opacity: 1; }
+}
+
+.container-fluid {
+  .info-box {
+    position: fixed;
+    padding: 15px;
+    right: 0;
+    bottom: 20px;
+    margin-bottom: 0;
+    z-index: 2;
+    background-color: $teal;
+    color: $light-white;
+    opacity: 0;
+    @include transform(translateY(100px));
+    @include box-shadow( 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12) );
+    @include animation( slide-in-btt 1s $in-out-cubic 1ms 1 normal forwards );
+
+    a:not(.close) {
+      opacity: 0.87;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+  }
+}
+
 md-card {
 
   md-card-title-text {

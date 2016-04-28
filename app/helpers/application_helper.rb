@@ -18,12 +18,12 @@ module ApplicationHelper
   end
 
   def info_box
-    content_tag(:div, class: "alert alert-info alert-dismissible fade-in", role: 'alert') do
-      concat( content_tag(:button, class: 'close', data: { dismiss: 'alert' }) do
+    content_tag(:div, class: "alert info-box", role: 'alert') do
+      yield
+      concat( content_tag(:button, class: "close spaced-items", data: { dismiss: 'alert' }) do
         concat content_tag(:span, '&times;'.html_safe, 'aria-hidden' => true)
         concat content_tag(:span, 'Close', class: 'sr-only')
       end)
-      yield
     end
   end
 
