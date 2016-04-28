@@ -10,7 +10,7 @@
     function requireComment(evt) {
       var text = evt.srcElement.value;
       var commentsField = document.getElementById('measure_report_comments');
-      if (text === 'All is well with performance. Target will be or is met.') {
+      if (text === 'All is well with performance. Target will be or is met.' || text === '') {
         commentsField.required = false;
         $('#comment-hint').remove();
       } else {

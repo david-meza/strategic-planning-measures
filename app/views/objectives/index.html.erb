@@ -1,4 +1,4 @@
-<%= link_to 'New Objective', new_objective_path, class: "btn btn-success pull-right" if current_user.try(:admin?)%>
+<%= admin_content { link_to 'New Objective', new_objective_path, class: "btn btn-success pull-right" } %>
 
 <h3>Objectives</h3>
 <%= hidden_field_tag "page_is_dirty", 0 %>
