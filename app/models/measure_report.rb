@@ -29,7 +29,7 @@ class MeasureReport < ActiveRecord::Base
 
   # ----------------------- Validations --------------------
 
-  validates :performance_measure_id, :date_start, :date_end, :status,
+  validates :performance_measure_id, :date_start, :date_end,
             presence: true
 
   # ----------------------- Methods --------------------

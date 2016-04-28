@@ -1,4 +1,4 @@
-<% if current_user.try(:admin?) %>
+<% admin_content do %>
   <div class="form-group">
     <%= report_fields.label :performance, "Performance", class: "col-md-3 control-label" %>
     <div class="col-md-9">
@@ -8,9 +8,9 @@
 <% end %>
 
 <div class="form-group">
-  <%= report_fields.label :status, "Status*", class: "col-md-3 control-label" %>
+  <%= report_fields.label :status, "Status", class: "col-md-3 control-label" %>
   <div class="col-md-9">
-    <%= report_fields.select :status, ["All is well with performance. Target will be or is met.", "Performance is not where expected or current status is in trouble.", "Target will not be or is not met."], {}, class: "form-control", required: true %>
+    <%= report_fields.select :status, ["All is well with performance. Target will be or is met.", "Performance is not where expected or current status is in trouble.", "Target will not be or is not met."], { include_blank: true }, class: "form-control" %>
   </div>
 </div>
 
