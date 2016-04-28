@@ -22,7 +22,7 @@ describe MeasureReport do
     it { should validate_presence_of(:date_start) }
     it { should validate_presence_of(:date_end) }
     
-    it { should validate_presence_of(:status) }
+    # it { should validate_presence_of(:status) }
     
     it { should validate_presence_of(:performance_measure_id) }
 
