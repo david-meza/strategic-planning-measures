@@ -14,7 +14,7 @@
       if (this.value === '') { return; }
       focusAreaId = this.value;
       $('#objective-selection').remove();
-      objectiveRadio = $('<div class="form-group" id="objective-selection"><label class="col-md-3 control-label limit-text">Objective</label><div class="col-md-9" id="objectives-wrapper"><p>Is there an objective for this measure?</p><div class="radio"><label><input type="radio" name="optionsRadios" value="yes">Yes</label></div><div class="radio"><label><input type="radio" name="optionsRadios" value="no">No</label></div></div></div>').insertAfter('#key-focus-area-selection');
+      objectiveRadio = $('<div class="form-group" id="objective-selection"><label class="col-md-3 control-label limit-text">Objective</label><div class="col-md-9" id="objectives-wrapper"><p>Is there an objective for this measure?</p><div class="radio"><label><input type="radio" name="optionsRadios" value="yes">Yes</label></div><div class="radio"><label><input type="radio" name="optionsRadios" value="no">No</label></div></div></div>').insertAfter('#key-focus-area-selection').hide().fadeIn('slow');
       objectiveRadio[0].addEventListener('change', changeObjectiveGroup);
     }
 
@@ -48,7 +48,7 @@
         return;
       }
       wrapper[0].innerHTML = '';
-      var objectiveSelect = $('<select class="form-control" name="performance_measure[measurable_id]" id="performance_measure_measurable_id"></select>').appendTo(wrapper);
+      var objectiveSelect = $('<select class="form-control" name="performance_measure[measurable_id]" id="performance_measure_measurable_id"></select>').appendTo(wrapper).hide().fadeIn('slow');
       var options = '<option value="">Please Select the Key Focus Area Objective</option>';
       response.forEach(function(objective) {
         options += ('<option value="' + objective.id + '">' + objective.name + '</option>');
@@ -58,7 +58,7 @@
     }
 
     function getPerformanceMeasures(evt) {
-      $('#new-measure-fields').removeClass('hide');
+      $('#new-measure-fields').removeClass('hide').hide().fadeIn('slow');
     }
 
   });

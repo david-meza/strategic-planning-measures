@@ -15,7 +15,7 @@
       if (this.value === '') { return; }
       focusAreaId = this.value;
       $('#objective-selection').remove();
-      objectiveRadio = $('<div class="form-group" id="objective-selection"><label class="col-md-3 control-label limit-text">Objective</label><div class="col-md-9" id="objectives-wrapper"><p>Is there an objective for this measure?</p><div class="radio"><label><input type="radio" name="optionsRadios" value="yes">Yes</label></div><div class="radio"><label><input type="radio" name="optionsRadios" value="no">No</label></div></div></div>').insertAfter('#key-focus-area-selection');
+      objectiveRadio = $('<div class="form-group" id="objective-selection"><label class="col-md-3 control-label limit-text">Objective</label><div class="col-md-9" id="objectives-wrapper"><p>Is there an objective for this measure?</p><div class="radio"><label><input type="radio" name="optionsRadios" value="yes">Yes</label></div><div class="radio"><label><input type="radio" name="optionsRadios" value="no">No</label></div></div></div>').insertAfter('#key-focus-area-selection').hide().fadeIn('slow');
       objectiveRadio[0].addEventListener('change', changeObjectiveGroup);
     }
 
@@ -40,11 +40,11 @@
     function generateObjectivesDropdown(response) {
       var wrapper = $('#objectives-wrapper');
       if (response.length === 0) {
-        wrapper[0].innerHTML = '<p>There are no objectives for this key focus area. <a href="/objectives/new" class="btn btn-primary btn-xs">Create one?</a></p>';
+        wrapper[0].innerHTML = '<p>There are no objectives for this key focus area.</p>';
         return;
       }
       wrapper[0].innerHTML = '';
-      var objectiveSelect = $('<select class="form-control" name="performance_measure[objective_id]" id="performance_measure_object_id"></select>').appendTo(wrapper);
+      var objectiveSelect = $('<select class="form-control" name="performance_measure[objective_id]" id="performance_measure_object_id"></select>').appendTo(wrapper).hide().fadeIn('slow');
       var options = '<option value="">Please Select the Key Focus Area Objective</option>';
       response.forEach(function(objective) {
         options += ('<option value="' + objective.id + '">' + objective.name + '</option>');
@@ -57,7 +57,7 @@
       if (this.value === '') { return; }
       
       $('#measure-selection').remove();
-      measuresDropdown = $('<div class="form-group" id="measure-selection"><label class="col-md-3 control-label limit-text">Measure</label><div class="col-md-9" id="measures-wrapper"></div></div>').insertAfter(objectiveRadio);
+      measuresDropdown = $('<div class="form-group" id="measure-selection"><label class="col-md-3 control-label limit-text">Measure</label><div class="col-md-9" id="measures-wrapper"></div></div>').insertAfter(objectiveRadio).hide().fadeIn('slow');
 
       var kfaData = { measurable_id: focusAreaId, measurable_type: 'KeyFocusArea' };
       var objectiveData = { measurable_id: this.value, measurable_type: 'Objective' };
@@ -70,11 +70,11 @@
     function generateMeasuresDropdown(response) {
       var wrapper = measuresDropdown.find('#measures-wrapper');
       if (response.length === 0) {
-        wrapper[0].innerHTML = '<p>No measures found. <a href="/performance_measures/new" class="btn btn-primary btn-xs">Create one?</a></p>';
+        wrapper[0].innerHTML = '<p>No measures found.</p>';
         return;
       }
       measuresResponse = response;
-      var measureSelect = $('<select class="form-control" name="measure_report[performance_measure_id]" id="measure_report_performance_measure_id"></select>').appendTo(wrapper);
+      var measureSelect = $('<select class="form-control" name="measure_report[performance_measure_id]" id="measure_report_performance_measure_id"></select>').appendTo(wrapper).hide().fadeIn('slow');
       var options = '<option value="">Please Select the Performance Measure</option>';
       response.forEach(function(measure) {
         options += ('<option value="' + measure.id + '">' + measure.description + '</option>');
@@ -161,7 +161,7 @@
                         '</div>';
       
       $('#measure-attributes').remove();
-      $(attributes).insertAfter(measuresDropdown);
+      $(attributes).insertAfter(measuresDropdown).hide().fadeIn('slow');
       getFactorEntryFields(measure.id);
     }
 

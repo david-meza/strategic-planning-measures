@@ -23,7 +23,7 @@
         wrapper[0].innerHTML = '<p>There are no key focus areas. <a href="/key_focus_areas/new" class="btn btn-primary btn-xs">Create one?</a></p>';
         return;
       }
-      var kfaSelect = $('<select class="form-control" name="objective[key_focus_area_id]" id="objective_key_focus_area_id"></select>').appendTo(wrapper);
+      var kfaSelect = $('<select class="form-control" name="objective[key_focus_area_id]" id="objective_key_focus_area_id"></select>').appendTo(wrapper).hide().fadeIn('slow');
       var options = '<option value="">Please Select the Key Focus Area</option>';
       response.forEach(function(kfa) {
         options += ('<option value="' + kfa.id + '">' + kfa.name + '</option>');
@@ -38,7 +38,7 @@
       if (this.value === '') { return; }
       focusAreaId = this.value;
       $('#objective-selection').remove();
-      objectiveRadio = $('<div class="form-group" id="objective-selection"><label class="col-md-3 control-label limit-text">Objective</label><div class="col-md-9" id="objectives-wrapper"><p>Is there an objective for this measure?</p><div class="radio"><label><input type="radio" name="optionsRadios" value="yes">Yes</label></div><div class="radio"><label><input type="radio" name="optionsRadios" value="no">No</label></div></div></div>').insertAfter('#key-focus-area-selection');
+      objectiveRadio = $('<div class="form-group" id="objective-selection"><label class="col-md-3 control-label limit-text">Objective</label><div class="col-md-9" id="objectives-wrapper"><p>Is there an objective for this measure?</p><div class="radio"><label><input type="radio" name="optionsRadios" value="yes">Yes</label></div><div class="radio"><label><input type="radio" name="optionsRadios" value="no">No</label></div></div></div>').insertAfter('#key-focus-area-selection').hide().fadeIn('slow');
       objectiveRadio[0].addEventListener('change', changeObjectiveGroup);
     }
 
@@ -71,18 +71,14 @@
         return;
       }
       wrapper[0].innerHTML = '';
-      var objectiveSelect = $('<select class="form-control" name="performance_measure[measurable_id]" id="performance_measure_measurable_id"></select>').appendTo(wrapper);
+      var objectiveSelect = $('<select class="form-control" name="performance_measure[measurable_id]" id="performance_measure_measurable_id"></select>').appendTo(wrapper).hide().fadeIn('slow');
       var options = '<option value="">Please Select the Key Focus Area Objective</option>';
       response.forEach(function(objective) {
         options += ('<option value="' + objective.id + '">' + objective.name + '</option>');
       })
       objectiveSelect.append(options);
-      // objectiveSelect[0].addEventListener('change', updateHiddenField);
     }
 
-    // function updateHiddenField(evt) {
-    //   $('#performance_measure_measurable_id').val(evt.srcElement.value);
-    // }
 
   });
 

@@ -20,8 +20,24 @@ a.self-name {
   }
 }
 
+@include keyframes(slide-in-ltr) {
+  from { @include transform(translateX(-100px)); opacity: 0; }
+  to { @include transform(translateX(0)); opacity: 1; }
+}
+@include keyframes(slide-in-rtl) {
+  from { @include transform(translateX(100px)); opacity: 0; }
+  to { @include transform(translateX(0)); opacity: 1; }
+}
 @include keyframes(slide-in-btt) {
   from { @include transform(translateY(100px)); opacity: 0; }
+  to { @include transform(translateX(0)); opacity: 1; }
+}
+@include keyframes(slide-in-ttb) {
+  from { @include transform(translateY(-100px)); opacity: 0; }
+  to { @include transform(translateX(0)); opacity: 1; }
+}
+@include keyframes(slide-in-ttb-short) {
+  from { @include transform(translateY(-20px)); opacity: 0; }
   to { @include transform(translateX(0)); opacity: 1; }
 }
 
@@ -128,6 +144,9 @@ form {
   color: $danger;
   font-weight: 500;
   text-transform: italic;
+  opacity: 0;
+  @include transform( translateY(-20px) );
+  @include animation( slide-in-ttb-short 600ms $in-out-cubic 0s 1 normal forwards );
 }
 
 .no-margin {
