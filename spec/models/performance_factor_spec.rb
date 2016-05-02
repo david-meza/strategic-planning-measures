@@ -19,7 +19,8 @@ describe PerformanceFactor do
     
     it { should validate_presence_of(:field_type) }
 
-    it { should validate_presence_of(:performance_measure_id) }
+    # Can't validate this as it is in a nested form and factors are always saved before the measure (when id is null)
+    # it { should validate_presence_of(:performance_measure_id) }
 
   end
 

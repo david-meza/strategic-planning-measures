@@ -12,6 +12,6 @@ class PerformanceFactor < ActiveRecord::Base
 
   # ----------------------- Validations --------------------
 
-  validates :label_text, :field_type, :performance_measure_id,
+  validates :label_text, :field_type,
             presence: true
 end

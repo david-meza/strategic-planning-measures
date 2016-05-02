@@ -17,8 +17,6 @@ describe PerformanceFactorEntry do
 
     it { should validate_presence_of(:data) }
     
-    it { should validate_presence_of(:measure_report_id) }
-
     it { should validate_presence_of(:performance_factor_id) }
 
   end

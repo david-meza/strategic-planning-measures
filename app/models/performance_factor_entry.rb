@@ -7,6 +7,6 @@ class PerformanceFactorEntry < ActiveRecord::Base
 
   # ----------------------- Validations --------------------
 
-  validates :data, :performance_factor_id, :measure_report_id,
+  validates :data, :performance_factor_id,
             presence: true
 end

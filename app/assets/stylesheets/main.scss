@@ -149,6 +149,11 @@ form {
   @include animation( slide-in-ttb-short 600ms $in-out-cubic 0s 1 normal forwards );
 }
 
+.form-group .form-hint {
+  font-size: 12px;
+  color: rgba($black, 0.5);
+}
+
 .no-margin {
   margin: 0;
 }
