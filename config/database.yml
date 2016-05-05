@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: strategic_planning_development
+
+test:
+  <<: *default
+  database: strategic_planning_test
+
+production:
+  <<: *default
+  database: strategic_planning_production
+  username: strategic_planning
+  password: <%= ENV['STRATEGIC_PLANNING_DATABASE_PASSWORD'] %>
+  port: <%= ENV['STRATEGIC_PLANNING_DATABASE_PORT'] %>
+  host: localhost
