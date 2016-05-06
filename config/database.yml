@@ -14,7 +14,7 @@ test:
 production:
   <<: *default
   database: strategic_planning_production
-  username: strategic_planning
+  username: mezad
   password: <%= ENV['STRATEGIC_PLANNING_DATABASE_PASSWORD'] %>
   port: <%= ENV['STRATEGIC_PLANNING_DATABASE_PORT'] %>
   host: localhost
