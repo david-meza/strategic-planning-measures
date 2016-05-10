@@ -16,4 +16,4 @@
 /config/application.yml
 # /config/database.yml
 
-# /shared/log/*.log
+/shared/log/*.log
