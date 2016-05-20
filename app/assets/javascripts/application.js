@@ -15,4 +15,8 @@
 //= require jquery-ui/autocomplete
 //= require autocomplete-rails
 //= require turbolinks
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .
+
