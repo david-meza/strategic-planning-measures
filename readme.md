@@ -15,6 +15,7 @@ Web app that captures data and measures for the COR strategic plan
 1. Clone this repository on your local environment. 
 2. Run `bundle install` to get all gem dependencies and prepare your database by running `rake db:create db:migrate`.
 3. Optionally, run `rake db:seed` to fill your db with fake seed data.
+4. To run in a local dev server run `puma -C "-"`. Your application will now be accessible at `http://localhost:9292/`
 
 ### Setting up the test environment
 

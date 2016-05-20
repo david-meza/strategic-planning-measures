@@ -30,11 +30,12 @@ gem 'rails-jquery-autocomplete'
 gem 'aws-sdk', '>= 2.0.0'
 
 # Manage file attachments with Paperclip
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip", "~> 5.0.0.beta2"
 
 # Use figaro to manage environmental variables
 gem 'figaro', '~> 1.1'
 
+gem 'react-rails'
 
 
 # Use Unicorn as the app server
