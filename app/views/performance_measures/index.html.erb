@@ -1,4 +1,7 @@
-<%= admin_content { link_to 'New Measure', new_performance_measure_path, class: "btn btn-success pull-right" } %>
+<%= admin_content do %>
+  <%= link_to 'New Measure', new_performance_measure_path, class: "btn btn-success pull-right" %>
+  <%= link_to 'Download', download_performance_measures_path(format: :xls), class: "btn btn-success pull-right" %>
+<% end %>
 
 <h3>Performance Measures</h3>
 <%= hidden_field_tag "page_is_dirty", 0 %>

@@ -6,6 +6,12 @@
 
 Web app that captures data and measures for the COR strategic plan
 
+### Internal Production Server
+
+* [Open](http://strategicplanning/)
+
+*Note:* This won't work outside the oaktree network
+
 ### Demo
 
 * Heroku: [Open](https://strategic-planning.herokuapp.com/)

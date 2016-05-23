@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Key Focus Area</Data></Cell>
+        <Cell><Data ss:Type="String">Objective</Data></Cell>
+        <Cell><Data ss:Type="String">Measure Description</Data></Cell>
+        <Cell><Data ss:Type="String">Target</Data></Cell>
+        <Cell><Data ss:Type="String">Unit of Measure</Data></Cell>
+        <Cell><Data ss:Type="String">Measurement Formula</Data></Cell>
+        <Cell><Data ss:Type="String">Data Source</Data></Cell>
+        <Cell><Data ss:Type="String">Rationale for Target</Data></Cell>
+        <Cell><Data ss:Type="String">Performance Factors</Data></Cell>
+        <Cell><Data ss:Type="String">Data Contact</Data></Cell>
+        <Cell><Data ss:Type="String">Data Contact Email</Data></Cell>
+        <Cell><Data ss:Type="String">Person Reporting Data To BMS</Data></Cell>
+        <Cell><Data ss:Type="String">Person Reporting Data To BMS Email</Data></Cell>
+        <Cell><Data ss:Type="String">Notes</Data></Cell>
+        <Cell><Data ss:Type="String">Author</Data></Cell>
+      </Row>
+      
+      <% @performance_measures.each do |measure| %>
+        <Row>
+          <% measure.parents.each do |parent| %>
+            <Cell><Data ss:Type="String"><%= parent.name %></Data></Cell>
+          <% end %>
+          <Cell><Data ss:Type="String"><%= measure.description %> </Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.target %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.unit_of_measure %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.measurement_formula %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.data_source %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.rationale_for_target %></Data></Cell>
+          <Cell><Data ss:Type="String"><% measure.performance_factors.each do |factor| %>Factor: <%= factor.label_text %> &#xD;Type: <%= factor.field_type %> &#xD;&#xD;<% end %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.data_contact_person %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.data_contact_person_email %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.person_reporting_data_to_bms %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.person_reporting_data_to_bms_email %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.notes %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.author.try(:email) %></Data></Cell>
+        </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

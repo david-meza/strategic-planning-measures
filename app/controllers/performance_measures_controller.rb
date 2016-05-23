@@ -15,6 +15,15 @@ class PerformanceMeasuresController < ApplicationController
     end
   end
 
+  def performance_measures
+    @performance_measures = PerformanceMeasure.includes(:author, :last_editor, :key_focus_area, objective: :key_focus_area).order('key_focus_areas.name ASC, key_focus_areas_objectives.name ASC, objectives.name ASC')
+
+    respond_to do |format|
+      format.csv { send_data @performance_measures.to_csv }
+      format.xls
+    end
+  end
+
   # GET /performance_measures/1
   # GET /performance_measures/1.json
   def show
