@@ -33,6 +33,10 @@ module ApplicationHelper
     end
   end
 
+  def is_admin?(options = {})
+    (current_user.try(:admin?) && !session[:view_as_user]) || (current_user == options[:exception_user] && controller_name == options[:exception_controller])
+  end
+
   def cancel_user_view
     if session[:view_as_user]
       content_tag(:div, class: "container-fluid") do

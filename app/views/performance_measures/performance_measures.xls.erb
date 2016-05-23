@@ -35,7 +35,7 @@
           <Cell><Data ss:Type="String"><%= measure.measurement_formula %></Data></Cell>
           <Cell><Data ss:Type="String"><%= measure.data_source %></Data></Cell>
           <Cell><Data ss:Type="String"><%= measure.rationale_for_target %></Data></Cell>
-          <Cell><Data ss:Type="String"><% measure.performance_factors.each do |factor| %>Factor: <%= factor.label_text %> &#xD;Type: <%= factor.field_type %> &#xD;&#xD;<% end %></Data></Cell>
+          <Cell><Data ss:Type="String"><% measure.performance_factors.each do |factor| %>Factor: <%= factor.label_text %> &#xD;Field Type: <%= factor.field_type %> &#xD;&#xD;<% end %></Data></Cell>
           <Cell><Data ss:Type="String"><%= measure.data_contact_person %></Data></Cell>
           <Cell><Data ss:Type="String"><%= measure.data_contact_person_email %></Data></Cell>
           <Cell><Data ss:Type="String"><%= measure.person_reporting_data_to_bms %></Data></Cell>
