@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def info_box
-    content_tag(:div, class: "alert info-box", role: 'alert') do
+    content_tag(:div, class: "alert info-box layout-row layout-align-center-center", role: 'alert') do
       yield
       concat( content_tag(:button, class: "close spaced-items", data: { dismiss: 'alert' }) do
         concat content_tag(:span, '&times;'.html_safe, 'aria-hidden' => true)
