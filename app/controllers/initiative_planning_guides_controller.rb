@@ -1,28 +1,20 @@
 class InitiativePlanningGuidesController < ApplicationController
   before_action :set_initiative_planning_guide, only: [:show, :edit, :update, :destroy]
 
-  # GET /initiative_planning_guides
-  # GET /initiative_planning_guides.json
   def index
     @initiative_planning_guides = InitiativePlanningGuide.all
   end
 
-  # GET /initiative_planning_guides/1
-  # GET /initiative_planning_guides/1.json
   def show
   end
 
-  # GET /initiative_planning_guides/new
   def new
     @initiative_planning_guide = InitiativePlanningGuide.new
   end
 
-  # GET /initiative_planning_guides/1/edit
   def edit
   end
 
-  # POST /initiative_planning_guides
-  # POST /initiative_planning_guides.json
   def create
     @initiative_planning_guide = InitiativePlanningGuide.new(initiative_planning_guide_params)
 
@@ -37,8 +29,6 @@ class InitiativePlanningGuidesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /initiative_planning_guides/1
-  # PATCH/PUT /initiative_planning_guides/1.json
   def update
     respond_to do |format|
       if @initiative_planning_guide.update(initiative_planning_guide_params)
@@ -51,8 +41,6 @@ class InitiativePlanningGuidesController < ApplicationController
     end
   end
 
-  # DELETE /initiative_planning_guides/1
-  # DELETE /initiative_planning_guides/1.json
   def destroy
     @initiative_planning_guide.destroy
     respond_to do |format|
