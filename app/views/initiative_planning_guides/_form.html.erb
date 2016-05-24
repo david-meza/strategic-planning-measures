@@ -1,0 +1,49 @@
+<%= form_for(@initiative_planning_guide) do |f| %>
+  <% if @initiative_planning_guide.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@initiative_planning_guide.errors.count, "error") %> prohibited this initiative_planning_guide from being saved:</h2>
+
+      <ul>
+      <% @initiative_planning_guide.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :objective_id %><br>
+    <%= f.text_field :objective_id %>
+  </div>
+  <div class="field">
+    <%= f.label :initiative_stage %><br>
+    <%= f.text_field :initiative_stage %>
+  </div>
+  <div class="field">
+    <%= f.label :implementation_team_contact_person %><br>
+    <%= f.text_field :implementation_team_contact_person %>
+  </div>
+  <div class="field">
+    <%= f.label :string %><br>
+    <%= f.text_field :string %>
+  </div>
+  <div class="field">
+    <%= f.label :project_commitment %><br>
+    <%= f.text_field :project_commitment %>
+  </div>
+  <div class="field">
+    <%= f.label :project_resources %><br>
+    <%= f.text_field :project_resources %>
+  </div>
+  <div class="field">
+    <%= f.label :initiative_overview %><br>
+    <%= f.text_area :initiative_overview %>
+  </div>
+  <div class="field">
+    <%= f.label :major_milestones %><br>
+    <%= f.text_area :major_milestones %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<%= admin_content { link_to 'New Initiative Planning Guide', new_initiative_planning_guide_path, class: "btn btn-success pull-right" } %>
+<h3>Initiative Planning Guides</h3>
+  
+<div class="row flex-row">
+  <% @initiative_planning_guides.each do |guide| %>
+    <div class="col-xs-12 col-md-6 col-lg-4">
+      <%= render guide %>
+    </div>
+  <% end %>
+</div>

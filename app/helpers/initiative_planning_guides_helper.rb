@@ -1,0 +1,2 @@
+module InitiativePlanningGuidesHelper
+end

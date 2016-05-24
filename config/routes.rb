@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   
+  resources :initiative_planning_guides
   namespace :admin do
     get 'user_views' => 'user_views#create', as: 'view_as_user'
     delete 'user_views' => 'user_views#destroy', as: 'cancel_view_as_user'

@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160412171014) do
+ActiveRecord::Schema.define(version: 20160524153020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "initiative_planning_guides", force: :cascade do |t|
+    t.integer  "objective_id"
+    t.string   "initiative_stage"
+    t.string   "implementation_team_contact_person"
+    t.string   "string"
+    t.string   "project_commitment"
+    t.string   "project_resources"
+    t.text     "initiative_overview"
+    t.text     "major_milestones"
+    t.integer  "created_by_user_id"
+    t.integer  "last_updated_by_user_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  add_index "initiative_planning_guides", ["objective_id"], name: "index_initiative_planning_guides_on_objective_id", using: :btree
 
   create_table "key_focus_areas", force: :cascade do |t|
     t.string   "name",                                 null: false
@@ -130,6 +147,7 @@ ActiveRecord::Schema.define(version: 20160412171014) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "initiative_planning_guides", "objectives"
   add_foreign_key "measure_reports", "performance_measures"
   add_foreign_key "objectives", "key_focus_areas"
   add_foreign_key "performance_factor_entries", "measure_reports"

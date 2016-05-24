@@ -1,0 +1,34 @@
+<div class="panel panel-info" data-guide-id="<%= initiative_planning_guide.id %>">
+  <div class="panel-body">
+
+    <%= render partial: 'shared/parents_information', locals: { parents: initiative_planning_guide.parents } %>
+
+    <div class="row">
+      <label class="col-sm-2 col-xs-3 form-label control-label">Initiative Stage</label>
+      <div class="col-sm-10 col-xs-9">
+        <p><%= initiative_planning_guide.initiative_stage %></p>
+      </div>
+    </div>
+
+    <% if action_name == 'show' %>
+    
+      <div class="row">
+        <label class="col-sm-2 col-xs-3 form-label control-label">Created By</label>
+        <div class="col-sm-10 col-xs-9">
+          <p><%= initiative_planning_guide.author.try(:email) %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-2 col-xs-3 form-label control-label">Last Edited by</label>
+        <div class="col-sm-10 col-xs-9">
+          <p><%= initiative_planning_guide.last_editor.try(:email) %></p>
+        </div>
+      </div>
+    <% end %>
+
+
+    <%= render partial: "shared/card_actions", locals: { resource: initiative_planning_guide } %>
+
+  </div>
+</div>
