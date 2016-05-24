@@ -38,6 +38,8 @@ This application uses RSpec Rails, Guard, Shoulda matchers, and Factory Girl for
 
 **Start Puma server:** `bundle exec puma -e production --daemon`
 
+**Restart a running Puma server:** `pumactl restart`
+
 **Restore pg dump:** `pg_restore --verbose --clean --no-acl --no-owner -h localhost -U user -d dbname latest.dump`
 
 **See which services are running:** `ps -ef | grep puma`
