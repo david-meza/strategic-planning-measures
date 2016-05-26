@@ -17,6 +17,7 @@ class InitiativePlanningGuidesController < ApplicationController
 
   def create
     @initiative_planning_guide = InitiativePlanningGuide.new(initiative_planning_guide_params)
+    @initiative_planning_guide.author = current_user
 
     respond_to do |format|
       if @initiative_planning_guide.save
@@ -30,6 +31,8 @@ class InitiativePlanningGuidesController < ApplicationController
   end
 
   def update
+    @initiative_planning_guide.last_editor = current_user
+
     respond_to do |format|
       if @initiative_planning_guide.update(initiative_planning_guide_params)
         format.html { redirect_to @initiative_planning_guide, notice: 'Initiative planning guide was successfully updated.' }
@@ -57,6 +60,6 @@ class InitiativePlanningGuidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def initiative_planning_guide_params
-      params.require(:initiative_planning_guide).permit(:objective_id, :initiative_stage, :implementation_team_contact_person, :string, :project_commitment, :project_resources, :initiative_overview, :major_milestones)
+      params.fetch(:initiative_planning_guide, {}).permit(:objective_id, :description, :initiative_stage, :implementation_team_contact_person, :project_commitment, :project_resources, :initiative_overview, :major_milestones)
     end
 end

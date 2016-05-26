@@ -16,14 +16,10 @@ class InitiativePlanningGuide < ActiveRecord::Base
 
   # ----------------------- Validations --------------------
 
-  # validates :measurable_id, :measurable_type, :description, :unit_of_measure,
-  #           presence: true
+  validates :objective_id, :description,
+            presence: true
   
   # ----------------------- Virtual attributes --------------------
-
-  def kfa_name
-    objective.key_focus_area.name
-  end
   
   def parents
     [objective.key_focus_area, objective]

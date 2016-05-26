@@ -1,49 +1,73 @@
-<%= form_for(@initiative_planning_guide) do |f| %>
-  <% if @initiative_planning_guide.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@initiative_planning_guide.errors.count, "error") %> prohibited this initiative_planning_guide from being saved:</h2>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for @initiative_planning_guide, html: { class:"form-horizontal" } do |initiative_fields| %>
+      <fieldset>
+        <legend><%= action_name.capitalize %> Initiative Planning Guide Form</legend>
+        
+        <%= render partial: 'shared/error_messages', locals: { resource: @initiative_planning_guide } %>
 
-      <ul>
-      <% @initiative_planning_guide.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <div class="form-group">
+          <%= initiative_fields.label :key_focus_area, "Key Focus Area", class: "col-md-3 control-label" %>
+          <%= react_component 'KeyFocusAreaDropdown', { url: "/key_focus_areas", value: "", label: "Please select a Key Focus Area"}, { class: "col-md-9", tag: "div" } %>
+        </div>
+        
+        <div class="form-group">
+          <%= initiative_fields.label :description, "Description*", class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= initiative_fields.text_field :description, class: "form-control", required: true %>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <%= initiative_fields.label :initiative_stage, "Initiative Stage", class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= initiative_fields.text_field :initiative_stage, class: "form-control" %>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <%= initiative_fields.label :implementation_team_contact_person, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= initiative_fields.text_field :implementation_team_contact_person, class: "form-control" %>
+          </div>
+        </div>
 
-  <div class="field">
-    <%= f.label :objective_id %><br>
-    <%= f.text_field :objective_id %>
+        <div class="form-group">
+          <%= initiative_fields.label :project_commitment, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= initiative_fields.text_area :project_commitment, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= initiative_fields.label :project_resources, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= initiative_fields.text_area :project_resources, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= initiative_fields.label :initiative_overview, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= initiative_fields.text_area :initiative_overview, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= initiative_fields.label :major_milestones, class: "col-md-3 control-label" %>
+          <div class="col-md-9">
+            <%= initiative_fields.text_area :major_milestones, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-9 col-md-offset-3">
+            <%= link_to 'Cancel', initiative_planning_guides_path, class: "btn btn-default" %>
+            <%= initiative_fields.submit class: "btn btn-primary" %>
+          </div>
+        </div>
+        
+      </fieldset>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :initiative_stage %><br>
-    <%= f.text_field :initiative_stage %>
-  </div>
-  <div class="field">
-    <%= f.label :implementation_team_contact_person %><br>
-    <%= f.text_field :implementation_team_contact_person %>
-  </div>
-  <div class="field">
-    <%= f.label :string %><br>
-    <%= f.text_field :string %>
-  </div>
-  <div class="field">
-    <%= f.label :project_commitment %><br>
-    <%= f.text_field :project_commitment %>
-  </div>
-  <div class="field">
-    <%= f.label :project_resources %><br>
-    <%= f.text_field :project_resources %>
-  </div>
-  <div class="field">
-    <%= f.label :initiative_overview %><br>
-    <%= f.text_area :initiative_overview %>
-  </div>
-  <div class="field">
-    <%= f.label :major_milestones %><br>
-    <%= f.text_area :major_milestones %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

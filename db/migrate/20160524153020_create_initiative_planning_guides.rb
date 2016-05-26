@@ -3,9 +3,9 @@ class CreateInitiativePlanningGuides < ActiveRecord::Migration
     create_table :initiative_planning_guides do |t|
       
       t.references :objective, index: true, foreign_key: true
+      t.string :description, null: false
       t.string :initiative_stage
       t.string :implementation_team_contact_person
-      t.string :string
       t.string :project_commitment
       t.string :project_resources
       t.text :initiative_overview

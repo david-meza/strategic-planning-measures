@@ -1,9 +1,10 @@
-<%= admin_content { link_to 'New Objective', new_objective_path, class: "btn btn-success pull-right" } %>
-
-<h3>Objectives</h3>
-<%= hidden_field_tag "page_is_dirty", 0 %>
-
-<hr>  
+<div class="layout-row layout-align-end-center break-after">
+  <h3>Objectives</h3>
+  <%= hidden_field_tag "page_is_dirty", 0 %>
+  <span class="flex"></span>  
+  
+  <%= admin_content { link_to 'New Objective', new_objective_path, class: "btn btn-success pull-right" } %>
+</div>
 
 <div class="row flex-row">
   <% @objectives.each do |objective| %>

@@ -11,16 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524153020) do
+ActiveRecord::Schema.define(version: 20160525142638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "initiative_humans", force: :cascade do |t|
+    t.integer  "initiative_planning_guide_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "category"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "initiative_humans", ["initiative_planning_guide_id"], name: "index_initiative_humans_on_initiative_planning_guide_id", using: :btree
+
+  create_table "initiative_plan_years", force: :cascade do |t|
+    t.integer  "initiative_planning_guide_id"
+    t.integer  "year",                         null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "initiative_plan_years", ["initiative_planning_guide_id"], name: "index_initiative_plan_years_on_initiative_planning_guide_id", using: :btree
+
   create_table "initiative_planning_guides", force: :cascade do |t|
     t.integer  "objective_id"
+    t.string   "description",                        null: false
     t.string   "initiative_stage"
     t.string   "implementation_team_contact_person"
-    t.string   "string"
     t.string   "project_commitment"
     t.string   "project_resources"
     t.text     "initiative_overview"
@@ -147,6 +167,8 @@ ActiveRecord::Schema.define(version: 20160524153020) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "initiative_humans", "initiative_planning_guides"
+  add_foreign_key "initiative_plan_years", "initiative_planning_guides"
   add_foreign_key "initiative_planning_guides", "objectives"
   add_foreign_key "measure_reports", "performance_measures"
   add_foreign_key "objectives", "key_focus_areas"

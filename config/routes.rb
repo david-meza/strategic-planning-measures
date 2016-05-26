@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   end
   
   resources :measure_reports do
-    get 'download', on: :collection
+    get 'measure_reports', on: :collection, as: 'download'
   end
   
 
