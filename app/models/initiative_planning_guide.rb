@@ -9,7 +9,7 @@ class InitiativePlanningGuide < ActiveRecord::Base
 
   accepts_nested_attributes_for :initiative_plan_years,
                                 # allow_destroy: true,
-                                reject_if: :all_blank
+                                reject_if: proc { |attributes| attributes['year'].blank? }
 
   # ----------------------- Callbacks --------------------
   
@@ -26,6 +26,10 @@ class InitiativePlanningGuide < ActiveRecord::Base
   
   def parents
     [objective.key_focus_area, objective]
+  end
+
+  def key_focus_area
+    objective.key_focus_area
   end
 
   # ----------------------- Class methods --------------------

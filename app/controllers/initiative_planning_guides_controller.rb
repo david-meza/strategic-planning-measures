@@ -10,11 +10,9 @@ class InitiativePlanningGuidesController < ApplicationController
 
   def new
     @initiative_planning_guide = InitiativePlanningGuide.new
-    @initiative_planning_guide.initiative_plan_years.build
   end
 
   def edit
-    @initiative_planning_guide.initiative_plan_years.build
   end
 
   def create
