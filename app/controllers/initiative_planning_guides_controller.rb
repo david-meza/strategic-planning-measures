@@ -10,9 +10,11 @@ class InitiativePlanningGuidesController < ApplicationController
 
   def new
     @initiative_planning_guide = InitiativePlanningGuide.new
+    @initiative_planning_guide.initiative_plan_years.build
   end
 
   def edit
+    @initiative_planning_guide.initiative_plan_years.build
   end
 
   def create
@@ -60,6 +62,8 @@ class InitiativePlanningGuidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def initiative_planning_guide_params
-      params.fetch(:initiative_planning_guide, {}).permit(:objective_id, :description, :initiative_stage, :implementation_team_contact_person, :project_commitment, :project_resources, :initiative_overview, :major_milestones)
+      params.fetch(:initiative_planning_guide, {}).permit(:objective_id, :description, :initiative_stage, :implementation_team_contact_person, 
+                                                          :project_commitment, :project_resources, :initiative_overview, :major_milestones,
+                                                          initiative_plan_years_attributes: [:id, :year, :initiative_planning_guide_id])
     end
 end

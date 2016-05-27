@@ -2,11 +2,14 @@ class InitiativePlanningGuide < ActiveRecord::Base
   
   belongs_to :objective
 
+  has_many :initiative_plan_years
+  has_many :initiative_humans
+
   include UserRules
 
-  # accepts_nested_attributes_for :performance_factors,
-  #                               reject_if: :all_blank,
-  #                               allow_destroy: true
+  accepts_nested_attributes_for :initiative_plan_years,
+                                # allow_destroy: true,
+                                reject_if: :all_blank
 
   # ----------------------- Callbacks --------------------
   

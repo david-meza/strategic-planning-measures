@@ -20,6 +20,10 @@ a.self-name {
   }
 }
 
+select.form-control[disabled] {
+  color: rgba($black, 0.2);
+}
+
 @include keyframes(slide-in-ltr) {
   from { @include transform(translateX(-100px)); opacity: 0; }
   to { @include transform(translateX(0)); opacity: 1; }

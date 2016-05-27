@@ -8,11 +8,25 @@
 
         <div class="form-group">
           <%= initiative_fields.label :key_focus_area, "Key Focus Area", class: "col-md-3 control-label" %>
-          <%= react_component 'Dropdown', { url: "/key_focus_areas", value: "0", label: "Please select a Key Focus Area", dropdownName: "key_focus_area", callbackTargetName: "objective"}, { class: "col-md-9", tag: "div" } %>
+          <%= react_component 'Dropdown', { url: "/key_focus_areas", placeholder: "Please select a Key Focus Area", dropdownName: "key_focus_area", formOwnerName: "objective"}, { class: "col-md-9", tag: "div" } %>
         </div>
         
         <div class="form-group">
-          <%= initiative_fields.label :description, "Description*", class: "col-md-3 control-label" %>
+          <%= initiative_fields.label :objective, "Objective*", class: "col-md-3 control-label" %>
+          <%= react_component 'Dropdown', { url: "/objectives", placeholder: "Please select an objective", dropdownName: "objective", publisher: "key_focus_area", formOwnerName: "initiative_planning_guide"}, { class: "col-md-9", tag: "div" } %>
+        </div>
+
+        <%= initiative_fields.fields_for :initiative_plan_years do |year_fields| %>
+          <div class="form-group">
+            <%= initiative_fields.label :year, "Plan Year*", class: "col-md-3 control-label" %>
+            <div class="col-md-9">
+              <%= year_fields.number_field :year, class: "form-control", value: Date.today.year + 1, required: true %>
+            </div>
+          </div>
+        <% end %>
+        
+        <div class="form-group">
+          <%= initiative_fields.label :description, "Initiative*", class: "col-md-3 control-label" %>
           <div class="col-md-9">
             <%= initiative_fields.text_field :description, class: "form-control", required: true %>
           </div>

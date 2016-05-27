@@ -5,7 +5,8 @@ var EventSystem = (function() {
   self.queue = {};
 
   return {
-    publish: function (event, data) {
+    publish: function (event, options) {
+      options = options || {};
       var queue = self.queue[event];
 
       if (typeof queue === 'undefined') {
@@ -13,7 +14,7 @@ var EventSystem = (function() {
       }
 
       queue.forEach( function(fn) {
-        fn(data);
+        fn(options);
       });
 
       return true;
