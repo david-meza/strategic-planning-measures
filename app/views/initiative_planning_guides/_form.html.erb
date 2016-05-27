@@ -8,7 +8,7 @@
 
         <div class="form-group">
           <%= initiative_fields.label :key_focus_area, "Key Focus Area", class: "col-md-3 control-label" %>
-          <%= react_component 'KeyFocusAreaDropdown', { url: "/key_focus_areas", value: "", label: "Please select a Key Focus Area"}, { class: "col-md-9", tag: "div" } %>
+          <%= react_component 'Dropdown', { url: "/key_focus_areas", value: "0", label: "Please select a Key Focus Area", dropdownName: "key_focus_area", callbackTargetName: "objective"}, { class: "col-md-9", tag: "div" } %>
         </div>
         
         <div class="form-group">
