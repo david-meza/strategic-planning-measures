@@ -8,16 +8,6 @@
 
         <%= planning_guide_parents(action_name, initiative_fields) %>
 
-        <%= initiative_fields.fields_for :initiative_plan_years, @initiative_planning_guide.initiative_plan_years.build do |year_fields| %>
-          <div class="form-group">
-            <%= initiative_fields.label :year, "Plan Year*", class: "col-md-3 control-label" %>
-            <div class="col-md-9">
-              <%= last_submitted_year(@initiative_planning_guide) %>
-              <%= year_fields.number_field :year, class: "form-control" %>
-            </div>
-          </div>
-        <% end %>
-        
         <div class="form-group">
           <%= initiative_fields.label :description, "Initiative*", class: "col-md-3 control-label" %>
           <div class="col-md-9">
@@ -31,6 +21,16 @@
             <%= initiative_fields.text_field :initiative_stage, class: "form-control" %>
           </div>
         </div>
+        
+        <%= initiative_fields.fields_for :initiative_plan_years, @initiative_planning_guide.initiative_plan_years.build do |year_fields| %>
+          <div class="form-group">
+            <%= initiative_fields.label :year, "Plan Year*", class: "col-md-3 control-label" %>
+            <div class="col-md-9 year-container">
+              <%= last_submitted_year(@initiative_planning_guide) %>
+              <%= year_fields.number_field :year, class: "form-control" %>
+            </div>
+          </div>
+        <% end %>
         
         <div class="form-group">
           <%= initiative_fields.label :implementation_team_contact_person, class: "col-md-3 control-label" %>

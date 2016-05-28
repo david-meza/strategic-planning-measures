@@ -3,6 +3,7 @@ class CreateInitiativeHumans < ActiveRecord::Migration
     create_table :initiative_humans do |t|
       t.references :initiative_planning_guide, index: true, foreign_key: true
       t.string :name
+      t.string :department
       t.string :email
       t.string :category
 

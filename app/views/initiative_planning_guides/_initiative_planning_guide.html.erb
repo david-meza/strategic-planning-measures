@@ -13,6 +13,7 @@
     <div class="row">
       <label class="col-xs-4 form-label control-label">Plan Year</label>
       <div class="col-xs-8">
+        <% last_two_year_updates(initiative_planning_guide) if action_name == "show" %>
         <p><%= initiative_planning_guide.initiative_plan_years.last.try(:year) %></p>
       </div>
     </div>
@@ -24,7 +25,7 @@
       </div>
     </div>
 
-    <% if action_name == 'show' %>
+    <% if action_name == "show" %>
     
       <div class="row">
         <label class="col-xs-4 form-label control-label">Created By</label>

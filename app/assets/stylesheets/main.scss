@@ -271,3 +271,31 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
     }
   }
 }
+
+.striked-text {
+  text-decoration: line-through;
+  color: rgba($danger, 0.7);
+}
+
+.initiative_planning_guides {
+  .year-container {
+    position: relative;
+    .editable-year {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 5px 4px;
+      margin: 0 15px;
+      background-color: rgba($black, 0.01);
+      // border: 1px inset rgba($black, 0.1);
+      width: calc(100% - 30px);
+      box-sizing: border-box;
+
+      .update-year-link {
+        padding-top: 0;
+      }
+    }
+  }
+}
+
+
