@@ -2,14 +2,36 @@ class InitiativePlanningGuide < ActiveRecord::Base
   
   belongs_to :objective
 
+  has_many  :humans,
+            dependent: :destroy,
+            class_name: 'InitiativeHuman'
+
+  has_one :implementation_team_contact,
+          class_name: 'InitiativeHuman'
+
+  has_many  :implementation_team_leads,
+            class_name: 'InitiativeHuman'
+
+  has_many  :extended_project_members,
+            class_name: 'InitiativeHuman'
+
   has_many :initiative_plan_years
   has_many :initiative_humans
 
   include UserRules
 
   accepts_nested_attributes_for :initiative_plan_years,
-                                # allow_destroy: true,
                                 reject_if: proc { |attributes| attributes['year'].blank? }
+
+  accepts_nested_attributes_for :implementation_team_contact
+
+  accepts_nested_attributes_for :implementation_team_leads,
+                                allow_destroy: true,
+                                reject_if: :all_blank
+
+  accepts_nested_attributes_for :extended_project_members,
+                                allow_destroy: true,
+                                reject_if: :all_blank
 
   # ----------------------- Callbacks --------------------
   

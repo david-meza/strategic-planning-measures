@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160525142638) do
   create_table "initiative_humans", force: :cascade do |t|
     t.integer  "initiative_planning_guide_id"
     t.string   "name"
+    t.string   "department"
     t.string   "email"
     t.string   "category"
     t.datetime "created_at",                   null: false

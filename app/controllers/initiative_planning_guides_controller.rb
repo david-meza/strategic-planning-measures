@@ -10,6 +10,8 @@ class InitiativePlanningGuidesController < ApplicationController
 
   def new
     @initiative_planning_guide = InitiativePlanningGuide.new
+    @implementation_team_contact = @initiative_planning_guide.initiative_humans.build(category: "Implementation Team Contact")
+    @implementation_team_leads = @initiative_planning_guide.initiative_humans.build(category: "Implementation Team Leads")
   end
 
   def edit
@@ -62,6 +64,8 @@ class InitiativePlanningGuidesController < ApplicationController
     def initiative_planning_guide_params
       params.fetch(:initiative_planning_guide, {}).permit(:objective_id, :description, :initiative_stage, :implementation_team_contact_person, 
                                                           :project_commitment, :project_resources, :initiative_overview, :major_milestones,
-                                                          initiative_plan_years_attributes: [:id, :year, :initiative_planning_guide_id])
+                                                          initiative_plan_years_attributes: [:id, :year],
+                                                          implementation_team_contact_attributes: [:id, :name, :email, :department]
+                                                          )
     end
 end

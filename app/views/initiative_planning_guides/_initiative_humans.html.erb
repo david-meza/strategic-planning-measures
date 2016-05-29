@@ -1,0 +1,26 @@
+<div class="form-group">
+  
+  <%= fields.label :name, label, class: "col-md-3 control-label" %>
+  
+  <div class="col-md-3">
+    <%= fields.text_field :name, class: "form-control", placeholder: "Name" %>
+  </div>
+  
+  <div class="col-md-3">
+    <%= fields.email_field :email, class: "form-control", placeholder: "Email" %>
+  </div>
+  
+  <div class="col-md-3">
+    <%= fields.text_field :department, class: "form-control", placeholder: "Department" %>
+  </div>
+  
+  <% if fields.object.persisted? %>
+    <div class="form-group">
+      <%= fields.hidden_field :_destroy %>
+      <%= link_to "#", class: "text-warning remove-person", 'aria-label': "Remove", title: 'Remove Person', data: {toggle: 'tooltip', placement: 'left'} do %>
+        <i class="fa fa-minus"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+  

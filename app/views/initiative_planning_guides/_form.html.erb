@@ -24,7 +24,7 @@
         
         <%= initiative_fields.fields_for :initiative_plan_years, @initiative_planning_guide.initiative_plan_years.build do |year_fields| %>
           <div class="form-group">
-            <%= initiative_fields.label :year, "Plan Year*", class: "col-md-3 control-label" %>
+            <%= year_fields.label :year, "Plan Year*", class: "col-md-3 control-label" %>
             <div class="col-md-9 year-container">
               <%= last_submitted_year(@initiative_planning_guide) %>
               <%= year_fields.number_field :year, class: "form-control" %>
@@ -32,24 +32,25 @@
           </div>
         <% end %>
         
-        <div class="form-group">
-          <%= initiative_fields.label :implementation_team_contact_person, class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= initiative_fields.text_field :implementation_team_contact_person, class: "form-control" %>
-          </div>
-        </div>
-
+        <%= initiative_fields.fields_for :implementation_team_contact, @implementation_team_contact do |contact_fields| %>
+          <%= render partial: 'initiative_humans', locals: { fields: contact_fields, label: "Implementation Team Contact Person*" } %>
+        <% end %>
+        
+        <%= initiative_fields.fields_for :implementation_team_leads, @implementation_team_leads do |leads_fields| %>
+          <%= render partial: 'initiative_humans', locals: { fields: leads_fields, label: "Implementation Team Leads" } %>
+        <% end %>
+        
         <div class="form-group">
           <%= initiative_fields.label :project_commitment, class: "col-md-3 control-label" %>
           <div class="col-md-9">
-            <%= initiative_fields.text_area :project_commitment, class: "form-control" %>
+            <%= initiative_fields.select :project_commitment, [ ["One-Time Commitment", "once"], ["Ongoing Commitment", "ongoing"] ], {}, class: "form-control" %>
           </div>
         </div>
 
         <div class="form-group">
           <%= initiative_fields.label :project_resources, class: "col-md-3 control-label" %>
           <div class="col-md-9">
-            <%= initiative_fields.text_area :project_resources, class: "form-control" %>
+            <%= initiative_fields.select :project_resources, [ ["Available within existing budget and resources", "existing"], ["Will require new staffing/resources", "new"], ["Will require re-allocation of existing staffing/resources", "re-allocation"] ], {}, class: "form-control" %>
           </div>
         </div>
 
