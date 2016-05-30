@@ -21,6 +21,9 @@ class InitiativePlanningGuide < ActiveRecord::Base
   has_many :initiative_plan_years
   has_many :initiative_humans
 
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
   include UserRules
 
   accepts_nested_attributes_for :initiative_plan_years,
@@ -55,6 +58,17 @@ class InitiativePlanningGuide < ActiveRecord::Base
 
   def key_focus_area
     objective.key_focus_area
+  end
+
+  def project_resources=(names)
+    self.tags = names.reject(&:blank?).map do |name|
+      tag = Tag.find_or_create_by(name: name.strip)
+      Tagging.find_or_create_by({ initiative_planning_guide: self, tag: tag})
+    end
+  end
+
+  def project_resources
+    self.tags
   end
 
   # ----------------------- Class methods --------------------

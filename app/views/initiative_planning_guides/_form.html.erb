@@ -43,14 +43,36 @@
         <div class="form-group">
           <%= initiative_fields.label :project_commitment, class: "col-md-3 control-label" %>
           <div class="col-md-9">
-            <%= initiative_fields.select :project_commitment, [ ["One-Time Commitment", "once"], ["Ongoing Commitment", "ongoing"] ], {}, class: "form-control" %>
+            
+            <div class="row">
+              <div class = "col-xs-12">
+                <%= initiative_fields.radio_button(:project_commitment, "once") %>
+                <%= initiative_fields.label(:project_commitment_once, "One-Time Commitment") %>
+              </div>
+              <div class = "col-xs-12">
+                <%= initiative_fields.radio_button(:project_commitment, "ongoing") %>
+                <%= initiative_fields.label(:project_commitment_ongoing, "Ongoing Commitment") %>
+              </div>
+            </div>
+
           </div>
         </div>
 
         <div class="form-group">
           <%= initiative_fields.label :project_resources, class: "col-md-3 control-label" %>
           <div class="col-md-9">
-            <%= initiative_fields.select :project_resources, [ ["Available within existing budget and resources", "existing"], ["Will require new staffing/resources", "new"], ["Will require re-allocation of existing staffing/resources", "re-allocation"] ], {}, class: "form-control" %>
+
+            <input type="hidden" name="initiative_planning_guide[project_resources][]" value="">
+            
+            <div class="row">
+              <% [ ["Available within existing budget and resources", "existing"], ["Will require new staffing/resources", "new"], ["Will require re-allocation of existing staffing/resources", "re-allocation"] ].each do |tag| %>
+                <div class="col-xs-12">
+                  <%= check_box_tag "initiative_planning_guide[project_resources][]", tag[1], false, { id: "initiative_planning_guide_project_resources_#{tag[1]}" } %>
+                  <%= initiative_fields.label "project_resources_#{tag[1]}", tag[0] %>
+                </div>
+              <% end %>
+            </div>
+          
           </div>
         </div>
 
