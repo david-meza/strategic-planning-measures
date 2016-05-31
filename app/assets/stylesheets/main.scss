@@ -24,6 +24,19 @@ select.form-control[disabled] {
   color: rgba($black, 0.2);
 }
 
+a.btn.btn-icon {
+  border-radius: 50%;
+  // padding: 8px 12px;
+  height: 30px;
+  width: 30px;
+  padding: 4px 7px;
+  margin-bottom: 3px;
+
+  &:hover {
+    color: #1b5e20;
+  }
+}
+
 @include keyframes(slide-in-ltr) {
   from { @include transform(translateX(-100px)); opacity: 0; }
   to { @include transform(translateX(0)); opacity: 1; }

@@ -15,6 +15,17 @@ class InitiativePlanningGuidesController < ApplicationController
     @extended_project_members = @initiative_planning_guide.humans.build(category: "Extended Project Members")
     @project_partners_internal = @initiative_planning_guide.humans.build(category: "Project Partners Internal")
     @project_partners_external = @initiative_planning_guide.humans.build(category: "Project Partners External")
+
+    @humans = {
+      "implementation_team_leads" => @implementation_team_leads, "implementation_team_contact" => @implementation_team_contact,
+      "extended_project_members" => @extended_project_members, "project_partners_internal" => @project_partners_internal,
+      "project_partners_external" => @project_partners_external
+    }
+
+    respond_to do |format|
+      format.html { render :new }
+      format.js   { render :new_human_fields }
+    end
   end
 
   def edit

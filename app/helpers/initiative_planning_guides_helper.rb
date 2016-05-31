@@ -22,4 +22,11 @@ module InitiativePlanningGuidesHelper
     end
   end
 
+  def render_new_human_fields(planning_guide, human_builder, selector)
+    fields_for(planning_guide) do |initiative_fields|
+      initiative_fields.fields_for(selector, human_builder, :child_index => Time.now.to_i) do |human_fields|
+        render partial: "initiative_humans_fields", locals: { fields: human_fields }
+      end
+    end
+  end
 end
