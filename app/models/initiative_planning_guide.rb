@@ -6,13 +6,16 @@ class InitiativePlanningGuide < ActiveRecord::Base
             dependent: :destroy,
             class_name: 'InitiativeHuman'
 
-  has_one :implementation_team_contact,
+  has_one :implementation_team_contact, 
+          -> { where category: "Implementation Team Contact"},
           class_name: 'InitiativeHuman'
 
   has_many  :implementation_team_leads,
+            -> { where category: "Implementation Team Leads"},
             class_name: 'InitiativeHuman'
 
   has_many  :extended_project_members,
+            -> { where category: "Extended Project Members"},
             class_name: 'InitiativeHuman'
 
   has_many :initiative_plan_years
