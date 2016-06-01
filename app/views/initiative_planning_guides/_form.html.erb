@@ -62,17 +62,13 @@
           <%= initiative_fields.label :project_resources, class: "col-md-3 control-label" %>
           <div class="col-md-9">
 
-            <input type="hidden" name="initiative_planning_guide[project_resources][]" value="">
+            <%= initiative_fields.collection_check_boxes :project_resources, InitiativePlanningGuide.project_resource_values, :id, :name, {}, class: "" do |tags| %>
+              <div class="collection-check-box">
+                <%= tags.check_box %>
+                <%= tags.label %>
+              </div>
+            <% end -%>
             
-            <div class="row">
-              <% [ ["Available within existing budget and resources", "existing"], ["Will require new staffing/resources", "new"], ["Will require re-allocation of existing staffing/resources", "re-allocation"] ].each do |tag| %>
-                <div class="col-xs-12">
-                  <%= check_box_tag "initiative_planning_guide[project_resources][]", tag[1], false, { id: "initiative_planning_guide_project_resources_#{tag[1]}" } %>
-                  <%= initiative_fields.label "project_resources_#{tag[1]}", tag[0] %>
-                </div>
-              <% end %>
-            </div>
-          
           </div>
         </div>
 

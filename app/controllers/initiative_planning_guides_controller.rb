@@ -10,8 +10,8 @@ class InitiativePlanningGuidesController < ApplicationController
 
   def new
     @initiative_planning_guide = InitiativePlanningGuide.new
-    @implementation_team_contact = @initiative_planning_guide.initiative_humans.build(category: "Implementation Team Contact")
-    @implementation_team_leads = @initiative_planning_guide.initiative_humans.build(category: "Implementation Team Leads")
+    @implementation_team_contact = @initiative_planning_guide.humans.build(category: "Implementation Team Contact")
+    @implementation_team_leads = @initiative_planning_guide.humans.build(category: "Implementation Team Leads")
   end
 
   def edit

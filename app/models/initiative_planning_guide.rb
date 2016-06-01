@@ -18,8 +18,8 @@ class InitiativePlanningGuide < ActiveRecord::Base
             -> { where category: "Extended Project Members"},
             class_name: 'InitiativeHuman'
 
-  has_many :initiative_plan_years
-  has_many :initiative_humans
+  has_many :initiative_plan_years,
+            class_name: 'InitiativePlanYear'
 
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
@@ -27,7 +27,7 @@ class InitiativePlanningGuide < ActiveRecord::Base
   include UserRules
 
   accepts_nested_attributes_for :initiative_plan_years,
-                                reject_if: proc { |attributes| attributes['year'].blank? }
+                                reject_if: :reject_year
 
   accepts_nested_attributes_for :implementation_team_contact
 
@@ -60,15 +60,12 @@ class InitiativePlanningGuide < ActiveRecord::Base
     objective.key_focus_area
   end
 
-  def project_resources=(names)
-    self.tags = names.reject(&:blank?).map do |name|
-      tag = Tag.find_or_create_by(name: name.strip)
-      Tagging.find_or_create_by({ initiative_planning_guide: self, tag: tag})
-    end
+  def project_resources=(new_tags)
+    self.tag_ids = new_tags.reject(&:blank?)
   end
 
   def project_resources
-    self.tags
+    self.tag_ids
   end
 
   # ----------------------- Class methods --------------------
@@ -78,7 +75,17 @@ class InitiativePlanningGuide < ActiveRecord::Base
     all
   end
 
+  def self.project_resource_values
+    [ Tag.find_or_create_by(name: "Available within existing budget and resources", use_case: "project_resources"), 
+      Tag.find_or_create_by(name: "Will require new staffing or resources", use_case: "project_resources"), 
+      Tag.find_or_create_by(name: "Will require re-allocation of existing staffing or resources", use_case: "project_resources") ]
+  end
+
   # ----------------------- Instance methods --------------------
   
+  def reject_year(attributes)
+    self.initiative_plan_years.last.update({expired: true, date_expired: Time.now}) unless self.initiative_plan_years.last.nil?
+    attributes['year'].blank?
+  end
 
 end
