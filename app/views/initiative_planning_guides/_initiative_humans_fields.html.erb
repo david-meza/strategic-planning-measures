@@ -1,0 +1,25 @@
+<div class="col-md-4">
+  <%= fields.text_field :name, class: "form-control", placeholder: "Name" %>
+</div>
+
+<div class="col-md-4">
+  <%= fields.email_field :email, class: "form-control", placeholder: "Email" %>
+</div>
+
+<div class="col-md-4">
+  <div class="row">
+    
+    <div class="col-xs-9">
+      <%= fields.text_field :department, class: "form-control", placeholder: "Department" %>
+    </div>
+    
+    <div class="col-xs-3">
+      <% if fields.object.persisted? %>
+        <%= fields.hidden_field :_destroy %>
+        <%= link_to "#", class: "text-danger remove-person text-center", 'aria-label': "Remove", title: 'Remove Person', data: {toggle: 'tooltip', placement: 'top'} do %>
+          <i class="fa fa-minus"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

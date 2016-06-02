@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-8 col-md-offset-2">
+  <div class="col-md-10 col-md-offset-1">
     <%= form_for @initiative_planning_guide, html: { class:"form-horizontal" } do |initiative_fields| %>
       <fieldset>
         <legend><%= action_name.capitalize %> Initiative Planning Guide Form</legend>
@@ -33,12 +33,49 @@
         <% end %>
         
         <%= initiative_fields.fields_for :implementation_team_contact, @implementation_team_contact do |contact_fields| %>
-          <%= render partial: 'initiative_humans', locals: { fields: contact_fields, label: "Implementation Team Contact Person*" } %>
+          <%= render partial: 'team_contact', locals: { fields: contact_fields, label: "Implementation Team Contact Person*" } %>
         <% end %>
         
-        <%= initiative_fields.fields_for :implementation_team_leads, @implementation_team_leads do |leads_fields| %>
-          <%= render partial: 'initiative_humans', locals: { fields: leads_fields, label: "Implementation Team Leads" } %>
-        <% end %>
+        <div class="divider"></div>
+
+
+        <div class="row">
+          <div class="col-md-6">
+            <legend class="sublegend layout-row">
+              <span>Implementation Team Leads</span>
+              <span class="flex"></span>
+
+              <%= link_to "#", class: "text-success add-person text-center", 'aria-label': "Add Person", title: 'Add Member', data: {toggle: 'tooltip', placement: 'top'} do %>
+                <i class="fa fa-plus"></i>
+              <% end %>  
+            </legend>
+              <%= initiative_fields.fields_for :implementation_team_leads, @implementation_team_leads do |leads_fields| %>
+                <div class="form-group">
+                  <%= render partial: 'initiative_humans_fields', locals: { fields: leads_fields } %>
+                </div>
+              <% end %>
+          </div>
+
+          <div class="col-md-6">
+            <legend class="sublegend layout-row">
+              <span>Extended Project Members</span>
+              <span class="flex"></span>
+
+              <%= link_to "#", class: "text-success add-person text-center", 'aria-label': "Add Person", title: 'Add Member', data: {toggle: 'tooltip', placement: 'top'} do %>
+                <i class="fa fa-plus"></i>
+              <% end %>  
+            </legend>
+              <%= initiative_fields.fields_for :extended_project_members, @extended_project_members do |extended_members_fields| %>
+                <div class="form-group">
+                  <%= render partial: 'initiative_humans_fields', locals: { fields: extended_members_fields } %>
+                </div>
+              <% end %>
+          </div>
+        </div>
+
+
+        <div class="divider"></div>
+        
         
         <div class="form-group">
           <%= initiative_fields.label :project_commitment, class: "col-md-3 control-label" %>

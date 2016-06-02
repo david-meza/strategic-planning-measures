@@ -12,6 +12,9 @@ class InitiativePlanningGuidesController < ApplicationController
     @initiative_planning_guide = InitiativePlanningGuide.new
     @implementation_team_contact = @initiative_planning_guide.humans.build(category: "Implementation Team Contact")
     @implementation_team_leads = @initiative_planning_guide.humans.build(category: "Implementation Team Leads")
+    @extended_project_members = @initiative_planning_guide.humans.build(category: "Extended Project Members")
+    @project_partners_internal = @initiative_planning_guide.humans.build(category: "Project Partners Internal")
+    @project_partners_external = @initiative_planning_guide.humans.build(category: "Project Partners External")
   end
 
   def edit
@@ -67,7 +70,10 @@ class InitiativePlanningGuidesController < ApplicationController
                                                           initiative_plan_years_attributes: [:id, :year], 
                                                           project_resources: [],
                                                           implementation_team_contact_attributes: [:id, :name, :email, :department, :category],
-                                                          implementation_team_leads_attributes: [:id, :name, :email, :department, :category, :_destroy]
+                                                          implementation_team_leads_attributes: [:id, :name, :email, :department, :category, :_destroy],
+                                                          extended_project_members: [:id, :name, :email, :department, :category, :_destroy],
+                                                          project_partners_internal: [:id, :name, :email, :department, :category, :_destroy],
+                                                          project_partners_external: [:id, :name, :email, :department, :category, :_destroy]
                                                           )
     end
 end
