@@ -1,120 +1,143 @@
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <%= form_for @initiative_planning_guide, html: { class:"form-horizontal" } do |initiative_fields| %>
-      <fieldset>
-        <legend><%= action_name.capitalize %> Initiative Planning Guide Form</legend>
-        
-        <%= render partial: 'shared/error_messages', locals: { resource: @initiative_planning_guide } %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for @initiative_planning_guide, html: { class:"form-horizontal" } do |initiative_fields| %>
+        <fieldset>
+          <legend><%= action_name.capitalize %> Initiative Planning Guide Form</legend>
+          
+          <%= render partial: 'shared/error_messages', locals: { resource: @initiative_planning_guide } %>
 
-        <%= planning_guide_parents(action_name, initiative_fields) %>
-
-        <div class="form-group">
-          <%= initiative_fields.label :description, "Initiative*", class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= initiative_fields.text_field :description, class: "form-control", required: true %>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <%= initiative_fields.label :initiative_stage, "Initiative Stage", class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= initiative_fields.text_field :initiative_stage, class: "form-control" %>
-          </div>
-        </div>
-        
-        <%= initiative_fields.fields_for :initiative_plan_years, @initiative_planning_guide.initiative_plan_years.build do |year_fields| %>
+          <%= planning_guide_parents(action_name, initiative_fields) %>
+          
           <div class="form-group">
-            <%= year_fields.label :year, "Plan Year*", class: "col-md-3 control-label" %>
-            <div class="col-md-9 year-container">
-              <%= last_submitted_year(@initiative_planning_guide) %>
-              <%= year_fields.number_field :year, class: "form-control" %>
+            <%= initiative_fields.label :description, "Initiative*", class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= initiative_fields.text_field :description, class: "form-control", required: true %>
             </div>
           </div>
-        <% end %>
-        
-        <%= initiative_fields.fields_for :implementation_team_contact, @implementation_team_contact do |contact_fields| %>
-          <%= render partial: 'team_contact', locals: { fields: contact_fields, label: "Implementation Team Contact Person*" } %>
-        <% end %>
-        
-        <div class="divider"></div>
-
-
-        <div class="row">
-          <div class="col-md-6">
-            <%= react_component 'AsyncButton', { url: "/initiative_planning_guides/new", tooltipTitle: "Add Member", buttonClasses: "add-member", iconClass: "fa-plus", legend: "Implementation Team Leads", selector: 'implementation_team_leads'}, { class: "", tag: "div", id: "implementation_team_leads" } %>
+          
+          <div class="form-group">
+            <%= initiative_fields.label :initiative_stage, "Initiative Stage", class: "col-lg-2 control-label" %>
+            <div class="col-lg-4">
+              <%= initiative_fields.text_field :initiative_stage, class: "form-control" %>
+            </div>
             
-            <%= initiative_fields.fields_for :implementation_team_leads, @implementation_team_leads do |team_leads_fields| %>
-              <%= render partial: 'initiative_humans_fields', locals: { fields: team_leads_fields } %>
+            <%= initiative_fields.fields_for :initiative_plan_years, @initiative_planning_guide.initiative_plan_years.build do |year_fields| %>
+              <%= year_fields.label :year, "Plan Year*", class: "col-lg-1 control-label" %>
+              <div class="col-lg-5 year-container">
+                <%= last_submitted_year(@initiative_planning_guide) %>
+                <%= year_fields.number_field :year, class: "form-control" %>
+              </div>
             <% end %>
           </div>
-
-          <div class="col-md-6">
-            <%= react_component 'AsyncButton', { url: "/initiative_planning_guides/new", tooltipTitle: "Add Member", buttonClasses: "add-member", iconClass: "fa-plus", legend: "Extended Project Members", selector: 'extended_project_members'}, { class: "", tag: "div", id: "extended_project_members" } %>
-            
-            <%= initiative_fields.fields_for :extended_project_members, @extended_project_members do |extended_members_fields| %>
-              <%= render partial: 'initiative_humans_fields', locals: { fields: extended_members_fields } %>
-            <% end %>
-          </div>
-        </div>
+          
+          
+          <%= initiative_fields.fields_for :implementation_team_contact, @implementation_team_contact do |contact_fields| %>
+            <%= render partial: 'team_contact', locals: { fields: contact_fields, label: "Implementation Team Contact Person*" } %>
+          <% end %>
+          
+          <div class="form-divider"></div>
 
 
-        <div class="divider"></div>
-        
-        
-        <div class="form-group">
-          <%= initiative_fields.label :project_commitment, class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            
-            <div class="row">
-              <div class = "col-xs-12">
-                <%= initiative_fields.radio_button(:project_commitment, "once") %>
-                <%= initiative_fields.label(:project_commitment_once, "One-Time Commitment") %>
-              </div>
-              <div class = "col-xs-12">
-                <%= initiative_fields.radio_button(:project_commitment, "ongoing") %>
-                <%= initiative_fields.label(:project_commitment_ongoing, "Ongoing Commitment") %>
-              </div>
+          <div class="row">
+            <div class="col-md-6">
+              <%= react_component 'AsyncButton', { url: "/initiative_planning_guides/new", tooltipTitle: "Add Member", buttonClasses: "add-member", iconClass: "fa-plus", legend: "Implementation Team Leads", selector: 'implementation_team_leads'}, { class: "", tag: "div", id: "implementation_team_leads" } %>
+              
+              <%= initiative_fields.fields_for :implementation_team_leads, @implementation_team_leads do |team_leads_fields| %>
+                <%= render partial: 'initiative_humans_fields', locals: { fields: team_leads_fields } %>
+              <% end %>
             </div>
 
+            <div class="col-md-6">
+              <%= react_component 'AsyncButton', { url: "/initiative_planning_guides/new", tooltipTitle: "Add Member", buttonClasses: "add-member", iconClass: "fa-plus", legend: "Extended Project Members", selector: 'extended_project_members'}, { class: "", tag: "div", id: "extended_project_members" } %>
+              
+              <%= initiative_fields.fields_for :extended_project_members, @extended_project_members do |extended_members_fields| %>
+                <%= render partial: 'initiative_humans_fields', locals: { fields: extended_members_fields } %>
+              <% end %>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <%= initiative_fields.label :project_resources, class: "col-md-3 control-label" %>
-          <div class="col-md-9">
 
-            <%= initiative_fields.collection_check_boxes :project_resources, InitiativePlanningGuide.project_resource_values, :id, :name, {}, class: "" do |tags| %>
-              <div class="collection-check-box">
-                <%= tags.check_box %>
-                <%= tags.label %>
+          <div class="form-divider"></div>
+
+
+          <div class="row">
+            <div class="col-md-6">
+              <%= react_component 'AsyncButton', { url: "/initiative_planning_guides/new", tooltipTitle: "Add Member", buttonClasses: "add-member", iconClass: "fa-plus", legend: "Project Partners (Internal/Departmental Partners)", selector: 'project_partners_internal'}, { class: "", tag: "div", id: "project_partners_internal" } %>
+              
+              <%= initiative_fields.fields_for :project_partners_internal, @project_partners_internal do |f| %>
+                <%= render partial: 'initiative_humans_fields', locals: { fields: f } %>
+              <% end %>
+            </div>
+
+            <div class="col-md-6">
+              <%= react_component 'AsyncButton', { url: "/initiative_planning_guides/new", tooltipTitle: "Add Member", buttonClasses: "add-member", iconClass: "fa-plus", legend: "Project Partners (External/Community Partners)", selector: 'project_partners_external'}, { class: "", tag: "div", id: "project_partners_external" } %>
+              
+              <%= initiative_fields.fields_for :project_partners_external, @project_partners_external do |f| %>
+                <%= render partial: 'initiative_humans_fields', locals: { fields: f } %>
+              <% end %>
+            </div>
+          </div>
+
+
+          <div class="form-divider"></div>
+          
+          
+          <div class="form-group">
+            <%= initiative_fields.label :project_commitment, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              
+              <div class="row">
+                <div class = "col-xs-12">
+                  <%= initiative_fields.radio_button(:project_commitment, "once") %>
+                  <%= initiative_fields.label(:project_commitment_once, "One-Time Commitment") %>
+                </div>
+                <div class = "col-xs-12">
+                  <%= initiative_fields.radio_button(:project_commitment, "ongoing") %>
+                  <%= initiative_fields.label(:project_commitment_ongoing, "Ongoing Commitment") %>
+                </div>
               </div>
-            <% end -%>
-            
-          </div>
-        </div>
 
-        <div class="form-group">
-          <%= initiative_fields.label :initiative_overview, class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= initiative_fields.text_area :initiative_overview, class: "form-control" %>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <%= initiative_fields.label :major_milestones, class: "col-md-3 control-label" %>
-          <div class="col-md-9">
-            <%= initiative_fields.text_area :major_milestones, class: "form-control" %>
-          </div>
-        </div>
+          <div class="form-group">
+            <%= initiative_fields.label :project_resources, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
 
-        <div class="form-group">
-          <div class="col-md-9 col-md-offset-3">
-            <%= link_to 'Cancel', initiative_planning_guides_path, class: "btn btn-default" %>
-            <%= initiative_fields.submit class: "btn btn-primary" %>
+              <%= initiative_fields.collection_check_boxes :project_resources, InitiativePlanningGuide.project_resource_values, :id, :name, {}, class: "" do |tags| %>
+                <div class="collection-check-box">
+                  <%= tags.check_box %>
+                  <%= tags.label %>
+                </div>
+              <% end -%>
+              
+            </div>
           </div>
-        </div>
-        
-      </fieldset>
-    <% end %>
-  </div>
+
+          <div class="form-group">
+            <%= initiative_fields.label :initiative_overview, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= initiative_fields.text_area :initiative_overview, class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= initiative_fields.label :major_milestones, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+              <%= initiative_fields.text_area :major_milestones, class: "form-control" %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-lg-10 col-md-offset-3">
+              <%= link_to 'Cancel', initiative_planning_guides_path, class: "btn btn-default" %>
+              <%= initiative_fields.submit class: "btn btn-primary" %>
+            </div>
+          </div>
+          
+        </fieldset>
+      <% end %>
+    </div>
+  </div>  
 </div>

@@ -18,6 +18,14 @@ class InitiativePlanningGuide < ActiveRecord::Base
             -> { where category: "Extended Project Members"},
             class_name: 'InitiativeHuman'
 
+  has_many  :project_partners_internal,
+            -> { where category: "Project Partners Internal"},
+            class_name: 'InitiativeHuman'
+
+  has_many  :project_partners_external,
+            -> { where category: "Project Partners External"},
+            class_name: 'InitiativeHuman'
+
   has_many :initiative_plan_years,
             class_name: 'InitiativePlanYear'
 
@@ -36,6 +44,14 @@ class InitiativePlanningGuide < ActiveRecord::Base
                                 reject_if: :all_blank
 
   accepts_nested_attributes_for :extended_project_members,
+                                allow_destroy: true,
+                                reject_if: :all_blank
+
+  accepts_nested_attributes_for :project_partners_internal,
+                                allow_destroy: true,
+                                reject_if: :all_blank
+
+  accepts_nested_attributes_for :project_partners_external,
                                 allow_destroy: true,
                                 reject_if: :all_blank
 
