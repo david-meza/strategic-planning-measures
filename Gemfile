@@ -21,8 +21,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use devise for user authentication
 gem 'devise', '~> 3.5.6'
-gem 'will_paginate', '~> 3.0.7'
+gem 'will_paginate', '~> 3.1.0'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
+
+gem 'rich'
 
 gem 'rails-jquery-autocomplete'
 

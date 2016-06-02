@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   
+  mount Rich::Engine => '/rich', :as => 'rich'
   resources :initiative_planning_guides
   namespace :admin do
     get 'user_views' => 'user_views#create', as: 'view_as_user'
