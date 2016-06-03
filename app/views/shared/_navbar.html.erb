@@ -35,19 +35,19 @@
             <li class="divider"></li>
             
             <li>
+              <%= link_to initiative_planning_guides_path, class: "" do %>
+                <!-- <i class="fa fa-fw fa-flag"></i> --> Initiative Planning Guides
+              <% end -%>
+            </li>
+            
+            <li class="divider"></li>
+            
+            <li>
               <%= link_to contact_path, class: "" do %>
                 <i class="fa fa-fw fa-envelope"></i> Contact Us
               <% end -%>
             </li>
             
-            <% admin_content do %>
-              <li>
-                <%= link_to download_measure_reports_path(format: :xls), class: "" do %>
-                  <i class="fa fa-fw fa-file-excel-o"></i> Download Reports
-                <% end -%>
-              </li>
-            <% end %>
-
           </ul>
         </li>
 
@@ -63,12 +63,9 @@
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li>
-            <a class="self-name">Welcome <%= current_user.name %>!</a>
-          </li>
-          <li>
             <%= link_to edit_user_registration_path do %>
               <i class="fa fa-user"></i>
-              <span>User Profile</span>
+              <span><%= current_user.name %></span>
             <% end %>
           </li>
           <li>

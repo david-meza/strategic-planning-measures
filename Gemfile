@@ -21,10 +21,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use devise for user authentication
 gem 'devise', '~> 3.5.6'
-gem 'will_paginate', '~> 3.0.7'
+gem 'will_paginate', '~> 3.1.0'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 
-gem 'rails-jquery-autocomplete'
+gem 'wysiwyg-rails'
+
 
 # Upload images to Amazon S3
 gem 'aws-sdk', '>= 2.0.0'
@@ -45,6 +46,7 @@ gem 'react-rails'
 # gem 'capistrano-rails', group: :development
 
 group :development do
+  gem "rails-erd"
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 

@@ -1,6 +1,9 @@
-<%= admin_content { link_to 'New Key Focus Area', new_key_focus_area_path, class: "btn btn-success pull-right" } %>
-<h3>Key Focus Areas</h3>
-  
+<div class="layout-row layout-align-end-center break-after">
+  <h3>Key Focus Areas</h3>
+  <span class="flex"></span>
+  <%= admin_content { link_to 'New Key Focus Area', new_key_focus_area_path, class: "btn btn-success pull-right" } %>
+</div>
+
 <div class="row flex-row">
   <% @focus_areas.each do |kfa| %>
     <div class="col-xs-12 col-md-6 col-lg-4">

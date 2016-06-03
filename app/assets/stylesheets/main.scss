@@ -20,6 +20,27 @@ a.self-name {
   }
 }
 
+select.form-control[disabled] {
+  color: rgba($black, 0.2);
+}
+
+a.btn.btn-icon {
+  border-radius: 50%;
+  // padding: 8px 12px;
+  height: 30px;
+  width: 30px;
+  padding: 4px 7px;
+  margin-bottom: 3px;
+
+  &:hover {
+    color: #1b5e20;
+  }
+}
+
+.froala-container {
+  position: relative;
+}
+
 @include keyframes(slide-in-ltr) {
   from { @include transform(translateX(-100px)); opacity: 0; }
   to { @include transform(translateX(0)); opacity: 1; }
@@ -88,6 +109,12 @@ label.control-label {
 }
 
 form {
+  .form-divider {
+    padding: 30px;
+  }
+}
+
+form {
   legend {
     color: $indigo;
     border-bottom: 1px solid rgba($dark-indigo, 0.27);
@@ -133,6 +160,10 @@ form {
 
 .logo-row {
   // background-color: $indigo;
+  margin-bottom: 15px;
+}
+
+.break-after {
   margin-bottom: 15px;
 }
 
@@ -263,3 +294,36 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
     }
   }
 }
+
+.striked-text {
+  text-decoration: line-through;
+  color: rgba($danger, 0.7);
+}
+
+.initiative_planning_guides {
+  .year-container {
+    position: relative;
+    .editable-year {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 5px 4px;
+      margin: 0 15px;
+      background-color: rgba($black, 0.01);
+      // border: 1px inset rgba($black, 0.1);
+      width: calc(100% - 30px);
+      box-sizing: border-box;
+
+      .update-year-link {
+        padding-top: 0;
+      }
+    }
+  }
+
+  form .form-group p, form .form-group a:not(.btn) {
+    // padding-top: 0;
+    margin: 0;
+  }
+}
+
+

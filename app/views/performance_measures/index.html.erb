@@ -1,14 +1,14 @@
-<div class="pull-right">
+<div class="layout-row layout-align-end-center break-after">
+  <h3>Performance Measures</h3>
+  <%= hidden_field_tag "page_is_dirty", 0 %>
+  <span class="flex"></span>
+  
   <%= admin_content { link_to 'New Measure', new_performance_measure_path, class: "btn btn-success spaced-items" } %>
   <%= link_to download_performance_measures_path(format: :xls), class: "btn btn-default spaced-items" do %>
     <i class="fa fa-fw fa-file-excel-o"></i> Download Measures
   <% end if is_admin? %>
 </div>
 
-<h3>Performance Measures</h3>
-<%= hidden_field_tag "page_is_dirty", 0 %>
-
-<hr />
 <div class="layout-row flex layout-align-end-center">
   <%= link_to performance_measures_path(filter_data_contact: true), class: "text-info spaced-items" do %>
     <i class="fa fa-lg fa-filter"></i> Only show me measures where I am the data contact

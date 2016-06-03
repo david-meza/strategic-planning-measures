@@ -1,9 +1,9 @@
 <% parents.each_with_index do |parent, idx| %>
   <div class="row">
     
-    <label class="col-xs-4 control-label form-label capitalize"><%= parent.model_name.human %></label>
+    <label class="<%= label_width %> control-label form-label capitalize"><%= parent.model_name.human %></label>
     
-    <div class="col-xs-8 layout-row layout-align-space-between-stretch">
+    <div class="<%= content_width %> layout-row layout-align-space-between-stretch">
       
       <p><%= parent.try(:name) %></p>
       

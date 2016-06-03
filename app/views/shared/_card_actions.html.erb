@@ -4,7 +4,7 @@
 
   <%= link_to measure_reports_path(query: { "#{resource.class.model_name.collection}.id": resource.id }), class: "icon-action", 'aria-label': "Reports", title: "Associated Reports", data: {toggle: 'tooltip', placement: 'top'} do %>
     <i class="fa fa-lg fa-file-text-o text-info"></i>
-  <% end unless controller_name == "measure_reports" %>
+  <% end unless controller_name == "measure_reports" || controller_name == "initiative_planning_guides" %>
   
   <%= link_to polymorphic_path(resource.class), class: "icon-action", 'aria-label': "Back", title: 'Back', data: {toggle: 'tooltip', placement: 'top'} do  %>
     <i class="fa fa-lg fa-arrow-left text-primary"></i>

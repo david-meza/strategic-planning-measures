@@ -1,0 +1,9 @@
+(function($) {
+
+  var newFieldGroup = '<%= j render_new_human_fields(@initiative_planning_guide, @humans[params[:selector]], params[:selector]) %>';
+
+  var $target = $('#' + '<%= params[:selector] %>');
+
+  $(newFieldGroup).insertAfter($target).hide().slideDown();
+
+})(jQuery);

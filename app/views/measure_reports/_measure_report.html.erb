@@ -6,7 +6,7 @@
 
   <div class="panel-body">
     
-    <%= render partial: 'shared/parents_information', locals: { parents: measure_report.performance_measure.parents } %>
+    <%= render partial: 'shared/parents_information', locals: { parents: measure_report.performance_measure.parents, label_width: "col-xs-4", content_width: "col-xs-8" } %>
 
     <div class="row">
       <label class="col-xs-4 control-label measure-report-label">Measure</label>

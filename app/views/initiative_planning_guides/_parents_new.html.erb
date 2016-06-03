@@ -1,0 +1,9 @@
+<div class="form-group">
+  <%= initiative_fields.label :key_focus_area, "Key Focus Area", class: "col-lg-2 control-label" %>
+  <%= react_component 'Dropdown', { url: "/key_focus_areas", placeholder: "Please select a Key Focus Area", dropdownName: "key_focus_area", formOwnerName: "objective"}, { class: "col-lg-10", tag: "div" } %>
+</div>
+
+<div class="form-group">
+  <%= initiative_fields.label :objective, "Objective*", class: "col-lg-2 control-label" %>
+  <%= react_component 'Dropdown', { url: "/objectives", placeholder: "Please select an Objective", dropdownName: "objective", publisher: "key_focus_area", formOwnerName: "initiative_planning_guide"}, { class: "col-lg-10", tag: "div" } %>
+</div>
