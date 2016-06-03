@@ -12,9 +12,18 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui/autocomplete
-//= require autocomplete-rails
 //= require turbolinks
+
+//= require froala_editor.min.js
+//= require plugins/align.min.js
+//= require plugins/file.min.js
+//= require plugins/lists.min.js
+//= require plugins/quote.min.js
+//= require plugins/save.min.js
+//= require plugins/table.min.js
+//= require plugins/url.min.js
+
+
 //= require react
 //= require react_ujs
 //= require components

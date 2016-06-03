@@ -7,6 +7,10 @@
 
     if ( $('.initiative_planning_guides.new, .initiative_planning_guides.create, .initiative_planning_guides.edit, .initiative_planning_guides.update').length === 0 ) { return; }
 
+    $('.froala').froalaEditor({
+      toolbarInline: false
+    });
+
     $('.update-year-link').on('click', removeOverlay);
     
     function removeOverlay(evt) {

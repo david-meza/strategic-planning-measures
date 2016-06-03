@@ -1,42 +1,76 @@
 <div class="panel panel-info" data-guide-id="<%= initiative_planning_guide.id %>">
   <div class="panel-body">
 
-    <%= render partial: 'shared/parents_information', locals: { parents: initiative_planning_guide.parents } %>
+    <%= render partial: 'shared/parents_information', locals: { parents: initiative_planning_guide.parents, label_width: "col-sm-3", content_width: "col-sm-9" } %>
 
     <div class="row">
-      <label class="col-xs-4 form-label control-label">Initiative</label>
-      <div class="col-xs-8">
+      <label class="col-sm-3 form-label control-label">Initiative</label>
+      <div class="col-sm-9">
         <p><%= initiative_planning_guide.description %></p>
       </div>
     </div>
     
     <div class="row">
-      <label class="col-xs-4 form-label control-label">Plan Year</label>
-      <div class="col-xs-8">
+      <label class="col-sm-3 form-label control-label">Plan Year</label>
+      <div class="col-sm-9">
         <% last_two_year_updates(initiative_planning_guide) if action_name == "show" %>
         <p><%= initiative_planning_guide.initiative_plan_years.last.try(:year) %></p>
       </div>
     </div>
     
     <div class="row">
-      <label class="col-xs-4 form-label control-label">Initiative Stage</label>
-      <div class="col-xs-8">
+      <label class="col-sm-3 form-label control-label">Initiative Stage</label>
+      <div class="col-sm-9">
         <p><%= initiative_planning_guide.initiative_stage %></p>
       </div>
     </div>
 
     <% if action_name == "show" %>
-    
+
       <div class="row">
-        <label class="col-xs-4 form-label control-label">Created By</label>
-        <div class="col-xs-8">
+        <%= render partial: "show_human_info", locals: { label: "Implementation Team Contact Person", people: [initiative_planning_guide.implementation_team_contact] } %>
+      </div>
+
+      <div class="row">
+        <%= render partial: "show_human_info", locals: { label: "Implementation Team Leads", people: initiative_planning_guide.implementation_team_leads } %>
+      </div>
+
+      <div class="row">
+        <%= render partial: "show_human_info", locals: { label: "Extended Project Members", people: initiative_planning_guide.extended_project_members } %>
+      </div>
+
+      <div class="row">
+        <%= render partial: "show_human_info", locals: { label: "Project Partners Internal", people: initiative_planning_guide.project_partners_internal } %>
+      </div>
+
+      <div class="row">
+        <%= render partial: "show_human_info", locals: { label: "Project Partners External", people: initiative_planning_guide.project_partners_external } %>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-3 form-label control-label">Initiative Overview</label>
+        <div class="col-sm-9 fr-view">
+          <%= initiative_planning_guide.initiative_overview.html_safe %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-3 form-label control-label">Major Milestones</label>
+        <div class="col-sm-9 fr-view">
+          <%= initiative_planning_guide.major_milestones.html_safe %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-3 form-label control-label">Created By</label>
+        <div class="col-sm-9">
           <p><%= initiative_planning_guide.author.try(:email) %></p>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-xs-4 form-label control-label">Last Edited by</label>
-        <div class="col-xs-8">
+        <label class="col-sm-3 form-label control-label">Last Edited by</label>
+        <div class="col-sm-9">
           <p><%= initiative_planning_guide.last_editor.try(:email) %></p>
         </div>
       </div>

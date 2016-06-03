@@ -29,4 +29,8 @@ module InitiativePlanningGuidesHelper
       end
     end
   end
+
+  def str_to_sym(string)
+    string.downcase.gsub(/\s+/, "_").to_sym
+  end
 end

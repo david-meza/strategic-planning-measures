@@ -24,9 +24,8 @@ gem 'devise', '~> 3.5.6'
 gem 'will_paginate', '~> 3.1.0'
 gem 'bootstrap-will_paginate', '~> 0.0.10'
 
-gem 'rich'
+gem 'wysiwyg-rails'
 
-gem 'rails-jquery-autocomplete'
 
 # Upload images to Amazon S3
 gem 'aws-sdk', '>= 2.0.0'

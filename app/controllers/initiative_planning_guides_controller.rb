@@ -69,12 +69,10 @@ class InitiativePlanningGuidesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_initiative_planning_guide
       @initiative_planning_guide = InitiativePlanningGuide.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def initiative_planning_guide_params
       params.fetch(:initiative_planning_guide, {}).permit(:objective_id, :description, :initiative_stage, 
                                                           :project_commitment, :initiative_overview, :major_milestones,
@@ -82,9 +80,9 @@ class InitiativePlanningGuidesController < ApplicationController
                                                           project_resources: [],
                                                           implementation_team_contact_attributes: [:id, :name, :email, :department, :category],
                                                           implementation_team_leads_attributes: [:id, :name, :email, :department, :category, :_destroy],
-                                                          extended_project_members: [:id, :name, :email, :department, :category, :_destroy],
-                                                          project_partners_internal: [:id, :name, :email, :department, :category, :_destroy],
-                                                          project_partners_external: [:id, :name, :email, :department, :category, :_destroy]
+                                                          extended_project_members_attributes: [:id, :name, :email, :department, :category, :_destroy],
+                                                          project_partners_internal_attributes: [:id, :name, :email, :department, :category, :_destroy],
+                                                          project_partners_external_attributes: [:id, :name, :email, :department, :category, :_destroy]
                                                           )
     end
 end
