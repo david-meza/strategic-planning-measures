@@ -84,6 +84,10 @@ class InitiativePlanningGuide < ActiveRecord::Base
     self.tag_ids
   end
 
+  def project_resources_models
+    self.tags
+  end
+
   # ----------------------- Class methods --------------------
   
   def self.filter_results(query, current_user)

@@ -28,6 +28,22 @@
     <% if action_name == "show" %>
 
       <div class="row">
+        <label class="col-sm-3 form-label control-label">Project Commitment</label>
+        <div class="col-sm-9">
+          <p><%= db_to_commitment(initiative_planning_guide.project_commitment) %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-3 form-label control-label">Project Resources</label>
+        <div class="col-sm-9">
+          <% initiative_planning_guide.project_resources_models.each do |resource| %>
+            <p> <i class="fa fa-fw fa-check-circle-o"></i>  <%= resource.name %></p>
+          <% end -%>
+        </div>
+      </div>
+
+      <div class="row">
         <%= render partial: "show_human_info", locals: { label: "Implementation Team Contact Person", people: [initiative_planning_guide.implementation_team_contact] } %>
       </div>
 

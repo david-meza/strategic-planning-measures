@@ -37,6 +37,10 @@ a.btn.btn-icon {
   }
 }
 
+.froala-container {
+  position: relative;
+}
+
 @include keyframes(slide-in-ltr) {
   from { @include transform(translateX(-100px)); opacity: 0; }
   to { @include transform(translateX(0)); opacity: 1; }

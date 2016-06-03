@@ -30,7 +30,11 @@ module InitiativePlanningGuidesHelper
     end
   end
 
-  def str_to_sym(string)
-    string.downcase.gsub(/\s+/, "_").to_sym
+  def str_to_sym(str)
+    str.downcase.gsub(/\s+/, "_").to_sym
+  end
+
+  def db_to_commitment(str)
+    { "once" => "One-Time Commitment", "ongoing" => "Ongoing Commitment" }[str]
   end
 end
