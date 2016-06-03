@@ -88,6 +88,10 @@ class InitiativePlanningGuide < ActiveRecord::Base
     self.tags
   end
 
+  def years
+    initiative_plan_years
+  end
+
   # ----------------------- Class methods --------------------
   
   def self.filter_results(query, current_user)
