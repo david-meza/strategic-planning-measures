@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="form-group" data-fields-index="<%= fields.index %>">
 
   <div class="col-md-4">
     <%= fields.text_field :name, class: "form-control", placeholder: "Name" %>
@@ -18,8 +18,8 @@
       <div class="col-xs-2">
         <% if fields.object.persisted? %>
           <%= fields.hidden_field :_destroy %>
-          <%= link_to "#", class: "text-danger remove-person text-center", 'aria-label': "Remove", title: 'Remove Person', data: {toggle: 'tooltip', placement: 'top'} do %>
-            <i class="fa fa-minus"></i>
+          <%= link_to "#", class: "text-danger remove-fields text-center", 'aria-label': "Remove", title: 'Remove Member', data: {toggle: 'tooltip', placement: 'top'} do %>
+            <i class="fa fa-fw fa-minus"></i>
           <% end %>
         <% end %>
       </div>
