@@ -32,30 +32,41 @@ var GanttChart = React.createClass({
   drawChart: function() {
 
     var SECONDS_IN_YEAR = 31536000000;
-    var year = 2015;
-    var year2 = 2017;
-    
-    var chartRows = this.state.data.map( function(planGuideObj) {
-      var percentageOfYear = planGuideObj.year === new Date().getFullYear() ? Math.round((new Date(planGuideObj.year, 11, 31) - new Date()) / 31536000000 * 100) : 0;
+
+    function withinFiscalYear(year) {
+      var fiscalYearStart = new Date(year - 1, 06, 01);
+      var today = new Date();
+      return today - fiscalYearStart < SECONDS_IN_YEAR && today - fiscalYearStart > 0;
+    }
+
+    function calculateProgressUntilEOY(year) {
+      return 100 - Math.round((new Date(year, 05, 30) - new Date()) / 31536000000 * 100);
+    }
+
+    function convertDataToArray(planGuideObj) {
+      var y = planGuideObj.year;
+      var percentageOfYear = withinFiscalYear(y) ? calculateProgressUntilEOY(y) : 0;
       return ['Initiative ID #' + planGuideObj.id, planGuideObj.description, planGuideObj.initiative_stage,
-              new Date(planGuideObj.year, 0, 1), new Date(planGuideObj.year, 11, 31), SECONDS_IN_YEAR, percentageOfYear, null];
-    });
-    console.log(chartRows);
+              new Date(y - 1, 06, 01), new Date(y, 05, 30), SECONDS_IN_YEAR, percentageOfYear, null];
+    }
+    
+    var chartRows = this.state.data.map( convertDataToArray );
 
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Planning Guide ID');
-    data.addColumn('string', 'Planning Guide Description');
-    data.addColumn('string', 'Planning Guide Stage');
-    data.addColumn('date', 'Start Date');
-    data.addColumn('date', 'End Date');
-    data.addColumn('number', 'Duration');
-    data.addColumn('number', 'Percent Complete');
-    data.addColumn('string', 'Dependencies');
+    var dataTable = new google.visualization.DataTable();
+    
+    dataTable.addColumn('string', 'Planning Guide ID');
+    dataTable.addColumn('string', 'Planning Guide Description');
+    dataTable.addColumn('string', 'Planning Guide Stage');
+    dataTable.addColumn('date', 'Start Date');
+    dataTable.addColumn('date', 'End Date');
+    dataTable.addColumn('number', 'Duration');
+    dataTable.addColumn('number', 'Percent Complete');
+    dataTable.addColumn('string', 'Dependencies');
 
-    data.addRows(chartRows);
+    dataTable.addRows(chartRows);
 
     var chart = new google.visualization.Gantt(document.getElementById('gantt-chart'));
-    chart.draw(data, this.chartOptions);
+    chart.draw(dataTable, this.chartOptions);
   },
 
   componentDidMount: function() {
