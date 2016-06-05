@@ -89,7 +89,7 @@ class InitiativePlanningGuide < ActiveRecord::Base
   end
 
   def years
-    initiative_plan_years
+    initiative_plan_years.order(created_at: :asc)
   end
 
   # ----------------------- Class methods --------------------
@@ -108,7 +108,10 @@ class InitiativePlanningGuide < ActiveRecord::Base
   # ----------------------- Instance methods --------------------
   
   def reject_year(attributes)
-    self.initiative_plan_years.last.update({expired: true, date_expired: Time.now}) unless self.initiative_plan_years.last.nil?
+    unless years.empty?
+      return true if years.last.year == attributes['year']
+      years.last.update({expired: true, date_expired: Time.now})
+    end
     attributes['year'].blank?
   end
 

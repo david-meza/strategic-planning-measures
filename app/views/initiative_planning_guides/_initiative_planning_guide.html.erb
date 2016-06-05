@@ -14,7 +14,7 @@
       <label class="col-sm-3 form-label control-label">Plan Year</label>
       <div class="col-sm-9">
         <% last_two_year_updates(initiative_planning_guide) if action_name == "show" %>
-        <p>FY <%= initiative_planning_guide.initiative_plan_years.last.try(:year) %></p>
+        <p>FY <%= initiative_planning_guide.years.last.try(:year) %></p>
       </div>
     </div>
     

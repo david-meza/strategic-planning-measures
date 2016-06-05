@@ -25,7 +25,7 @@ var GanttChart = React.createClass({
   chartOptions: {
     // height: 400,
     gantt: {
-      trackHeight: 30
+      trackHeight: 35
     }
   },
 
@@ -43,14 +43,27 @@ var GanttChart = React.createClass({
       return 100 - Math.round((new Date(year, 05, 30) - new Date()) / 31536000000 * 100);
     }
 
+    function calculatePercentageOfYear(year) {
+      if ( withinFiscalYear(year) ) {
+        return calculateProgressUntilEOY(year);
+      } else if ( year > new Date().getFullYear() ) {
+        return 0;
+      }
+      return 100;
+    }
+
     function convertDataToArray(planGuideObj) {
       var y = planGuideObj.year;
-      var percentageOfYear = withinFiscalYear(y) ? calculateProgressUntilEOY(y) : 0;
+      var percentageOfYear = calculatePercentageOfYear(y);
       return ['Initiative ID #' + planGuideObj.id, planGuideObj.description, planGuideObj.initiative_stage,
               new Date(y - 1, 06, 01), new Date(y, 05, 30), SECONDS_IN_YEAR, percentageOfYear, null];
     }
-    
-    var chartRows = this.state.data.map( convertDataToArray );
+
+    function guidesWithoutYear(guide) { 
+      return typeof guide.year !== 'undefined';
+    }
+
+    var chartRows = this.state.data.filter( guidesWithoutYear ).map( convertDataToArray );
 
     var dataTable = new google.visualization.DataTable();
     
@@ -66,6 +79,7 @@ var GanttChart = React.createClass({
     dataTable.addRows(chartRows);
 
     var chart = new google.visualization.Gantt(document.getElementById('gantt-chart'));
+    this.chartOptions.height = dataTable.getNumberOfRows() * 35 + 45;
     chart.draw(dataTable, this.chartOptions);
   },
 
@@ -78,30 +92,3 @@ var GanttChart = React.createClass({
     return <div id="gantt-chart"></div>;
   }
 });
-
-// [
-//   ['1.1', 'Initiative 1.1', 'art',
-//    new Date(year, 0, 1), new Date(year, 11, 31), SECONDS_IN_YEAR, 100, null],
-//   ['1.2', 'Initiative 1.2', 'art',
-//    new Date(year, 0, 1), new Date(year, 11, 31), SECONDS_IN_YEAR, 100, null],
-//   ['2.1', 'Initiative 2.1', 'finance',
-//    new Date(year, 0, 1), new Date(year, 11, 31), SECONDS_IN_YEAR, 100, null],
-//   ['2.2', 'Initiative 2.2', 'finance',
-//    new Date(year, 0, 1), new Date(year, 11, 31), SECONDS_IN_YEAR, 100, null],
-//   ['2.3', 'Initiative 2.3', 'finance',
-//    new Date(year, 0, 1), new Date(year, 11, 31), SECONDS_IN_YEAR, 50, null],
-//   ['3.1', 'Summer 2015', 'environment',
-//    new Date(year, 0, 1), new Date(year, 11, 31), SECONDS_IN_YEAR, 0, null],
-//   ['4.1', 'Autumn 2015', 'growth',
-//    new Date(year2, 0, 1), new Date(year2, 11, 31), SECONDS_IN_YEAR, 0, null],
-//   ['4.2', 'Winter 2015', 'growth',
-//    new Date(year2, 0, 1), new Date(year2, 11, 31), SECONDS_IN_YEAR, 0, null],
-//   ['4.3', 'Football Season', 'growth',
-//    new Date(year2, 0, 1), new Date(year2, 11, 31), SECONDS_IN_YEAR, 100, null],
-//   ['4.4', 'Baseball Season', 'growth',
-//    new Date(year2, 0, 1), new Date(year2, 11, 31), SECONDS_IN_YEAR, 14, null],
-//   ['4.5', 'Basketball Season', 'growth',
-//    new Date(year2, 0, 1), new Date(year2, 11, 31), SECONDS_IN_YEAR, 86, null],
-//   ['5.1', 'Hockey Season', 'trees',
-//    new Date(year2, 0, 1), new Date(year2, 11, 31), SECONDS_IN_YEAR, 89, null]
-// ]
