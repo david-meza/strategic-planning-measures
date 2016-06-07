@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 
+//= require select2
+
 //= require froala_editor.min.js
 
 //= require plugins/align.min.js

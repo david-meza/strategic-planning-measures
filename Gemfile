@@ -38,6 +38,8 @@ gem 'figaro', '~> 1.1'
 
 gem 'react-rails'
 
+gem "select2-rails"
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'

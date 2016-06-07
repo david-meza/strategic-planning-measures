@@ -4,6 +4,8 @@
   <%= admin_content { link_to 'New Initiative Planning Guide', new_initiative_planning_guide_path, class: "btn btn-success" } %>
 </div>
 
+<%= react_component 'GanttChart', {}, { class: "layout-row layout-align-center-stretch break-after well" } %>  
+
 <div class="row flex-row">
   <% @initiative_planning_guides.each do |guide| %>
     <div class="col-xs-12 col-md-6 col-lg-4">

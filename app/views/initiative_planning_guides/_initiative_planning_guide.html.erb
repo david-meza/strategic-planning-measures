@@ -14,7 +14,7 @@
       <label class="col-sm-3 form-label control-label">Plan Year</label>
       <div class="col-sm-9">
         <% last_two_year_updates(initiative_planning_guide) if action_name == "show" %>
-        <p><%= initiative_planning_guide.initiative_plan_years.last.try(:year) %></p>
+        <p>FY <%= initiative_planning_guide.years.last.try(:year) %></p>
       </div>
     </div>
     
@@ -67,6 +67,26 @@
         <label class="col-sm-3 form-label control-label">Initiative Overview</label>
         <div class="col-sm-9 fr-view">
           <%= initiative_planning_guide.initiative_overview.html_safe %>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-3 form-label control-label">Anticipated Outcomes</label>
+        <div class="col-sm-9">
+          <% initiative_planning_guide.goals_and_outcomes.each_with_index do |go, idx| %>
+            <%= content_tag :hr if idx > 0 %>
+            <p><strong>Goal:</strong> <%= go.goal %></p>
+            <p><strong>Outcome:</strong> <%= go.outcome %></p>
+          <% end -%>
+        </div>
+      </div>
+
+      <div class="row">
+        <label class="col-sm-3 form-label control-label">Performance Measures</label>
+        <div class="col-sm-9">
+          <% initiative_planning_guide.linked_measures.each do |measure| %>
+            <p><i class="fa fa-fw fa-circle"></i><%= link_to measure.description, measure %></p>
+          <% end -%>
         </div>
       </div>
 

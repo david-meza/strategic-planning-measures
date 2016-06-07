@@ -27,10 +27,23 @@ class InitiativePlanningGuide < ActiveRecord::Base
             class_name: 'InitiativeHuman'
 
   has_many :initiative_plan_years,
+            dependent: :destroy,
             class_name: 'InitiativePlanYear'
 
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+
+  has_many  :goals_and_outcomes, 
+            dependent: :destroy,
+            class_name: 'InitiativeGoalOutcome'
+
+  has_many  :initiative_linked_measures,
+            dependent: :destroy
+
+  has_many  :linked_measures,
+            through: :initiative_linked_measures,
+            source: :performance_measure
+
 
   include UserRules
 
@@ -52,6 +65,10 @@ class InitiativePlanningGuide < ActiveRecord::Base
                                 reject_if: :all_blank
 
   accepts_nested_attributes_for :project_partners_external,
+                                allow_destroy: true,
+                                reject_if: :all_blank
+
+  accepts_nested_attributes_for :goals_and_outcomes,
                                 allow_destroy: true,
                                 reject_if: :all_blank
 
@@ -88,6 +105,10 @@ class InitiativePlanningGuide < ActiveRecord::Base
     self.tags
   end
 
+  def years
+    initiative_plan_years.order(created_at: :asc)
+  end
+
   # ----------------------- Class methods --------------------
   
   def self.filter_results(query, current_user)
@@ -104,7 +125,10 @@ class InitiativePlanningGuide < ActiveRecord::Base
   # ----------------------- Instance methods --------------------
   
   def reject_year(attributes)
-    self.initiative_plan_years.last.update({expired: true, date_expired: Time.now}) unless self.initiative_plan_years.last.nil?
+    unless years.empty?
+      return true if years.last.year == attributes['year']
+      years.last.update({expired: true, date_expired: Time.now})
+    end
     attributes['year'].blank?
   end
 

@@ -13,6 +13,9 @@
  *= require_tree .
  *= require material
 
+ *= require select2
+ *= require select2-bootstrap
+
  *= require froala_editor.min.css
  *= require froala_style.min.css
 
