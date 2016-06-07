@@ -37,6 +37,13 @@ class InitiativePlanningGuide < ActiveRecord::Base
             dependent: :destroy,
             class_name: 'InitiativeGoalOutcome'
 
+  has_many  :initiative_linked_measures,
+            dependent: :destroy
+
+  has_many  :linked_measures,
+            through: :initiative_linked_measures,
+            source: :performance_measure
+
 
   include UserRules
 

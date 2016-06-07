@@ -143,6 +143,19 @@
 
 
           <div class="form-group">
+            <%= initiative_fields.label :linked_measure_ids, class: "col-lg-2 control-label" %>
+            <div class="col-lg-10">
+
+              <%= initiative_fields.collection_select :linked_measure_ids, PerformanceMeasure.order(description: :asc), :id, :description, {}, { class: "form-control custom-select", multiple: true } %>
+              
+            </div>
+          </div>
+
+
+          <div class="form-divider"></div>
+
+
+          <div class="form-group">
             <%= initiative_fields.label :major_milestones, "Major Milestones and Deliverables", class: "col-lg-2 control-label" %>
             <div class="col-lg-10 froala-container">
               <%= initiative_fields.text_area :major_milestones, class: ""%>

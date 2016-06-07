@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606184214) do
+ActiveRecord::Schema.define(version: 20160607154047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 20160606184214) do
   end
 
   add_index "initiative_humans", ["initiative_planning_guide_id"], name: "index_initiative_humans_on_initiative_planning_guide_id", using: :btree
+
+  create_table "initiative_linked_measures", force: :cascade do |t|
+    t.integer  "initiative_planning_guide_id"
+    t.integer  "performance_measure_id"
+    t.text     "comments"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "initiative_linked_measures", ["initiative_planning_guide_id"], name: "index_linked_measures_on_guide_id", using: :btree
+  add_index "initiative_linked_measures", ["performance_measure_id"], name: "index_initiative_linked_measures_on_performance_measure_id", using: :btree
 
   create_table "initiative_plan_years", force: :cascade do |t|
     t.integer  "initiative_planning_guide_id"
@@ -210,6 +221,8 @@ ActiveRecord::Schema.define(version: 20160606184214) do
 
   add_foreign_key "initiative_goal_outcomes", "initiative_planning_guides"
   add_foreign_key "initiative_humans", "initiative_planning_guides"
+  add_foreign_key "initiative_linked_measures", "initiative_planning_guides"
+  add_foreign_key "initiative_linked_measures", "performance_measures"
   add_foreign_key "initiative_plan_years", "initiative_planning_guides"
   add_foreign_key "initiative_planning_guides", "objectives"
   add_foreign_key "measure_reports", "performance_measures"

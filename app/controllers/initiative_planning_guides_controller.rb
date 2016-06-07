@@ -87,6 +87,7 @@ class InitiativePlanningGuidesController < ApplicationController
                                                           :project_commitment, :initiative_overview, :major_milestones,
                                                           initiative_plan_years_attributes: [:id, :year], 
                                                           project_resources: [],
+                                                          linked_measure_ids: [],
                                                           implementation_team_contact_attributes: [:id, :name, :email, :department, :category],
                                                           implementation_team_leads_attributes: [:id, :name, :email, :department, :category, :_destroy],
                                                           extended_project_members_attributes: [:id, :name, :email, :department, :category, :_destroy],

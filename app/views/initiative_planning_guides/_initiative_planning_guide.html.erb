@@ -82,6 +82,15 @@
       </div>
 
       <div class="row">
+        <label class="col-sm-3 form-label control-label">Performance Measures</label>
+        <div class="col-sm-9">
+          <% initiative_planning_guide.linked_measures.each do |measure| %>
+            <p><i class="fa fa-fw fa-circle"></i><%= link_to measure.description, measure %></p>
+          <% end -%>
+        </div>
+      </div>
+
+      <div class="row">
         <label class="col-sm-3 form-label control-label">Major Milestones</label>
         <div class="col-sm-9 fr-view">
           <%= initiative_planning_guide.major_milestones.html_safe %>

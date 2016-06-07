@@ -21,6 +21,13 @@ class PerformanceMeasure < ActiveRecord::Base
   has_many  :performance_factors, 
             dependent: :destroy
 
+  has_many  :initiative_linked_measures,
+            dependent: :destroy
+
+  has_many  :initiatives_linked,
+            through: :initiative_linked_measures,
+            source: :initiative_planning_guide
+
   accepts_nested_attributes_for :performance_factors,
                                 reject_if: :all_blank,
                                 allow_destroy: true
