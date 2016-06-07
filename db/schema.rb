@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602195928) do
+ActiveRecord::Schema.define(version: 20160606184214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "initiative_goal_outcomes", force: :cascade do |t|
+    t.integer  "initiative_planning_guide_id", null: false
+    t.string   "goal",                         null: false
+    t.text     "outcome"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "initiative_goal_outcomes", ["initiative_planning_guide_id"], name: "index_initiative_goal_outcomes_on_initiative_planning_guide_id", using: :btree
 
   create_table "initiative_humans", force: :cascade do |t|
     t.integer  "initiative_planning_guide_id"
@@ -198,6 +208,7 @@ ActiveRecord::Schema.define(version: 20160602195928) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "initiative_goal_outcomes", "initiative_planning_guides"
   add_foreign_key "initiative_humans", "initiative_planning_guides"
   add_foreign_key "initiative_plan_years", "initiative_planning_guides"
   add_foreign_key "initiative_planning_guides", "objectives"

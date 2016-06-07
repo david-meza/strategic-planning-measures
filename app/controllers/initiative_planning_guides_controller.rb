@@ -1,5 +1,9 @@
 class InitiativePlanningGuidesController < ApplicationController
+
+  include AmazonSignature
+
   before_action :set_initiative_planning_guide, only: [:show, :edit, :update, :destroy]
+  before_action :set_amazon_hash, only: [:new, :edit, :update, :create]
 
   def index
     @initiative_planning_guides = InitiativePlanningGuide.includes(:author, :last_editor, :initiative_plan_years, objective: :key_focus_area).order('key_focus_areas.name ASC, objectives.name ASC, initiative_planning_guides.description ASC')
@@ -15,6 +19,8 @@ class InitiativePlanningGuidesController < ApplicationController
     @extended_project_members = @initiative_planning_guide.humans.build(category: "Extended Project Members")
     @project_partners_internal = @initiative_planning_guide.humans.build(category: "Project Partners Internal")
     @project_partners_external = @initiative_planning_guide.humans.build(category: "Project Partners External")
+    3.times { @initiative_planning_guide.goals_and_outcomes.build }
+    # @goal = @initiative_planning_guide.goals_and_outcomes.build
 
     @humans = { "implementation_team_leads" => @implementation_team_leads, "implementation_team_contact" => @implementation_team_contact,
       "extended_project_members" => @extended_project_members, "project_partners_internal" => @project_partners_internal,
@@ -63,12 +69,17 @@ class InitiativePlanningGuidesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to initiative_planning_guides_url, notice: 'Initiative planning guide was successfully destroyed.' }
       format.json { head :no_content }
+      format.js   { render 'shared/destroy', locals: { resource: @initiative_planning_guide, data_label: "guide" } }
     end
   end
 
   private
     def set_initiative_planning_guide
       @initiative_planning_guide = InitiativePlanningGuide.find(params[:id])
+    end
+
+    def set_amazon_hash
+      @hash = AmazonSignature::data_hash
     end
 
     def initiative_planning_guide_params
@@ -80,7 +91,8 @@ class InitiativePlanningGuidesController < ApplicationController
                                                           implementation_team_leads_attributes: [:id, :name, :email, :department, :category, :_destroy],
                                                           extended_project_members_attributes: [:id, :name, :email, :department, :category, :_destroy],
                                                           project_partners_internal_attributes: [:id, :name, :email, :department, :category, :_destroy],
-                                                          project_partners_external_attributes: [:id, :name, :email, :department, :category, :_destroy]
+                                                          project_partners_external_attributes: [:id, :name, :email, :department, :category, :_destroy],
+                                                          goals_and_outcomes_attributes: [:id, :goal, :outcome, :_destroy]
                                                           )
     end
 end

@@ -122,6 +122,26 @@
             </div>
           </div>
 
+
+          <div class="form-divider"></div>
+
+          <%# react_component 'AsyncButton', { url: "/initiative_planning_guides/new", tooltipTitle: "Add Goal/Outcome", buttonClasses: "add-goal", iconClass: "fa-plus", legend: "Anticipated Outcomes", selector: 'goal'}, { class: "", tag: "div", id: "goals_and_outcomes" } %>
+          <legend class="sublegend">Anticipated Outcomes</legend>          
+          <%= initiative_fields.fields_for :goals_and_outcomes do |fields| %>
+            <div class="form-group">  
+              <div class="col-lg-6">
+                <%= fields.text_area :goal, class: "form-control", placeholder: "Goal" %>
+              </div>
+              <div class="col-lg-6">
+                <%= fields.text_area :outcome, class: "form-control", placeholder: "Outcome" %>
+              </div>
+            </div>
+          <% end %>
+
+          
+          <div class="form-divider"></div>
+
+
           <div class="form-group">
             <%= initiative_fields.label :major_milestones, "Major Milestones and Deliverables", class: "col-lg-2 control-label" %>
             <div class="col-lg-10 froala-container">
@@ -141,3 +161,74 @@
     </div>
   </div>  
 </div>
+
+<script type="text/javascript">
+  $('#initiative_planning_guide_major_milestones').froalaEditor({
+    toolbarInline: false,
+    placeholderText: 'Timeline and expected deliverables',
+    imageUploadToS3: {
+      bucket: '<%= @hash[:bucket] %>',
+      region: 's3-us-west-2',
+      keyStart: '<%= @hash[:key_start] %>',
+      callback: function (url, key) {
+        console.log (url);
+        console.log (key);
+      },
+      params: {
+        acl: '<%= @hash[:acl] %>',
+        AWSAccessKeyId: '<%= @hash[:access_key] %>',
+        policy: '<%= @hash[:policy] %>',
+        signature: '<%= @hash[:signature] %>',
+      }
+    },
+    fileUploadToS3: {
+      bucket: '<%= @hash[:bucket] %>',
+      region: 's3-us-west-2',
+      keyStart: '<%= @hash[:key_start] %>',
+      callback: function (url, key) {
+        console.log (url);
+        console.log (key);
+      },
+      params: {
+        acl: '<%= @hash[:acl] %>',
+        AWSAccessKeyId: '<%= @hash[:access_key] %>',
+        policy: '<%= @hash[:policy] %>',
+        signature: '<%= @hash[:signature] %>',
+      }
+    }
+  });
+
+  $('#initiative_planning_guide_initiative_overview').froalaEditor({
+    placeholderText: 'What problem is being solved? What are the current challenges or concerns? What is the current status of the initiative?',
+    imageUploadToS3: {
+      bucket: '<%= @hash[:bucket] %>',
+      region: 's3-us-west-2',
+      keyStart: '<%= @hash[:key_start] %>',
+      callback: function (url, key) {
+        console.log (url);
+        console.log (key);
+      },
+      params: {
+        acl: '<%= @hash[:acl] %>',
+        AWSAccessKeyId: '<%= @hash[:access_key] %>',
+        policy: '<%= @hash[:policy] %>',
+        signature: '<%= @hash[:signature] %>',
+      }
+    },
+    fileUploadToS3: {
+      bucket: '<%= @hash[:bucket] %>',
+      region: 's3-us-west-2',
+      keyStart: '<%= @hash[:key_start] %>',
+      callback: function (url, key) {
+        console.log (url);
+        console.log (key);
+      },
+      params: {
+        acl: '<%= @hash[:acl] %>',
+        AWSAccessKeyId: '<%= @hash[:access_key] %>',
+        policy: '<%= @hash[:policy] %>',
+        signature: '<%= @hash[:signature] %>',
+      }
+    }
+  });
+</script>

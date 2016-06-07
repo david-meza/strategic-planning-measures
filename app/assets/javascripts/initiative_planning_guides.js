@@ -4,16 +4,6 @@
 
     if ( $('.initiative_planning_guides.new, .initiative_planning_guides.create, .initiative_planning_guides.edit, .initiative_planning_guides.update').length === 0 ) { return; }
 
-    $('#initiative_planning_guide_major_milestones').froalaEditor({
-      toolbarInline: false,
-      placeholderText: 'Timeline and expected deliverables'
-    });
-
-    $('#initiative_planning_guide_initiative_overview').froalaEditor({
-      placeholderText: 'What problem is being solved? What are the current challenges or concerns? What is the current status of the initiative?'
-    });
-
-
     $('.update-year-link').on('click', removeOverlay);
 
     $('.remove-fields').on('click', removeFields);

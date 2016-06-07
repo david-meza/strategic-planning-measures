@@ -71,6 +71,17 @@
       </div>
 
       <div class="row">
+        <label class="col-sm-3 form-label control-label">Anticipated Outcomes</label>
+        <div class="col-sm-9">
+          <% initiative_planning_guide.goals_and_outcomes.each_with_index do |go, idx| %>
+            <%= content_tag :hr if idx > 0 %>
+            <p><strong>Goal:</strong> <%= go.goal %></p>
+            <p><strong>Outcome:</strong> <%= go.outcome %></p>
+          <% end -%>
+        </div>
+      </div>
+
+      <div class="row">
         <label class="col-sm-3 form-label control-label">Major Milestones</label>
         <div class="col-sm-9 fr-view">
           <%= initiative_planning_guide.major_milestones.html_safe %>
