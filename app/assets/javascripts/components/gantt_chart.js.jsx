@@ -7,7 +7,11 @@ var GanttChart = React.createClass({
   loadContentFromServer: function () {
     var setDataState = function (data) {
       this.setState({data: data});
-      google.charts.setOnLoadCallback(this.drawChart);
+      if (typeof google.visualization === 'undefined') {
+        google.charts.setOnLoadCallback(this.drawChart);
+      } else {
+        this.drawChart();
+      }
     }.bind(this);
 
     var xhrError = function (xhr, status, err) {

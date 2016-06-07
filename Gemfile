@@ -40,6 +40,8 @@ gem 'react-rails'
 
 gem "select2-rails"
 
+gem "sanitize"
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'

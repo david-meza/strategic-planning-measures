@@ -77,6 +77,8 @@ class InitiativePlanningGuide < ActiveRecord::Base
   before_create :author_is_admin
   before_update :editor_is_admin
 
+  before_save :sanitize_froala_inputs
+
 
   # ----------------------- Validations --------------------
 
@@ -130,6 +132,11 @@ class InitiativePlanningGuide < ActiveRecord::Base
       years.last.update({expired: true, date_expired: Time.now})
     end
     attributes['year'].blank?
+  end
+
+  def sanitize_froala_inputs
+    Sanitize.fragment(initiative_overview, Sanitize::Config::RELAXED)
+    Sanitize.fragment(major_milestones, Sanitize::Config::RELAXED)
   end
 
 end

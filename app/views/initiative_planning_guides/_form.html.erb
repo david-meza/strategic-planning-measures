@@ -143,7 +143,7 @@
 
 
           <div class="form-group">
-            <%= initiative_fields.label :linked_measure_ids, class: "col-lg-2 control-label" %>
+            <%= initiative_fields.label :linked_measure_ids, "Performance Measures", class: "col-lg-2 control-label" %>
             <div class="col-lg-10">
 
               <%= initiative_fields.collection_select :linked_measure_ids, PerformanceMeasure.order(description: :asc), :id, :description, {}, { class: "form-control custom-select", multiple: true } %>
