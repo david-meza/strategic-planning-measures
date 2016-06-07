@@ -10,7 +10,7 @@ Web app that captures data and measures for the COR strategic plan
 
 * [Open](http://strategicplanning/)
 
-*Note:* This won't work outside the oaktree network
+*Note:* This link won't work outside the internal oaktree network
 
 ### Demo
 
