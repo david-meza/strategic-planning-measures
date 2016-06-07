@@ -254,6 +254,10 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
   padding: 5px 10px;
 }
 
+.no-events {
+  pointer-events: none;
+}
+
 .measure-report-label, .form-label {
   line-height: 14px;
   padding: 7px 0 3px;
