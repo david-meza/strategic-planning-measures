@@ -31,14 +31,19 @@ gem 'wysiwyg-rails'
 gem 'aws-sdk', '>= 2.0.0'
 
 # Manage file attachments with Paperclip
-gem "paperclip", "~> 5.0.0.beta2"
+gem 'paperclip', '~> 5.0.0.beta2'
 
 # Use figaro to manage environmental variables
 gem 'figaro', '~> 1.1'
 
 gem 'react-rails'
 
-gem "select2-rails"
+gem 'select2-rails'
+
+gem 'sanitize'
+
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 
 # Use Unicorn as the app server
@@ -48,7 +53,7 @@ gem "select2-rails"
 # gem 'capistrano-rails', group: :development
 
 group :development do
-  gem "rails-erd"
+  gem 'rails-erd'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -76,7 +81,7 @@ end
 group :development, :test do
   gem 'faker', '1.4.3'
 
-  gem "letter_opener"
+  gem 'letter_opener'
 end
 
 group :test do

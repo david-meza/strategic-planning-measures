@@ -48,6 +48,25 @@ a.btn.btn-icon {
   background-color: #fff;
 }
 
+.welcome.index {
+  .city-text {
+    color: $dark-indigo;
+    font-weight: 500;
+  } 
+
+  .strategic-text {
+    color: $indigo;
+  }
+}
+
+#contact-container {
+  .contact-card {
+    .photo-container {
+      height: auto;
+    }
+  }
+}
+
 @include keyframes(slide-in-ltr) {
   from { @include transform(translateX(-100px)); opacity: 0; }
   to { @include transform(translateX(0)); opacity: 1; }
@@ -244,7 +263,7 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
   text-transform: capitalize;
 }
 
-.limit-text {
+.limit-text, text {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -252,6 +271,10 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
 
 .icon-action {
   padding: 5px 10px;
+}
+
+.no-events {
+  pointer-events: none;
 }
 
 .measure-report-label, .form-label {

@@ -2,6 +2,7 @@ var AsyncButton = React.createClass({
 
   handleClick: function(e) {
     e.preventDefault();
+      
     var $target = $(e.target).addClass('disabled');
 
     setTimeout(function() {
@@ -30,7 +31,7 @@ var AsyncButton = React.createClass({
         <span>{this.props.legend}</span>
         <span className="flex"></span>
         <a className={"btn btn-success btn-icon text-center " + this.props.buttonClasses} aria-label={this.props.tooltipTitle} title={this.props.tooltipTitle} data-toggle="tooltip" data-placement="top" onClick={this.handleClick}>
-          <i className={"fa fa-fw " + this.props.iconClass}></i>
+          <i className={"fa fa-fw no-events " + this.props.iconClass}></i>
         </a>
       </legend>
     );

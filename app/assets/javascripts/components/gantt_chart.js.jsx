@@ -7,7 +7,11 @@ var GanttChart = React.createClass({
   loadContentFromServer: function () {
     var setDataState = function (data) {
       this.setState({data: data});
-      google.charts.setOnLoadCallback(this.drawChart);
+      if (google.visualization && google.visualization.DataTable) {
+        this.drawChart();
+      } else {
+        google.charts.setOnLoadCallback(this.drawChart);
+      }
     }.bind(this);
 
     var xhrError = function (xhr, status, err) {
@@ -23,9 +27,9 @@ var GanttChart = React.createClass({
   },
 
   chartOptions: {
-    // height: 400,
     gantt: {
-      trackHeight: 35
+      trackHeight: 35,
+      barHeight: 25
     }
   },
 
@@ -67,9 +71,9 @@ var GanttChart = React.createClass({
 
     var dataTable = new google.visualization.DataTable();
     
-    dataTable.addColumn('string', 'Planning Guide ID');
-    dataTable.addColumn('string', 'Planning Guide Description');
-    dataTable.addColumn('string', 'Planning Guide Stage');
+    dataTable.addColumn('string', 'Plan ID');
+    dataTable.addColumn('string', 'Plan Description');
+    dataTable.addColumn('string', 'Plan Stage');
     dataTable.addColumn('date', 'Start Date');
     dataTable.addColumn('date', 'End Date');
     dataTable.addColumn('number', 'Duration');
@@ -78,14 +82,14 @@ var GanttChart = React.createClass({
 
     dataTable.addRows(chartRows);
 
-    var chart = new google.visualization.Gantt(document.getElementById('gantt-chart'));
     this.chartOptions.height = dataTable.getNumberOfRows() * 35 + 45;
+    var chart = new google.visualization.Gantt(document.getElementById('gantt-chart'));
     chart.draw(dataTable, this.chartOptions);
   },
 
   componentDidMount: function() {
-    this.loadContentFromServer();
     google.charts.load('upcoming', {'packages':['gantt']});
+    this.loadContentFromServer();
   },
 
   render: function() {
