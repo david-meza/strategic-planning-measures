@@ -60,6 +60,7 @@ class PerformanceMeasuresController < ApplicationController
       if @performance_measure.update(performance_measure_params)
         format.html { redirect_to @performance_measure, notice: 'Performance measure was successfully updated.' }
         format.json { render :show, status: :ok, location: @performance_measure }
+        format.js   { render 'shared/update', locals: { resource: @performance_measure, data_label: "measure" } }
       else
         format.html { render :edit }
         format.json { render json: @performance_measure.errors, status: :unprocessable_entity }

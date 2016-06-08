@@ -18,6 +18,31 @@
       </div>
     </div>
 
+
+<!-- TEMP -->
+    <%= form_for performance_measure, remote: true, html: { class:"form-horizontal" } do |fields| %>
+      <div class="form-group">
+        <label class="col-xs-4 control-label form-label capitalize">Frequency Data is Available</label>
+        <div class="col-xs-8 layout-row">
+          <%= fields.text_field :frequency_data_available, class: "form-control flex" %>
+          <%= button_tag class: "btn btn-success icon-action", 'aria-label': "Save Changes", title: 'Save Changes', data: {toggle: 'tooltip', placement: 'top'} do %>
+            <i class="fa fa-fw fa-check"></i>
+          <% end -%>
+          <%= link_to performance_measures_path, class: "icon-action", 'aria-label': "Refresh Page", title: 'Refresh Page', data: {toggle: 'tooltip', placement: 'top'} do %>
+            <i class="fa fa-fw fa-refresh"></i>
+          <% end -%>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <label class="col-xs-4 control-label form-label capitalize">Frequency Data is Available</label>
+      <div class="col-xs-8">
+        <p id="frequency-data-available"><%= performance_measure.frequency_data_available %></p>
+      </div>
+    </div>
+<!-- TEMP END -->
+
     <% if action_name == 'show' %>
 
       <div class="row">

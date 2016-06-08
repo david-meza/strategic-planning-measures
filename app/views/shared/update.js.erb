@@ -1,0 +1,9 @@
+(function($) {
+
+  var $card = $('div[data-<%= data_label %>-id="<%= resource.id %>"]');
+
+  $('<%= j(render partial: "shared/flash", locals: { message: "Your #{resource.class.model_name.human} was updated!", flash_type: "info" }) %>').appendTo($card).hide().fadeIn(500);
+
+  var $updatedField = $card.find('#frequency-data-available').replaceWith('<p id="frequency-data-available"><%= resource.frequency_data_available %></p>');
+
+})(jQuery);
