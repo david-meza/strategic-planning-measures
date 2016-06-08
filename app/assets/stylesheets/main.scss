@@ -48,6 +48,25 @@ a.btn.btn-icon {
   background-color: #fff;
 }
 
+.welcome.index {
+  .city-text {
+    color: $dark-indigo;
+    font-weight: 500;
+  } 
+
+  .strategic-text {
+    color: $indigo;
+  }
+}
+
+#contact-container {
+  .contact-card {
+    .photo-container {
+      height: auto;
+    }
+  }
+}
+
 @include keyframes(slide-in-ltr) {
   from { @include transform(translateX(-100px)); opacity: 0; }
   to { @include transform(translateX(0)); opacity: 1; }
