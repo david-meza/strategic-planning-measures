@@ -6,7 +6,7 @@
   <%= admin_content { link_to 'New Measure', new_performance_measure_path, class: "btn btn-success spaced-items" } %>
   <%= link_to download_performance_measures_path(format: :xls), class: "btn btn-default spaced-items" do %>
     <i class="fa fa-fw fa-file-excel-o"></i> Download Measures
-  <% end if is_admin? %>
+  <% end %>
 </div>
 
 <div class="layout-row flex layout-align-end-center">

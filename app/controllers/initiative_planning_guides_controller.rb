@@ -10,6 +10,14 @@ class InitiativePlanningGuidesController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        render pdf:                            'file_name',
+               template:                       'layouts/pdf_layout.html.erb'
+      end
+    end
   end
 
   def new

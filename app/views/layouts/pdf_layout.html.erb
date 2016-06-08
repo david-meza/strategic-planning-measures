@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <title>Strategic Planning</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="keywords" content="City of Raleigh, Strategic Planning, City of Raleigh Strategic Planning" />
+  <meta name="description" content="An in-house built application that helps City of Raleigh plan and record measurements in their long-term strategic goals" />
+  <meta name="author" content="David Meza" />
+  <meta property="og:title" content="City of Raleigh Strategic Planning" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://strategic-planning.herokuapp.com/" />
+  <meta property="og:description" content="An in-house built application that helps City of Raleigh plan and record measurements in their long-term strategic goals" />
+  <meta property="fb:admins" content="jdmeza93"/>
+
+  <%= wicked_pdf_stylesheet_link_tag "application" -%>
+  <%= wicked_pdf_javascript_include_tag "application" %>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  
+</head>
+<body class="<%= controller_name %> <%= action_name %>">
+
+  <%= render partial: 'shared/navbar' %>
+
+  <%= cancel_user_view %>
+
+  <div class="container-fluid" id = "flash-messages">
+    <%= flash_messages %>
+  </div>
+  
+  <div class="container-fluid">
+    
+    <%= yield %>
+    
+  </div>
+
+</body>
+</html>

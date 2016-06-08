@@ -176,72 +176,32 @@
 </div>
 
 <script type="text/javascript">
-  $('#initiative_planning_guide_major_milestones').froalaEditor({
-    toolbarInline: false,
-    placeholderText: 'Timeline and expected deliverables',
-    imageUploadToS3: {
-      bucket: '<%= @hash[:bucket] %>',
-      region: 's3-us-west-2',
-      keyStart: '<%= @hash[:key_start] %>',
-      callback: function (url, key) {
-        console.log (url);
-        console.log (key);
-      },
-      params: {
-        acl: '<%= @hash[:acl] %>',
-        AWSAccessKeyId: '<%= @hash[:access_key] %>',
-        policy: '<%= @hash[:policy] %>',
-        signature: '<%= @hash[:signature] %>',
-      }
-    },
-    fileUploadToS3: {
-      bucket: '<%= @hash[:bucket] %>',
-      region: 's3-us-west-2',
-      keyStart: '<%= @hash[:key_start] %>',
-      callback: function (url, key) {
-        console.log (url);
-        console.log (key);
-      },
-      params: {
-        acl: '<%= @hash[:acl] %>',
-        AWSAccessKeyId: '<%= @hash[:access_key] %>',
-        policy: '<%= @hash[:policy] %>',
-        signature: '<%= @hash[:signature] %>',
-      }
-    }
-  });
 
-  $('#initiative_planning_guide_initiative_overview').froalaEditor({
-    placeholderText: 'What problem is being solved? What are the current challenges or concerns? What is the current status of the initiative?',
-    imageUploadToS3: {
-      bucket: '<%= @hash[:bucket] %>',
-      region: 's3-us-west-2',
-      keyStart: '<%= @hash[:key_start] %>',
-      callback: function (url, key) {
-        console.log (url);
-        console.log (key);
-      },
-      params: {
-        acl: '<%= @hash[:acl] %>',
-        AWSAccessKeyId: '<%= @hash[:access_key] %>',
-        policy: '<%= @hash[:policy] %>',
-        signature: '<%= @hash[:signature] %>',
-      }
-    },
-    fileUploadToS3: {
-      bucket: '<%= @hash[:bucket] %>',
-      region: 's3-us-west-2',
-      keyStart: '<%= @hash[:key_start] %>',
-      callback: function (url, key) {
-        console.log (url);
-        console.log (key);
-      },
-      params: {
-        acl: '<%= @hash[:acl] %>',
-        AWSAccessKeyId: '<%= @hash[:access_key] %>',
-        policy: '<%= @hash[:policy] %>',
-        signature: '<%= @hash[:signature] %>',
-      }
+  var amazonConfig = {
+    bucket: '<%= @hash[:bucket] %>',
+    region: 's3-us-west-2',
+    keyStart: '<%= @hash[:key_start] %>',
+    params: {
+      acl: '<%= @hash[:acl] %>',
+      AWSAccessKeyId: '<%= @hash[:access_key] %>',
+      policy: '<%= @hash[:policy] %>',
+      signature: '<%= @hash[:signature] %>',
     }
-  });
+  };
+
+  var froalaDefaults = {
+    toolbarInline: false,
+    toolbarButtons: ['fullscreen', '|', 'bold', 'italic', 'underline', 'strikeThrough', '|', 'formatOL', 'formatUL', 'outdent', 'indent', '|', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', '|', 'insertTable', 'undo', 'redo', 'clearFormatting', 'selectAll'],
+    toolbarButtonsMD: ['fullscreen', '|', 'bold', 'italic', 'underline', 'strikeThrough', '|', 'formatOL', 'formatUL', 'outdent', 'indent', '|', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', '|', 'insertTable', 'undo', 'redo'],
+    imageUploadToS3: $.extend({}, amazonConfig),
+    fileUploadToS3: $.extend({}, amazonConfig)
+  };
+
+  $('#initiative_planning_guide_major_milestones').froalaEditor( $.extend({}, froalaDefaults, {
+    placeholderText: 'Timeline and expected deliverables'
+  }) );
+
+  $('#initiative_planning_guide_initiative_overview').froalaEditor($.extend({}, froalaDefaults, {
+    placeholderText: 'What problem is being solved? What are the current challenges or concerns? What is the current status of the initiative?'
+  }) );
 </script>

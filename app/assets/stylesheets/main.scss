@@ -244,7 +244,7 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
   text-transform: capitalize;
 }
 
-.limit-text {
+.limit-text, text {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

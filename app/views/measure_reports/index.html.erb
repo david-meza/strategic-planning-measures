@@ -3,10 +3,8 @@
   <span class="flex"></span>
   
   <%= link_to 'New Measure report', new_measure_report_path, class: "btn btn-success spaced-items" %>
-  <% admin_content do %>
-    <%= link_to download_measure_reports_path(format: :xls), class: "btn btn-default spaced-items" do %>
-      <i class="fa fa-fw fa-file-excel-o"></i> Download Reports
-    <% end -%>
+  <%= link_to download_measure_reports_path(format: :xls), class: "btn btn-default spaced-items" do %>
+    <i class="fa fa-fw fa-file-excel-o"></i> Download Reports
   <% end %>
 </div>
 
