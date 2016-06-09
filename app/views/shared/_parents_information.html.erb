@@ -3,16 +3,18 @@
     
     <label class="<%= label_width %> control-label form-label capitalize"><%= parent.model_name.human %></label>
     
-    <div class="<%= content_width %> layout-row layout-align-space-between-stretch">
-      
-      <p><%= parent.try(:name) %></p>
-      
-      <% if idx == 0 %>
-        <div class="kfa-logo-card">
-          <%= image_tag parent.logo.url(:thumb), alt: "Key Focus Area logo", class: "img-responsive" if parent.logo.present? %>
-        </div>
-      <% end -%>
+    <div class="<%= content_width %> ">
 
+      <div class="layout-row layout-align-space-between-stretch">
+        <%= link_to parent.name, (params[:format] == 'pdf' ? polymorphic_url(parent) : parent) %>
+        
+        <% if idx == 0 %>
+          <div class="kfa-logo-card">
+            <%= image_tag parent.logo.url(:thumb), class: "img-responsive" if parent.logo.present? %>
+          </div>
+        <% end -%>
+      </div>
+      
     </div>
   </div>
 <% end %>

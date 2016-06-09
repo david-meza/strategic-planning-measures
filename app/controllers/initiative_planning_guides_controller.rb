@@ -14,9 +14,11 @@ class InitiativePlanningGuidesController < ApplicationController
       format.html
       format.json
       format.pdf do
-        render pdf:                            'file_name',
+        render pdf:                            @initiative_planning_guide.description,
                template:                       'initiative_planning_guides/show.html.erb',
-               layout:                         'pdf_layout'
+               layout:                         'pdf_layout',
+               page_size:                      'Letter',
+               show_as_html:                   params.key?('debug')
       end
     end
   end

@@ -357,3 +357,12 @@ input:focus, a:focus, button:focus, select:focus, form:focus {
 }
 
 
+@media screen and (max-width: 599px) {
+  .navbar {
+    .navbar-brand {
+      font-size: 20px;
+    }
+  }
+}
+
+
