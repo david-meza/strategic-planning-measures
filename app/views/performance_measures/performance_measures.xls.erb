@@ -14,6 +14,7 @@
         <Cell><Data ss:Type="String">Unit of Measure</Data></Cell>
         <Cell><Data ss:Type="String">Measurement Formula</Data></Cell>
         <Cell><Data ss:Type="String">Data Source</Data></Cell>
+        <Cell><Data ss:Type="String">Frequency Data Is Available</Data></Cell>
         <Cell><Data ss:Type="String">Rationale for Target</Data></Cell>
         <Cell><Data ss:Type="String">Performance Factors</Data></Cell>
         <Cell><Data ss:Type="String">Data Contact</Data></Cell>
@@ -22,6 +23,7 @@
         <Cell><Data ss:Type="String">Person Reporting Data To BMS Email</Data></Cell>
         <Cell><Data ss:Type="String">Notes</Data></Cell>
         <Cell><Data ss:Type="String">Author</Data></Cell>
+        <Cell><Data ss:Type="String">Last Editor</Data></Cell>
       </Row>
       
       <% @performance_measures.each do |measure| %>
@@ -34,6 +36,7 @@
           <Cell><Data ss:Type="String"><%= measure.unit_of_measure %></Data></Cell>
           <Cell><Data ss:Type="String"><%= measure.measurement_formula %></Data></Cell>
           <Cell><Data ss:Type="String"><%= measure.data_source %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.frequency_data_available %></Data></Cell>
           <Cell><Data ss:Type="String"><%= measure.rationale_for_target %></Data></Cell>
           <Cell><Data ss:Type="String"><% measure.performance_factors.each do |factor| %>Factor: <%= factor.label_text %> &#xD;Field Type: <%= factor.field_type %> &#xD;&#xD;<% end %></Data></Cell>
           <Cell><Data ss:Type="String"><%= measure.data_contact_person %></Data></Cell>
@@ -42,6 +45,7 @@
           <Cell><Data ss:Type="String"><%= measure.person_reporting_data_to_bms_email %></Data></Cell>
           <Cell><Data ss:Type="String"><%= measure.notes %></Data></Cell>
           <Cell><Data ss:Type="String"><%= measure.author.try(:email) %></Data></Cell>
+          <Cell><Data ss:Type="String"><%= measure.last_editor.try(:email) %></Data></Cell>
         </Row>
       <% end %>
     </Table>

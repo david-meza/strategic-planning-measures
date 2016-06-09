@@ -43,7 +43,7 @@ gem 'select2-rails'
 gem 'sanitize'
 
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary-edge', '~> 0.12.3.0'
 
 
 # Use Unicorn as the app server

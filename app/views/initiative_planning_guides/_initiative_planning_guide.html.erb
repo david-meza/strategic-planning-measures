@@ -1,26 +1,26 @@
 <div class="panel panel-info" data-guide-id="<%= initiative_planning_guide.id %>">
   <div class="panel-body">
 
-    <%= render partial: 'shared/parents_information', locals: { parents: initiative_planning_guide.parents, label_width: "col-sm-3", content_width: "col-sm-9" } %>
+    <%= render partial: 'shared/parents_information', locals: { parents: initiative_planning_guide.parents, label_width: "col-sm-3 col-xs-3", content_width: "col-sm-9 col-xs-9" } %>
 
     <div class="row">
-      <label class="col-sm-3 form-label control-label">Initiative</label>
-      <div class="col-sm-9">
+      <label class="col-sm-3 col-xs-3 form-label control-label">Initiative</label>
+      <div class="col-sm-9 col-xs-9">
         <p><%= initiative_planning_guide.description %></p>
       </div>
     </div>
     
     <div class="row">
-      <label class="col-sm-3 form-label control-label">Plan Year</label>
-      <div class="col-sm-9">
+      <label class="col-sm-3 col-xs-3 form-label control-label">Plan Year</label>
+      <div class="col-sm-9 col-xs-9">
         <% last_two_year_updates(initiative_planning_guide) if action_name == "show" %>
         <p>FY <%= initiative_planning_guide.years.last.try(:year) %></p>
       </div>
     </div>
     
     <div class="row">
-      <label class="col-sm-3 form-label control-label">Initiative Stage</label>
-      <div class="col-sm-9">
+      <label class="col-sm-3 col-xs-3 form-label control-label">Initiative Stage</label>
+      <div class="col-sm-9 col-xs-9">
         <p><%= initiative_planning_guide.initiative_stage %></p>
       </div>
     </div>
@@ -28,15 +28,15 @@
     <% if action_name == "show" %>
 
       <div class="row">
-        <label class="col-sm-3 form-label control-label">Project Commitment</label>
-        <div class="col-sm-9">
+        <label class="col-sm-3 col-xs-3 form-label control-label">Project Commitment</label>
+        <div class="col-sm-9 col-xs-9">
           <p><%= db_to_commitment(initiative_planning_guide.project_commitment) %></p>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-sm-3 form-label control-label">Project Resources</label>
-        <div class="col-sm-9">
+        <label class="col-sm-3 col-xs-3 form-label control-label">Project Resources</label>
+        <div class="col-sm-9 col-xs-9">
           <% initiative_planning_guide.project_resources_models.each do |resource| %>
             <p> <i class="fa fa-fw fa-check-circle-o"></i>  <%= resource.name %></p>
           <% end -%>
@@ -64,15 +64,15 @@
       </div>
 
       <div class="row">
-        <label class="col-sm-3 form-label control-label">Initiative Overview</label>
-        <div class="col-sm-9 fr-view">
+        <label class="col-sm-3 col-xs-3 form-label control-label">Initiative Overview</label>
+        <div class="col-sm-9 col-xs-9 fr-view">
           <%= initiative_planning_guide.initiative_overview.html_safe %>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-sm-3 form-label control-label">Anticipated Outcomes</label>
-        <div class="col-sm-9">
+        <label class="col-sm-3 col-xs-3 form-label control-label">Anticipated Outcomes</label>
+        <div class="col-sm-9 col-xs-9">
           <% initiative_planning_guide.goals_and_outcomes.each_with_index do |go, idx| %>
             <%= content_tag :hr if idx > 0 %>
             <p><strong>Goal:</strong> <%= go.goal %></p>
@@ -82,31 +82,31 @@
       </div>
 
       <div class="row">
-        <label class="col-sm-3 form-label control-label">Performance Measures</label>
-        <div class="col-sm-9">
+        <label class="col-sm-3 col-xs-3 form-label control-label">Performance Measures</label>
+        <div class="col-sm-9 col-xs-9">
           <% initiative_planning_guide.linked_measures.each do |measure| %>
-            <p><i class="fa fa-fw fa-circle"></i><%= link_to measure.description, measure %></p>
+            <p><i class="fa fa-fw fa-circle-o"></i><%= link_to measure.description, (params[:format] == 'pdf' ? performance_measure_url : measure) %></p>
           <% end -%>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-sm-3 form-label control-label">Major Milestones</label>
-        <div class="col-sm-9 fr-view">
+        <label class="col-sm-3 col-xs-3 form-label control-label">Major Milestones</label>
+        <div class="col-sm-9 col-xs-9 fr-view">
           <%= initiative_planning_guide.major_milestones.html_safe %>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-sm-3 form-label control-label">Created By</label>
-        <div class="col-sm-9">
+        <label class="col-sm-3 col-xs-3 form-label control-label">Created By</label>
+        <div class="col-sm-9 col-xs-9">
           <p><%= initiative_planning_guide.author.try(:email) %></p>
         </div>
       </div>
 
       <div class="row">
-        <label class="col-sm-3 form-label control-label">Last Edited by</label>
-        <div class="col-sm-9">
+        <label class="col-sm-3 col-xs-3 form-label control-label">Last Edited by</label>
+        <div class="col-sm-9 col-xs-9">
           <p><%= initiative_planning_guide.last_editor.try(:email) %></p>
         </div>
       </div>

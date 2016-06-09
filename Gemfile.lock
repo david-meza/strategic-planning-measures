@@ -367,7 +367,7 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
     wicked_pdf (1.0.6)
     will_paginate (3.1.0)
-    wkhtmltopdf-binary (0.9.9.3)
+    wkhtmltopdf-binary-edge (0.12.3.0)
     wysiwyg-rails (2.3.0)
       font-awesome-rails (~> 4.4, >= 4.4.0.0)
       railties (>= 3.2, < 5.0)
@@ -420,7 +420,7 @@ DEPENDENCIES
   web-console (~> 2.0)
   wicked_pdf
   will_paginate (~> 3.1.0)
-  wkhtmltopdf-binary
+  wkhtmltopdf-binary-edge (~> 0.12.3.0)
   wysiwyg-rails
 
 RUBY VERSION
