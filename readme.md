@@ -42,6 +42,8 @@ This application uses RSpec Rails, Guard, Shoulda matchers, and Factory Girl for
 
 **Restore pg dump:** `pg_restore --verbose --clean --no-acl --no-owner -h localhost -U user -d dbname latest.dump`
 
+**Create a pg dump:** `pg_dump -Fc --no-acl --no-owner -h localhost -U strategicplanning strategic_planning_production > strategic_planning_production.dump`
+
 **See which services are running:** `ps -ef | grep puma`
 
 **Kill a running service:** `kill pid`
