@@ -7,7 +7,7 @@ var GanttChart = React.createClass({
   loadContentFromServer: function () {
     var setDataState = function (data) {
       this.setState({data: data});
-      if (google.visualization && google.visualization.DataTable) {
+      if (google.visualization && google.visualization.DataTable && google.visualization.Gantt) {
         this.drawChart();
       } else {
         google.charts.setOnLoadCallback(this.drawChart);

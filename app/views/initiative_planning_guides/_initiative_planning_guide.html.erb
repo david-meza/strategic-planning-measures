@@ -85,7 +85,7 @@
         <label class="col-sm-3 col-xs-3 form-label control-label">Performance Measures</label>
         <div class="col-sm-9 col-xs-9">
           <% initiative_planning_guide.linked_measures.each do |measure| %>
-            <p><i class="fa fa-fw fa-circle-o"></i><%= link_to measure.description, (params[:format] == 'pdf' ? performance_measure_url : measure) %></p>
+            <p><i class="fa fa-fw fa-circle-o"></i><%= link_to measure.description, (params[:format] == "pdf" ? performance_measure_url : measure) %></p>
           <% end -%>
         </div>
       </div>
@@ -113,7 +113,7 @@
     <% end %>
 
 
-    <%= render partial: "shared/card_actions", locals: { resource: initiative_planning_guide } %>
+    <%= render partial: "shared/card_actions", locals: { resource: initiative_planning_guide } unless params[:format] == "pdf" %>
 
   </div>
 </div>

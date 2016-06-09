@@ -8,6 +8,8 @@
       theme: 'bootstrap'
     });
 
+    $('a[href="https://froala.com/wysiwyg-editor"]').parent().remove();
+
     $('.update-year-link').on('click', removeOverlay);
 
     $('.remove-fields').on('click', removeFields);
