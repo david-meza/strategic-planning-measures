@@ -12,7 +12,11 @@
     <div class="row">
       
       <div class="col-xs-10">
-        <%= fields.text_field :department, class: "form-control", placeholder: "Department" %>
+        <% if fields.object.category == "Implementation Team Leads" || fields.object.category == "Extended Project Members" %>
+          <%= fields.select :department, ["Budget and Management Services", "City Attorney", "City Clerk", "City Council", "City Manager's Office", "City Planning", "Communications", "Convention Center and Performing Arts", "Development Services", "Economic Development and Innovation", "Emergency Communications", "Emergency Management and Special Events", "Engineering Services", "Finance", "Fire", "Housing and Neighborhoods", "Human Resources", "Information Technology", "Internal Audit", "Parks, Recreation, and Cultural Resources", "Police", "Public Utilities", "Solid Waste Services", "Sustainability", "Transportation"], { prompt: "Department" }, class: "form-control department-select" %>
+        <% else %>
+          <%= fields.text_field :department, placeholder: "Organization", class: "form-control" %>
+        <% end -%>
       </div>
       
       <div class="col-xs-2">

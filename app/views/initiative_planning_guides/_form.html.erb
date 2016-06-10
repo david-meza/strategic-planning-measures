@@ -19,7 +19,7 @@
           <div class="form-group">
             <%= initiative_fields.label :initiative_stage, "Initiative Stage", class: "col-lg-2 control-label" %>
             <div class="col-lg-4">
-              <%= initiative_fields.text_field :initiative_stage, class: "form-control" %>
+              <%= initiative_fields.select :initiative_stage, ["Evaluate", "Plan", "Implement", "Review"], { prompt: "Select the initiative stage" }, class: "form-control" %>
             </div>
             
             <%= initiative_fields.fields_for :initiative_plan_years, @initiative_planning_guide.initiative_plan_years.build do |year_fields| %>
@@ -142,17 +142,17 @@
           <div class="form-divider"></div>
 
 
-          <div class="form-group">
-            <%= initiative_fields.label :linked_measure_ids, "Performance Measures", class: "col-lg-2 control-label" %>
+          <!-- <div class="form-group">
+            <%# initiative_fields.label :linked_measure_ids, "Performance Measures", class: "col-lg-2 control-label" %>
             <div class="col-lg-10">
 
-              <%= initiative_fields.collection_select :linked_measure_ids, PerformanceMeasure.order(description: :asc), :id, :description, {}, { class: "form-control custom-select", multiple: true } %>
+              <%# initiative_fields.collection_select :linked_measure_ids, PerformanceMeasure.order(description: :asc), :id, :description, {}, { class: "form-control custom-select", multiple: true } %>
               
             </div>
           </div>
 
 
-          <div class="form-divider"></div>
+          <div class="form-divider"></div> -->
 
 
           <div class="form-group">

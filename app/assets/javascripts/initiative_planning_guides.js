@@ -4,7 +4,7 @@
 
     if ( $('.initiative_planning_guides.new, .initiative_planning_guides.create, .initiative_planning_guides.edit, .initiative_planning_guides.update').length === 0 ) { return; }
 
-    $('#initiative_planning_guide_linked_measure_ids').select2({
+    $('#initiative_planning_guide_linked_measure_ids, .department-select').select2({
       theme: 'bootstrap'
     });
 
